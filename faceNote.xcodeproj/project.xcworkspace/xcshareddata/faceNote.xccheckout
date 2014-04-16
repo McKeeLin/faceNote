@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EDC8F13F-CCF9-41AF-B417-3E619B991DDB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>faceNote</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5C39BDE2-4A2E-4140-B0B8-43DE1CBD9DD0</key>
+		<string>http://172.18.8.79:85/svn/motionoa/trunk/GdtelMoa/IOS/trunk/src/iPhoneMOA/Classes/vote/image</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>faceNote/faceNote.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5C39BDE2-4A2E-4140-B0B8-43DE1CBD9DD0</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>5C39BDE2-4A2E-4140-B0B8-43DE1CBD9DD0</key>
+		<string>http://172.18.8.79:85/svn/motionoa/trunk/GdtelMoa</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://172.18.8.79:85/svn/motionoa/trunk/GdtelMoa/IOS/trunk/src/iPhoneMOA/Classes/vote/image/faceNote/faceNote.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5C39BDE2-4A2E-4140-B0B8-43DE1CBD9DD0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5C39BDE2-4A2E-4140-B0B8-43DE1CBD9DD0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>myProject</string>
+		</dict>
+	</array>
+</dict>
+</plist>
