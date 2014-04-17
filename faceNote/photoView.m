@@ -10,7 +10,7 @@
 #import "PhotoInfo.h"
 #import "dataManager.h"
 #import "photoInfoView.h"
-
+#import <QuartzCore/QuartzCore.h>
 @interface photoView()
 {
     photoInfoView *infoView;
@@ -38,6 +38,7 @@
         self.autoresizesSubviews = YES;
         UIImageView *iv = [[UIImageView alloc] initWithFrame:frame];
         iv.image = [UIImage imageWithContentsOfFile:path];
+        iv.layer.cornerRadius = 17;
         iv.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:iv];
         [iv release];

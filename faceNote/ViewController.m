@@ -14,7 +14,6 @@
 #import "settingView.h"
 #import "def.h"
 #import "locationMgr.h"
-#import "UIApplication+appSize.h"
 #import "photoDisplayView.h"
 #import "photoView.h"
 #import "album.h"
@@ -121,6 +120,7 @@ ViewController *g_vc;
 {
     CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
     CGRect bs = [[UIScreen mainScreen] bounds];
+    NSLog(@"%s, appframe:%f,%f,%f,%f, bounds:%f,%f,%f,%f", __func__, appFrame.origin.x,appFrame.origin.y,appFrame.size.width,appFrame.size.height, bs.origin.x,bs.origin.y,bs.size.width,bs.size.height);
     CGFloat width = appFrame.size.width;
     CGFloat height = appFrame.size.height;
     if( bs.size.width == appFrame.size.width )
@@ -134,9 +134,25 @@ ViewController *g_vc;
         height = appFrame.size.width;
     }
     
+    if( [[UIDevice currentDevice] systemVersion].floatValue >= 7.0 ){
+        height += [UIApplication sharedApplication].statusBarFrame.size.height;
+    }
+    
     appWidth = width;
     appHeight = height;
     return CGSizeMake(width, height);
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect bs = [[UIScreen mainScreen] bounds];
+    NSLog(@"%s, appframe:%f,%f,%f,%f, bounds:%f,%f,%f,%f", __func__, appFrame.origin.x,appFrame.origin.y,appFrame.size.width,appFrame.size.height, bs.origin.x,bs.origin.y,bs.size.width,bs.size.height);
 }
 
 - (void)didShowPage:(id)page atIndex:(NSInteger)index
@@ -151,7 +167,8 @@ ViewController *g_vc;
 {
     if( !ltv )
     {
-        listView *lv = [[listView alloc] initWithFrame:bounds];
+        CGRect frame = CGRectMake(0, 0, appWidth, appHeight);
+        listView *lv = [[listView alloc] initWithFrame:frame];
         lv.vc = self;
         self.ltv = lv;
         [lv release];
@@ -196,7 +213,7 @@ ViewController *g_vc;
         CGRect photoFrame;
         photoFrame.origin.x = 0;
         photoFrame.origin.y = 0;
-        photoFrame.size = [UIApplication appSize];
+        photoFrame.size = CGSizeMake(appWidth, appHeight);
         for( NSString *photo in photoPaths )
         {
             photoView *pv = [[photoView alloc] initWithFrame:photoFrame path:photo];

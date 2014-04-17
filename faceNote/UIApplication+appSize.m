@@ -23,6 +23,9 @@
     {
         size = CGSizeMake(appBounds.size.height, appBounds.size.width);
     }
+    if( [[UIDevice currentDevice] systemVersion].floatValue >= 7.0 ){
+        size.height += [UIApplication sharedApplication].statusBarFrame.size.height;
+    }
     return size;
 }
 

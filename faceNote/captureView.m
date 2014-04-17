@@ -59,6 +59,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.backgroundColor = [UIColor yellowColor];
         UISwipeGestureRecognizer *gr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSlideToRight:)];
         gr.direction = UISwipeGestureRecognizerDirectionRight;
         gr.numberOfTouchesRequired = 1;
@@ -113,10 +114,6 @@
             
         }
         
-        CGRect maskFrame = self.bounds;
-        maskFrame.size.height = 500;
-        maskView *mask = [[maskView alloc] initWithFrame:maskFrame];
-        [self addSubview:mask];
         [[locationMgr defaultMgr] addDelegate:self];
     }
     return self;

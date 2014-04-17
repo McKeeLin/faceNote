@@ -94,7 +94,7 @@
     self.paths = am.photos;
     CGFloat labelWidth = 100;
     CGSize appSize = [UIApplication appSize];
-    CGRect albumFrame = CGRectMake(0, 10, appSize.width, ALBUMVIEW_DEFAULT_HEIGHT);
+    CGRect albumFrame = CGRectMake(0, 2, appSize.width, ALBUMVIEW_DEFAULT_HEIGHT);
     amv = [[albumView alloc] initWithFrame:albumFrame album:am];
     [self.contentView addSubview:amv];
 }

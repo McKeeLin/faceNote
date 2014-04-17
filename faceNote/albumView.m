@@ -197,10 +197,10 @@
         btn.frame = CGRectMake(left, top, width, height);
         btn.backgroundColor = [UIColor grayColor];
         btn.tag = index;
-        [btn addTarget:self action:@selector(onTouchPhoto:) forControlEvents:UIControlEventTouchDown];
+        [btn addTarget:self action:@selector(onTouchPhoto:) forControlEvents:UIControlEventTouchUpInside];
         NSLog(@".................1");
         UIImage *img1 = [[UIImage alloc] initWithContentsOfFile:[photoPaths objectAtIndex:index]];
-        UIImage *img = [[UIImage alloc] initWithCGImage:img1.CGImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationRight];
+        UIImage *img = [[UIImage alloc] initWithCGImage:img1.CGImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
         [img1 release];
         NSLog(@".................11");
         

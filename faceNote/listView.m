@@ -15,6 +15,9 @@
 #import "albumGroup.h"
 #import "ViewController.h"
 #import "listToolBar.h"
+#import <QuartzCore/QuartzCore.h>
+
+#define HEADERVIEW_HEIGHT   40
 
 @interface listView()
 {
@@ -33,7 +36,7 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor redColor];
-        CGSize size = [UIApplication appSize];
+        CGSize size = frame.size;
         table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
         table.separatorStyle = UITableViewCellSeparatorStyleNone;
         table.dataSource = self;
@@ -85,6 +88,12 @@
         {
             continue;
         }
+        
+        NSRange r1 = [yearMonth rangeOfString:@"."];
+        if( r1.location == 0 )
+        {
+            continue;
+        }
         albumGroup *group = [[albumGroup alloc] init];
         group.title = yearMonth;
         NSString *yearMonthDir = [NSString stringWithFormat:@"%@/%@", photosDir, yearMonth];
@@ -97,6 +106,11 @@
             {
                 continue;
             }
+            NSRange rr2 = [day rangeOfString:@"."];
+            if( rr2.location == 0 )
+            {
+                continue;
+            }
             album *am = [[album alloc] init];
             am.title = day;
             NSString *dayDir = [NSString stringWithFormat:@"%@/%@", yearMonthDir, day];
@@ -105,6 +119,11 @@
             NSArray *photos = [fm subpathsAtPath:dayDir];
             for( NSString *photo in photos )
             {
+                NSRange rr3 = [photo rangeOfString:@"."];
+                if( rr3.location == 0 )
+                {
+                    continue;
+                }
                 NSString *img = [NSString stringWithFormat:@"%@/%@", dayDir, photo];
                 [am.photos addObject:img];
             }
@@ -182,7 +201,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ALBUMVIEW_DEFAULT_HEIGHT + 10;
+    return ALBUMVIEW_DEFAULT_HEIGHT+2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return HEADERVIEW_HEIGHT;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -206,14 +230,21 @@
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     albumGroup *group = [groups objectAtIndex:section];
-    CGRect frame = CGRectMake(10, 0, 320, 20);
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, HEADERVIEW_HEIGHT)];
+    CGSize initSize = CGSizeMake(320, 20);
+    UIFont *font = [UIFont boldSystemFontOfSize:12];
+    CGSize textSize = [group.title sizeWithFont:font constrainedToSize:initSize lineBreakMode:NSLineBreakByTruncatingTail];
+    CGRect frame = CGRectMake((tableView.frame.size.width-textSize.width-10)/2, HEADERVIEW_HEIGHT-textSize.height-7, textSize.width+10, textSize.height+2);
     UILabel *title = [[[UILabel alloc] initWithFrame:frame] autorelease];
-    title.backgroundColor = [UIColor clearColor];
+    title.backgroundColor = [UIColor grayColor];
     title.text = group.title;
-    title.textColor = [UIColor grayColor];
-    title.font = [UIFont boldSystemFontOfSize:14];
-    title.textAlignment = NSTextAlignmentLeft;
-    return title;
+    title.textColor = [UIColor whiteColor];
+    title.font = font;
+    title.textAlignment = NSTextAlignmentCenter;
+    title.layer.cornerRadius = 8;
+    title.layer.masksToBounds = YES;
+    [headerView addSubview:title];
+    return headerView;
 }
 
 - (NSInteger)getFileModifiedTime:(NSString*)path
