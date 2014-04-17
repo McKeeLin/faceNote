@@ -5,13 +5,15 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>EDC8F13F-CCF9-41AF-B417-3E619B991DDB</string>
+	<string>8973EF1A-0E3C-4C10-990D-2026FC37DEA3</string>
 	<key>IDESourceControlProjectName</key>
 	<string>faceNote</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5C39BDE2-4A2E-4140-B0B8-43DE1CBD9DD0</key>
 		<string>http://172.18.8.79:85/svn/motionoa/trunk/GdtelMoa/IOS/trunk/src/iPhoneMOA/Classes/vote/image</string>
+		<key>CD03AB9C-F60F-489F-9866-EF06768DB11F</key>
+		<string>https://github.com/McKeeLin/faceNote.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>faceNote/faceNote.xcodeproj/project.xcworkspace</string>
@@ -19,20 +21,30 @@
 	<dict>
 		<key>5C39BDE2-4A2E-4140-B0B8-43DE1CBD9DD0</key>
 		<string>../../..</string>
+		<key>CD03AB9C-F60F-489F-9866-EF06768DB11F</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>
 		<key>5C39BDE2-4A2E-4140-B0B8-43DE1CBD9DD0</key>
-		<string>http://172.18.8.79:85/svn/motionoa/trunk/GdtelMoa</string>
+		<string>http://172.18.8.79:85/svn/motionoa</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>http://172.18.8.79:85/svn/motionoa/trunk/GdtelMoa/IOS/trunk/src/iPhoneMOA/Classes/vote/image/faceNote/faceNote.xcodeproj</string>
+	<string>https://github.com/McKeeLin/faceNote.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
 	<string>5C39BDE2-4A2E-4140-B0B8-43DE1CBD9DD0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CD03AB9C-F60F-489F-9866-EF06768DB11F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>faceNote</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.subversion</string>
