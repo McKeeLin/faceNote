@@ -15,9 +15,10 @@
 #import "albumGroup.h"
 #import "ViewController.h"
 #import "listToolBar.h"
+#import "dismissableTips.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define HEADERVIEW_HEIGHT   40
+#define HEADERVIEW_HEIGHT   50
 
 @interface listView()
 {
@@ -35,7 +36,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor redColor];
+        self.backgroundColor = [UIColor colorWithRed:247.0/255.0 green:247.0/255.0 blue:247.0/255.0 alpha:247.0/255.0];
         CGSize size = frame.size;
         table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
         table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -47,6 +48,7 @@
         
         imgViews = [[NSMutableArray alloc] initWithCapacity:0];
         
+        /*
         CGRect toolBarFrame;
         toolBarFrame.origin.x = 0;
         toolBarFrame.origin.y = size.height - 40;
@@ -55,6 +57,11 @@
         listToolBar *bar = [[listToolBar alloc] initWithFrame:toolBarFrame];
         [self addSubview:bar];
         [bar release];
+        */
+        UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeToLeft:)];
+        sgr.numberOfTouchesRequired = 1;
+        sgr.direction = UISwipeGestureRecognizerDirectionLeft;
+        [self addGestureRecognizer:sgr];
     }
     return self;
 }
@@ -71,6 +78,20 @@
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
     ;
+}
+
+
+- (void)didMoveToSuperview
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *key = @"listViewShown";
+    BOOL shown = [defaults boolForKey:key];
+    if( !shown )
+    {
+        [defaults setBool:YES forKey:key];
+        NSString *tips = @"1.向左滑动可切换一照相视图\n\n2.点击缩略图可浏览照片";//@"1.swipe to left to switch the camera view \n\n2.tap the picture nail to browse the album.";
+        [dismissableTips showTips:tips blues:[NSArray arrayWithObject:tips] atView:self seconds:10 block:nil];
+    }
 }
 
 - (void)loadImages
@@ -272,6 +293,12 @@
 }
 
 - (void)onTouchCamera:(id)sender
+{
+    [vc showCameraFromListView];
+    [self removeFromSuperview];
+}
+
+- (void)onSwipeToLeft:(UISwipeGestureRecognizer*)sgr
 {
     [vc showCameraFromListView];
     [self removeFromSuperview];

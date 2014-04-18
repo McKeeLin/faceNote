@@ -21,6 +21,7 @@
 #import "dataManager.h"
 #import "PhotoInfo.h"
 #import "maskView.h"
+#import "dismissableTips.h"
 
 @interface captureView()<AVCaptureAudioDataOutputSampleBufferDelegate>
 {
@@ -59,7 +60,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor yellowColor];
+        self.backgroundColor = [UIColor clearColor];
         UISwipeGestureRecognizer *gr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSlideToRight:)];
         gr.direction = UISwipeGestureRecognizerDirectionRight;
         gr.numberOfTouchesRequired = 1;
@@ -81,22 +82,24 @@
         backView = [[UIView alloc] initWithFrame:frame];
         [self addSubview:backView];
         
-        CGFloat buttonWidth = 80;
-        CGFloat buttonHeight = 30;
+        CGFloat buttonWidth = 33;
+        CGFloat buttonHeight = 33;
         CGFloat internalWidth =( frame.size.width - 240 ) / 2;
         CGFloat top = frame.size.height - buttonHeight - 15;
-        CGFloat left = 0;
+        CGFloat left = (frame.size.width - buttonWidth)/2;
         CGRect buttonFrame = CGRectMake(left, top, buttonWidth, buttonHeight);
         /*
         self.toggleCameraButton = [[transparentBtn alloc] initWithFrame:buttonFrame title:@"toggle" target:self Action:@selector(onTouchToggleClose:) cornerRadius:5];
         [self addSubview:toggleCameraButton];
         */
         
-        buttonFrame.origin.x += buttonWidth + internalWidth;
+//        buttonFrame.origin.x += buttonWidth + internalWidth;
         CGRect captureButtonFrame = buttonFrame;
         captureButtonFrame.origin.y = frame.size.height - buttonWidth - 5;
         captureButtonFrame.size.height = buttonWidth;
         self.captureButton = [[transparentBtn alloc] initWithFrame:captureButtonFrame title:@"capture" target:self Action:@selector(onTouchCapture:) cornerRadius:buttonWidth/2];
+        UIImage *img = [UIImage imageNamed:@"camera"];
+        [self.captureButton setImage:img forState:UIControlStateNormal];
         [self addSubview:captureButton];
         
         /*
@@ -147,6 +150,10 @@
     [thoroughfare release];
     [subThoroughfare release];
     [super dealloc];
+}
+
+- (void)didMoveToSuperview
+{
 }
 
 /*
@@ -283,6 +290,14 @@
 
 - (void)onTouchCapture:(id)sender
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL shown = [defaults boolForKey:@"captureViewShown"];
+    if( !shown )
+    {
+        [defaults setBool:YES forKey:@"captureViewShown"];
+        NSString *tips = @"1.向右滑动可切换到照片列表视图\n\n2.上下滑动可切换前后摄像头";//@"1.swipe from left to right to switch to photo list viwe  \n\n2.swipe to up or down to switch between front and back camera.";
+        [dismissableTips showTips:tips blues:[NSArray arrayWithObject:tips] atView:self seconds:10 block:nil];
+    }
     NSLog(@"%s",__func__);
     AVCaptureConnection *conn = [self.imageOut connectionWithMediaType:AVMediaTypeVideo];
     if( conn )

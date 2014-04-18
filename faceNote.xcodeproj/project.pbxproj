@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		081195561900A9F700C27778 /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 081195501900A9F700C27778 /* icon114.png */; };
+		081195571900A9F700C27778 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 081195511900A9F700C27778 /* icon120.png */; };
+		081195581900A9F700C27778 /* icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = 081195521900A9F700C27778 /* icon29.png */; };
+		081195591900A9F700C27778 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 081195531900A9F700C27778 /* icon57.png */; };
+		0811955A1900A9F700C27778 /* icon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 081195541900A9F700C27778 /* icon58.png */; };
+		0811955B1900A9F700C27778 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 081195551900A9F700C27778 /* icon80.png */; };
+		0811955E1900B41500C27778 /* dismissableTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 0811955D1900B41500C27778 /* dismissableTips.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		081195611900B94A00C27778 /* tipsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 081195601900B94A00C27778 /* tipsLabel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		5D01EDD518294D52000C3094 /* pageMgrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D01EDD418294D52000C3094 /* pageMgrView.m */; };
 		5D01EDD81829D7D4000C3094 /* listView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D01EDD71829D7D4000C3094 /* listView.m */; };
 		5D01EDDA182A8BA3000C3094 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D01EDD9182A8BA3000C3094 /* CoreMedia.framework */; };
@@ -62,6 +70,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		081195501900A9F700C27778 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		081195511900A9F700C27778 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
+		081195521900A9F700C27778 /* icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29.png; sourceTree = "<group>"; };
+		081195531900A9F700C27778 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		081195541900A9F700C27778 /* icon58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon58.png; sourceTree = "<group>"; };
+		081195551900A9F700C27778 /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon80.png; sourceTree = "<group>"; };
+		0811955C1900B41500C27778 /* dismissableTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dismissableTips.h; sourceTree = "<group>"; };
+		0811955D1900B41500C27778 /* dismissableTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dismissableTips.m; sourceTree = "<group>"; };
+		0811955F1900B94A00C27778 /* tipsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tipsLabel.h; sourceTree = "<group>"; };
+		081195601900B94A00C27778 /* tipsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tipsLabel.m; sourceTree = "<group>"; };
 		5D01EDD318294D52000C3094 /* pageMgrView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pageMgrView.h; sourceTree = "<group>"; };
 		5D01EDD418294D52000C3094 /* pageMgrView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pageMgrView.m; sourceTree = "<group>"; };
 		5D01EDD61829D7D4000C3094 /* listView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = listView.h; sourceTree = "<group>"; };
@@ -170,9 +188,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0811954F1900A9F700C27778 /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				081195501900A9F700C27778 /* icon114.png */,
+				081195511900A9F700C27778 /* icon120.png */,
+				081195521900A9F700C27778 /* icon29.png */,
+				081195531900A9F700C27778 /* icon57.png */,
+				081195541900A9F700C27778 /* icon58.png */,
+				081195551900A9F700C27778 /* icon80.png */,
+			);
+			name = icon;
+			path = faceNote/icon;
+			sourceTree = "<group>";
+		};
 		5D3DA5DD18265C4A008FCB17 = {
 			isa = PBXGroup;
 			children = (
+				0811954F1900A9F700C27778 /* icon */,
 				5DF7F7451879A85400A72E94 /* image */,
 				5DF934F91852CDBC00560259 /* CoreData.framework */,
 				5DD10F46184DBFEA0009A7E3 /* camera@2x.png */,
@@ -215,6 +248,10 @@
 		5D3DA5EF18265C4B008FCB17 /* faceNote */ = {
 			isa = PBXGroup;
 			children = (
+				0811955F1900B94A00C27778 /* tipsLabel.h */,
+				081195601900B94A00C27778 /* tipsLabel.m */,
+				0811955C1900B41500C27778 /* dismissableTips.h */,
+				0811955D1900B41500C27778 /* dismissableTips.m */,
 				5D4770E618537DF000A06C23 /* autoSizeLabel.h */,
 				5D4770E718537DF000A06C23 /* autoSizeLabel.m */,
 				5D4770E31853779900A06C23 /* titleValueView.h */,
@@ -328,6 +365,7 @@
 				ORGANIZATIONNAME = cndatacom;
 				TargetAttributes = {
 					5D3DA5E518265C4B008FCB17 = {
+						DevelopmentTeam = D9KLEDDTR3;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -358,11 +396,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				081195571900A9F700C27778 /* icon120.png in Resources */,
+				0811955B1900A9F700C27778 /* icon80.png in Resources */,
 				5D3DA5F418265C4B008FCB17 /* InfoPlist.strings in Resources */,
 				5D3DA5FC18265C4B008FCB17 /* Default.png in Resources */,
+				0811955A1900A9F700C27778 /* icon58.png in Resources */,
 				5DF7F7471879A86400A72E94 /* title_bg@2x.png in Resources */,
+				081195591900A9F700C27778 /* icon57.png in Resources */,
 				5D3DA5FE18265C4B008FCB17 /* Default@2x.png in Resources */,
 				5D3DA60018265C4B008FCB17 /* Default-568h@2x.png in Resources */,
+				081195561900A9F700C27778 /* icon114.png in Resources */,
+				081195581900A9F700C27778 /* icon29.png in Resources */,
 				5D3DA60618265C4B008FCB17 /* ViewController.xib in Resources */,
 				5D1907B51844FFFF00CA19EB /* bg_mv_playpage_process_transparent@2x.png in Resources */,
 				5D1907BB1845032400CA19EB /* IMG_0344.PNG in Resources */,
@@ -401,7 +445,9 @@
 				5D19080818465CEC00CA19EB /* photoView.m in Sources */,
 				5D19080B18465F0500CA19EB /* photoDisplayView.m in Sources */,
 				5DD10F3B184B6EBF0009A7E3 /* UIImage+BoxBlur.m in Sources */,
+				081195611900B94A00C27778 /* tipsLabel.m in Sources */,
 				5D4770EB18540CAA00A06C23 /* photoInfoView.m in Sources */,
+				0811955E1900B41500C27778 /* dismissableTips.m in Sources */,
 				5DD10F42184B822E0009A7E3 /* maskGlassView.m in Sources */,
 				5DD10F45184DBACE0009A7E3 /* listToolBar.m in Sources */,
 				5D54DEFF184F777D0061AA46 /* UIImage+blur.m in Sources */,
@@ -489,15 +535,15 @@
 		5D3DA60A18265C4B008FCB17 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: lin jinglong (TE3JGKRCE3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lin jinglong (TE3JGKRCE3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "faceNote/faceNote-Prefix.pch";
 				INFOPLIST_FILE = "faceNote/faceNote-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "826AE13A-8BFF-4724-A173-5CB7688116D9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "826AE13A-8BFF-4724-A173-5CB7688116D9";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -506,15 +552,15 @@
 		5D3DA60B18265C4B008FCB17 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: lin jinglong (TE3JGKRCE3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lin jinglong (TE3JGKRCE3)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: JingLong Lin (D9KLEDDTR3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JingLong Lin (D9KLEDDTR3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "faceNote/faceNote-Prefix.pch";
 				INFOPLIST_FILE = "faceNote/faceNote-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "826AE13A-8BFF-4724-A173-5CB7688116D9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "826AE13A-8BFF-4724-A173-5CB7688116D9";
+				PROVISIONING_PROFILE = "051B8EC3-FF66-43A4-8C46-48177F2526BD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "051B8EC3-FF66-43A4-8C46-48177F2526BD";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

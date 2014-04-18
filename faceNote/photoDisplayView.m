@@ -8,6 +8,7 @@
 
 #import "photoDisplayView.h"
 #import "ViewController.h"
+#import "dismissableTips.h"
 
 
 @implementation photoDisplayView
@@ -40,6 +41,21 @@
     }
     return self;
 }
+
+
+- (void)didMoveToSuperview
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *key = @"photoViewShown";
+    BOOL shown = [defaults boolForKey:key];
+    if( !shown )
+    {
+        [defaults setBool:YES forKey:key];
+        NSString *tips = @"1.左右滑动可切换照片\n\n2.双击可回到照片列表视图";//@"1.swipe to left or right to change photo \n\n2.dubble tap to switch to the album list view.";
+        [dismissableTips showTips:tips blues:[NSArray arrayWithObject:tips] atView:self seconds:10 block:nil];
+    }
+}
+
 
 - (void)onDoubleTag:(UITapGestureRecognizer*)tg
 {
