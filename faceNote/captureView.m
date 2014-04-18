@@ -22,6 +22,7 @@
 #import "PhotoInfo.h"
 #import "maskView.h"
 #import "dismissableTips.h"
+#import "funcVC.h"
 
 @interface captureView()<AVCaptureAudioDataOutputSampleBufferDelegate>
 {
@@ -72,6 +73,12 @@
         sdgr.numberOfTouchesRequired = 1;
         [self addGestureRecognizer:sdgr];
         [sdgr release];
+        
+        UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
+        tgr.numberOfTouchesRequired = 1;
+        tgr.numberOfTapsRequired = 1;
+        [self addGestureRecognizer:tgr];
+        [tgr release];
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         self.documentPath = [paths objectAtIndex:0];
@@ -466,6 +473,14 @@
     
 }
 */
+
+- (void)onTap:(UITapGestureRecognizer *)tap
+{
+    funcVC *funvc = [[funcVC alloc] initWithStyle:UITableViewStyleGrouped];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:funvc animated:YES completion:^(){
+        [funvc release];
+    }];
+}
 
 - (void)onSlideToRight:(UISwipeGestureRecognizer*)sgr
 {

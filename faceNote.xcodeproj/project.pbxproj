@@ -15,6 +15,12 @@
 		0811955B1900A9F700C27778 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 081195551900A9F700C27778 /* icon80.png */; };
 		0811955E1900B41500C27778 /* dismissableTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 0811955D1900B41500C27778 /* dismissableTips.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		081195611900B94A00C27778 /* tipsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 081195601900B94A00C27778 /* tipsLabel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		0898ABAE1901121B00268357 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0898ABAD1901121B00268357 /* StoreKit.framework */; };
+		0898ABB21901130000268357 /* iAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0898ABB11901130000268357 /* iAPHelper.m */; };
+		0898ABB419011F6600268357 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0898ABB319011F6600268357 /* SystemConfiguration.framework */; };
+		0898ABB81901447000268357 /* funcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0898ABB71901447000268357 /* funcVC.m */; };
+		0898ABBB1901476000268357 /* iapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0898ABBA1901476000268357 /* iapVC.m */; };
+		0898ABBE19014ABE00268357 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0898ABBD19014ABE00268357 /* MBProgressHUD.m */; };
 		5D01EDD518294D52000C3094 /* pageMgrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D01EDD418294D52000C3094 /* pageMgrView.m */; };
 		5D01EDD81829D7D4000C3094 /* listView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D01EDD71829D7D4000C3094 /* listView.m */; };
 		5D01EDDA182A8BA3000C3094 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D01EDD9182A8BA3000C3094 /* CoreMedia.framework */; };
@@ -80,6 +86,16 @@
 		0811955D1900B41500C27778 /* dismissableTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dismissableTips.m; sourceTree = "<group>"; };
 		0811955F1900B94A00C27778 /* tipsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tipsLabel.h; sourceTree = "<group>"; };
 		081195601900B94A00C27778 /* tipsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tipsLabel.m; sourceTree = "<group>"; };
+		0898ABAD1901121B00268357 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		0898ABB01901130000268357 /* iAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iAPHelper.h; sourceTree = "<group>"; };
+		0898ABB11901130000268357 /* iAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iAPHelper.m; sourceTree = "<group>"; };
+		0898ABB319011F6600268357 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0898ABB61901447000268357 /* funcVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = funcVC.h; sourceTree = "<group>"; };
+		0898ABB71901447000268357 /* funcVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = funcVC.m; sourceTree = "<group>"; };
+		0898ABB91901476000268357 /* iapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iapVC.h; sourceTree = "<group>"; };
+		0898ABBA1901476000268357 /* iapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iapVC.m; sourceTree = "<group>"; };
+		0898ABBC19014ABE00268357 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		0898ABBD19014ABE00268357 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5D01EDD318294D52000C3094 /* pageMgrView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pageMgrView.h; sourceTree = "<group>"; };
 		5D01EDD418294D52000C3094 /* pageMgrView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pageMgrView.m; sourceTree = "<group>"; };
 		5D01EDD61829D7D4000C3094 /* listView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = listView.h; sourceTree = "<group>"; };
@@ -169,6 +185,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0898ABB419011F6600268357 /* SystemConfiguration.framework in Frameworks */,
+				0898ABAE1901121B00268357 /* StoreKit.framework in Frameworks */,
 				5DF934FA1852CDBD00560259 /* CoreData.framework in Frameworks */,
 				5DD10F3E184B6FE40009A7E3 /* Accelerate.framework in Frameworks */,
 				5DD10F3F184B6FE40009A7E3 /* QuartzCore.framework in Frameworks */,
@@ -200,6 +218,28 @@
 			);
 			name = icon;
 			path = faceNote/icon;
+			sourceTree = "<group>";
+		};
+		0898ABAF190112C900268357 /* control */ = {
+			isa = PBXGroup;
+			children = (
+				0898ABB01901130000268357 /* iAPHelper.h */,
+				0898ABB11901130000268357 /* iAPHelper.m */,
+			);
+			path = control;
+			sourceTree = "<group>";
+		};
+		0898ABB51901442A00268357 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0898ABBC19014ABE00268357 /* MBProgressHUD.h */,
+				0898ABBD19014ABE00268357 /* MBProgressHUD.m */,
+				0898ABB61901447000268357 /* funcVC.h */,
+				0898ABB71901447000268357 /* funcVC.m */,
+				0898ABB91901476000268357 /* iapVC.h */,
+				0898ABBA1901476000268357 /* iapVC.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		5D3DA5DD18265C4A008FCB17 = {
@@ -236,6 +276,8 @@
 		5D3DA5E818265C4B008FCB17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0898ABB319011F6600268357 /* SystemConfiguration.framework */,
+				0898ABAD1901121B00268357 /* StoreKit.framework */,
 				5D3DA61A18273475008FCB17 /* CoreAudio.framework */,
 				5D3DA61518267445008FCB17 /* AVFoundation.framework */,
 				5D3DA5E918265C4B008FCB17 /* UIKit.framework */,
@@ -248,6 +290,8 @@
 		5D3DA5EF18265C4B008FCB17 /* faceNote */ = {
 			isa = PBXGroup;
 			children = (
+				0898ABB51901442A00268357 /* view */,
+				0898ABAF190112C900268357 /* control */,
 				0811955F1900B94A00C27778 /* tipsLabel.h */,
 				081195601900B94A00C27778 /* tipsLabel.m */,
 				0811955C1900B41500C27778 /* dismissableTips.h */,
@@ -430,9 +474,12 @@
 				5D71914A18420E9D008725F1 /* listCell.m in Sources */,
 				5D3DA60E18265E3F008FCB17 /* captureView.m in Sources */,
 				5D3DA61418266131008FCB17 /* settingView.m in Sources */,
+				0898ABBE19014ABE00268357 /* MBProgressHUD.m in Sources */,
 				5D3DA61918269D48008FCB17 /* dataManager.m in Sources */,
+				0898ABB81901447000268357 /* funcVC.m in Sources */,
 				5D7191471840FF05008725F1 /* albumView.m in Sources */,
 				5D01EDD518294D52000C3094 /* pageMgrView.m in Sources */,
+				0898ABB21901130000268357 /* iAPHelper.m in Sources */,
 				5D01EDD81829D7D4000C3094 /* listView.m in Sources */,
 				5D1740B518371226000F0673 /* locationMgr.m in Sources */,
 				5DCDC902183CA9490004D18D /* transparentBtn.m in Sources */,
@@ -445,6 +492,7 @@
 				5D19080818465CEC00CA19EB /* photoView.m in Sources */,
 				5D19080B18465F0500CA19EB /* photoDisplayView.m in Sources */,
 				5DD10F3B184B6EBF0009A7E3 /* UIImage+BoxBlur.m in Sources */,
+				0898ABBB1901476000268357 /* iapVC.m in Sources */,
 				081195611900B94A00C27778 /* tipsLabel.m in Sources */,
 				5D4770EB18540CAA00A06C23 /* photoInfoView.m in Sources */,
 				0811955E1900B41500C27778 /* dismissableTips.m in Sources */,
