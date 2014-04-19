@@ -60,7 +60,7 @@
 {
     NSString *Id = @"funcVCCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Id];
-    if( cell ){
+    if( !cell ){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Id];
     }
     // Configure the cell...

@@ -11,6 +11,7 @@
 #import "dataManager.h"
 #import "photoInfoView.h"
 #import <QuartzCore/QuartzCore.h>
+
 @interface photoView()
 {
     photoInfoView *infoView;

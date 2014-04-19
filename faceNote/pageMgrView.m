@@ -12,21 +12,17 @@
 
 @interface pageMgrView()
 {
-    NSInteger currentIndex;
     CGFloat width;
     CGFloat height;
     UIImageView *bgiv;
     UIImageView *under;
 }
 
-@property (retain) NSArray *pageViews;
-
-@property (retain) id<pageMgrViewDelegate> delegate;
 
 @end
 
 @implementation pageMgrView
-@synthesize pageViews,delegate;
+@synthesize pageViews,delegate,currentIndex;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -49,7 +45,7 @@
         [self addSubview:under];
         bgiv = [[UIImageView alloc] initWithFrame:frame];
         [self addSubview:bgiv];
-        self.pageViews = views;
+        self.pageViews = [[NSMutableArray alloc] initWithArray:views];
         self.delegate = dele;
         currentIndex = index;
         CGFloat horMargin = width / 20;
@@ -112,6 +108,10 @@
 
 - (void)rightSwipeGestureAction:(UISwipeGestureRecognizer*)recognizer
 {
+    if( pageViews.count == 0 ){
+        return;
+    }
+    
     if( recognizer.direction == UISwipeGestureRecognizerDirectionRight )
     {
         if( currentIndex > 0 && currentIndex )
@@ -150,7 +150,10 @@
 
 - (void)leftSwipeGestureAction:(UISwipeGestureRecognizer*)recognizer
 {
-    NSLog(@"%s, tarword left",__func__);
+    if( pageViews.count == 0 ){
+        return;
+    }
+    
     if( recognizer.direction == UISwipeGestureRecognizerDirectionLeft )
     {
         if( currentIndex < pageViews.count - 1 && currentIndex >= 0 )

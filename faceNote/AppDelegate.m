@@ -24,6 +24,7 @@
     NSDictionary *info = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if( info ){
         [self parseRemoteNotification:info];
+        NSLog(@"%s, info:%@", __func__, info);
     }
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
@@ -65,7 +66,7 @@
 
 - (void)parseRemoteNotification:(NSDictionary *)info
 {
-    ;
+    NSLog(@"%s, notification:%@", __func__, info);
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken

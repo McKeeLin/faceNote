@@ -38,6 +38,17 @@
         tg.numberOfTapsRequired = 2;
         [self addGestureRecognizer:tg];
         [tg release];
+        
+        UISwipeGestureRecognizer *upSgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeUp:)];
+        upSgr.numberOfTouchesRequired = 1;
+        upSgr.direction = UISwipeGestureRecognizerDirectionUp;
+        [self addGestureRecognizer:upSgr];
+        
+        UISwipeGestureRecognizer *downSgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeDown:)];
+        downSgr.numberOfTouchesRequired = 1;
+        downSgr.direction = UISwipeGestureRecognizerDirectionDown;
+        [self addGestureRecognizer:downSgr];
+        
     }
     return self;
 }
@@ -69,6 +80,84 @@
     */
     
     [[ViewController defaultVC] showListFromPhotoView];
+}
+
+- (void)onSwipeDown:(UISwipeGestureRecognizer*)sgr
+{
+}
+
+- (void)onSwipeUp:(UISwipeGestureRecognizer*)sgr
+{
+    if( self.pageViews.count == 0 ){
+        [[ViewController defaultVC] showListFromPhotoView];
+        return;
+    }
+    
+    UIView *currentPage = [self.pageViews objectAtIndex:self.currentIndex];
+    CGRect originalFrame = currentPage.frame;
+    if( currentPage ){
+        [UIView animateWithDuration:1.0 animations:^(){
+            currentPage.frame = CGRectOffset(originalFrame, 0, -self.frame.size.height);
+        }completion:^(BOOL bfinished){
+            if( self.pageViews.count > 1 )
+            {
+                if( self.currentIndex == self.pageViews.count - 1 )
+                {
+                    UIView *leftSideView = [self.pageViews objectAtIndex:self.currentIndex-1];
+                    [UIView animateWithDuration:0.5 animations:^(){
+                        leftSideView.frame = originalFrame;
+                    } completion:^(BOOL bfinished){
+                        [self.pageViews removeObject:currentPage];
+                        self.currentIndex--;
+                    }];
+                }
+                else{
+                    UIView *rightSideView = [self.pageViews objectAtIndex:self.currentIndex+1];
+                    [UIView animateWithDuration:0.5 animations:^(){
+                        rightSideView.frame = originalFrame;
+                    } completion:^(BOOL bfinished){
+                        [self.pageViews removeObject:currentPage];
+                    }];
+                }
+            }
+            else if( self.pageViews.count == 1 ){
+                [self.pageViews removeObject:currentPage];
+            }
+            
+            /*
+            if( self.currentIndex == self.pageViews.count - 1 ){
+                // move left side page to current position
+                if( self.currentIndex > 0 )
+                {
+                    UIView *leftSideView = [self.pageViews objectAtIndex:self.currentIndex-1];
+                    [UIView animateWithDuration:0.5 animations:^(){
+                        leftSideView.frame = self.bounds;
+                    } completion:^(BOOL bfinished){
+                        [self.pageViews removeObject:currentPage];
+                        self.currentIndex--;
+                    }];
+                }
+                else{
+                    [self.pageViews removeObject:currentPage];
+                }
+            }
+            else{
+                // move right side page to current position
+                if( self.pageViews.count > 1 ){
+                    UIView *rightSideView = [self.pageViews objectAtIndex:self.currentIndex+1];
+                    [UIView animateWithDuration:0.5 animations:^(){
+                        rightSideView.frame = self.bounds;
+                    } completion:^(BOOL bfinished){
+                        [self.pageViews removeObject:currentPage];
+                    }];
+                }
+                else{
+                    [self.pageViews removeObject:currentPage];
+                }
+            }
+             */
+        }];
+    }
 }
 
 @end

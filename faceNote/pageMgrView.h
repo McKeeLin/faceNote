@@ -39,6 +39,11 @@
  */
 @interface pageMgrView : UIView
 
+@property (retain) NSMutableArray *pageViews;
+@property (assign) NSInteger currentIndex;
+@property (retain) id<pageMgrViewDelegate> delegate;
+
+
 /**
   @param frame 该视图在父视图中的区域
   @param views 子视图列表，UIView成员
