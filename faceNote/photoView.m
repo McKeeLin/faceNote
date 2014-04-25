@@ -40,6 +40,7 @@
         UIImageView *iv = [[UIImageView alloc] initWithFrame:frame];
         iv.image = [UIImage imageWithContentsOfFile:path];
         iv.layer.cornerRadius = 17;
+        iv.layer.masksToBounds = YES;
         iv.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:iv];
         [iv release];

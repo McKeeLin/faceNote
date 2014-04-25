@@ -23,6 +23,7 @@
 #import "maskView.h"
 #import "dismissableTips.h"
 #import "funcVC.h"
+#import "appInfoObj.h"
 
 @interface captureView()<AVCaptureAudioDataOutputSampleBufferDelegate>
 {

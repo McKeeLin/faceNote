@@ -9,8 +9,17 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
+#import "appInfoObj.h"
+#import "icloudHelper.h"
+
+@interface AppDelegate()
+{
+    icloudHelper *ihelper;
+}
+@end
 
 @implementation AppDelegate
+
 
 - (void)dealloc
 {
@@ -33,6 +42,7 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound];
+    [self performSelectorInBackground:@selector(initiCloud) withObject:nil];
     return YES;
 }
 
@@ -87,6 +97,11 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     NSLog(@"%s, info:%@", __func__, userInfo);
+}
+
+- (void)initiCloud
+{
+    [[appInfoObj shareInstance] iCloudContainerUrl];
 }
 
 @end

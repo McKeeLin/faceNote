@@ -9,7 +9,8 @@
 #import "photoDisplayView.h"
 #import "ViewController.h"
 #import "dismissableTips.h"
-
+#import "photoView.h"
+#import "icloudHelper.h"
 
 @implementation photoDisplayView
 @synthesize point,vc;
@@ -84,6 +85,8 @@
 
 - (void)onSwipeDown:(UISwipeGestureRecognizer*)sgr
 {
+    photoView *pv = (photoView*)[self.pageViews objectAtIndex:self.currentIndex];
+    [[icloudHelper helper] movePhotoToICloud:pv.photoPath];
 }
 
 - (void)onSwipeUp:(UISwipeGestureRecognizer*)sgr

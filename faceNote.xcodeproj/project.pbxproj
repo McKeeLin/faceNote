@@ -15,12 +15,15 @@
 		0811955B1900A9F700C27778 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 081195551900A9F700C27778 /* icon80.png */; };
 		0811955E1900B41500C27778 /* dismissableTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 0811955D1900B41500C27778 /* dismissableTips.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		081195611900B94A00C27778 /* tipsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 081195601900B94A00C27778 /* tipsLabel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		08645EDD190A6D5D005F3025 /* myDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 08645EDC190A6D5D005F3025 /* myDocument.m */; };
+		0866B57B19079EF40056ABB1 /* appInfoObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0866B57A19079EF40056ABB1 /* appInfoObj.m */; };
 		0898ABAE1901121B00268357 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0898ABAD1901121B00268357 /* StoreKit.framework */; };
 		0898ABB21901130000268357 /* iAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0898ABB11901130000268357 /* iAPHelper.m */; };
 		0898ABB419011F6600268357 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0898ABB319011F6600268357 /* SystemConfiguration.framework */; };
 		0898ABB81901447000268357 /* funcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0898ABB71901447000268357 /* funcVC.m */; };
 		0898ABBB1901476000268357 /* iapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0898ABBA1901476000268357 /* iapVC.m */; };
 		0898ABBE19014ABE00268357 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0898ABBD19014ABE00268357 /* MBProgressHUD.m */; };
+		08C69C391907E9DF0043D95B /* icloudHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C69C381907E9DF0043D95B /* icloudHelper.m */; };
 		5D01EDD518294D52000C3094 /* pageMgrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D01EDD418294D52000C3094 /* pageMgrView.m */; };
 		5D01EDD81829D7D4000C3094 /* listView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D01EDD71829D7D4000C3094 /* listView.m */; };
 		5D01EDDA182A8BA3000C3094 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D01EDD9182A8BA3000C3094 /* CoreMedia.framework */; };
@@ -86,6 +89,10 @@
 		0811955D1900B41500C27778 /* dismissableTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dismissableTips.m; sourceTree = "<group>"; };
 		0811955F1900B94A00C27778 /* tipsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tipsLabel.h; sourceTree = "<group>"; };
 		081195601900B94A00C27778 /* tipsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tipsLabel.m; sourceTree = "<group>"; };
+		08645EDB190A6D5D005F3025 /* myDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myDocument.h; sourceTree = "<group>"; };
+		08645EDC190A6D5D005F3025 /* myDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myDocument.m; sourceTree = "<group>"; };
+		0866B57919079EF40056ABB1 /* appInfoObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = appInfoObj.h; sourceTree = "<group>"; };
+		0866B57A19079EF40056ABB1 /* appInfoObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = appInfoObj.m; sourceTree = "<group>"; };
 		0898ABAD1901121B00268357 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0898ABB01901130000268357 /* iAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iAPHelper.h; sourceTree = "<group>"; };
 		0898ABB11901130000268357 /* iAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iAPHelper.m; sourceTree = "<group>"; };
@@ -96,6 +103,9 @@
 		0898ABBA1901476000268357 /* iapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iapVC.m; sourceTree = "<group>"; };
 		0898ABBC19014ABE00268357 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		0898ABBD19014ABE00268357 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		08C69C371907E9DF0043D95B /* icloudHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icloudHelper.h; sourceTree = "<group>"; };
+		08C69C381907E9DF0043D95B /* icloudHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = icloudHelper.m; sourceTree = "<group>"; };
+		08E78808190395FC00D8DF60 /* faceNote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = faceNote.entitlements; sourceTree = "<group>"; };
 		5D01EDD318294D52000C3094 /* pageMgrView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pageMgrView.h; sourceTree = "<group>"; };
 		5D01EDD418294D52000C3094 /* pageMgrView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pageMgrView.m; sourceTree = "<group>"; };
 		5D01EDD61829D7D4000C3094 /* listView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = listView.h; sourceTree = "<group>"; };
@@ -225,6 +235,12 @@
 			children = (
 				0898ABB01901130000268357 /* iAPHelper.h */,
 				0898ABB11901130000268357 /* iAPHelper.m */,
+				0866B57919079EF40056ABB1 /* appInfoObj.h */,
+				0866B57A19079EF40056ABB1 /* appInfoObj.m */,
+				08C69C371907E9DF0043D95B /* icloudHelper.h */,
+				08C69C381907E9DF0043D95B /* icloudHelper.m */,
+				08645EDB190A6D5D005F3025 /* myDocument.h */,
+				08645EDC190A6D5D005F3025 /* myDocument.m */,
 			);
 			path = control;
 			sourceTree = "<group>";
@@ -290,6 +306,7 @@
 		5D3DA5EF18265C4B008FCB17 /* faceNote */ = {
 			isa = PBXGroup;
 			children = (
+				08E78808190395FC00D8DF60 /* faceNote.entitlements */,
 				0898ABB51901442A00268357 /* view */,
 				0898ABAF190112C900268357 /* control */,
 				0811955F1900B94A00C27778 /* tipsLabel.h */,
@@ -414,6 +431,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -485,12 +505,15 @@
 				5DCDC902183CA9490004D18D /* transparentBtn.m in Sources */,
 				5DCDC905183CAD650004D18D /* UIApplication+appSize.m in Sources */,
 				5D4770E818537DF000A06C23 /* autoSizeLabel.m in Sources */,
+				08645EDD190A6D5D005F3025 /* myDocument.m in Sources */,
 				5D1907AD184381B000CA19EB /* albumGroup.m in Sources */,
+				0866B57B19079EF40056ABB1 /* appInfoObj.m in Sources */,
 				5DF7F7441879A6C400A72E94 /* maskView.m in Sources */,
 				5D1907B01843826B00CA19EB /* album.m in Sources */,
 				5D1907B31844DE9200CA19EB /* UIImage+UIImageScale.m in Sources */,
 				5D19080818465CEC00CA19EB /* photoView.m in Sources */,
 				5D19080B18465F0500CA19EB /* photoDisplayView.m in Sources */,
+				08C69C391907E9DF0043D95B /* icloudHelper.m in Sources */,
 				5DD10F3B184B6EBF0009A7E3 /* UIImage+BoxBlur.m in Sources */,
 				0898ABBB1901476000268357 /* iapVC.m in Sources */,
 				081195611900B94A00C27778 /* tipsLabel.m in Sources */,
@@ -583,6 +606,7 @@
 		5D3DA60A18265C4B008FCB17 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = faceNote/faceNote.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -590,8 +614,8 @@
 				INFOPLIST_FILE = "faceNote/faceNote-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "20D36E48-ED60-44F0-9709-1BAD10C2ED08";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20D36E48-ED60-44F0-9709-1BAD10C2ED08";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -600,15 +624,16 @@
 		5D3DA60B18265C4B008FCB17 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JingLong Lin (D9KLEDDTR3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JingLong Lin (D9KLEDDTR3)";
+				CODE_SIGN_ENTITLEMENTS = faceNote/faceNote.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "faceNote/faceNote-Prefix.pch";
 				INFOPLIST_FILE = "faceNote/faceNote-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9E3ACF0F-8B46-4DFE-83B6-578A6EF412DB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9E3ACF0F-8B46-4DFE-83B6-578A6EF412DB";
+				PROVISIONING_PROFILE = "8EC440EC-389E-4C2F-8644-47BE8A8378F0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8EC440EC-389E-4C2F-8644-47BE8A8378F0";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
