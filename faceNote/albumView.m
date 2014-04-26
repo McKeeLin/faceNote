@@ -232,6 +232,7 @@
         if( !context )
         {
             UIGraphicsEndImageContext();
+            [img release];
             return;
         }
         
@@ -271,27 +272,6 @@
 - (void)onTouchPhoto:(id)sender
 {
     UIButton *btn = (UIButton*)sender;
-    /*
-    CGSize size = [UIApplication appSize];
-    CGRect pageFrame = CGRectMake(0, 0, size.width, size.height);
-    NSMutableArray *pages = [[NSMutableArray alloc] initWithCapacity:0];
-    for( NSString *path in photoPaths )
-    {
-        photoView *pv = [[photoView alloc] initWithFrame:pageFrame path:path];
-        [pages addObject:pv];
-        [pv release];
-    }
-    
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    CGRect winFrame = window.rootViewController.view.frame;
-    UIView *rootView = window.rootViewController.view;
-    CGPoint point = [rootView convertPoint:self.frame.origin fromView:self];
-    photoDisplayView *pdv = [[photoDisplayView alloc] initWithFrame:winFrame subViews:pages defaultIndex:btn.tag delegate:self];
-    pdv.point = point;
-    [window addSubview:pdv];
-    [pdv release];
-    [pages release];
-    */
     [[ViewController defaultVC] showPhotoFromListViewWithPaths:photoPaths defaultIndex:btn.tag];
 }
 

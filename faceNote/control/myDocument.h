@@ -11,10 +11,8 @@
 @interface myDocument : UIDocument
 
 
-@property NSString *srcFile;
 
 @property (retain) NSData *data;
 
-- (void)initData;
 
 @end

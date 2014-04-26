@@ -21,7 +21,7 @@
     CGContextDrawImage(context, smallBounds, subImageRef);
     UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
     UIGraphicsEndImageContext();
-    
+    CGImageRelease(subImageRef);
     return smallImage;
 }
 

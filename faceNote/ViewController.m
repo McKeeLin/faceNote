@@ -121,8 +121,8 @@ ViewController *g_vc;
     CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
     CGRect bs = [[UIScreen mainScreen] bounds];
     NSLog(@"%s, appframe:%f,%f,%f,%f, bounds:%f,%f,%f,%f", __func__, appFrame.origin.x,appFrame.origin.y,appFrame.size.width,appFrame.size.height, bs.origin.x,bs.origin.y,bs.size.width,bs.size.height);
-    CGFloat width = appFrame.size.width;
-    CGFloat height = appFrame.size.height;
+    CGFloat width;
+    CGFloat height;
     if( bs.size.width == appFrame.size.width )
     {
         width = appFrame.size.width;

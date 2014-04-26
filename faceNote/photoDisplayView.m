@@ -17,6 +17,9 @@
 
 - (void)dealloc
 {
+    NSLog(@"%s", __func__);
+    [self.pageViews removeAllObjects];
+    [self.pageViews release];
     [vc release];
     [super dealloc];
 }

@@ -61,6 +61,7 @@
         }
     }
     */
+    [fmt release];
 }
 
 @end

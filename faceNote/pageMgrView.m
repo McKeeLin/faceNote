@@ -90,6 +90,7 @@
 
 - (void)dealloc
 {
+    NSLog(@"%s", __func__);
     [pageViews release];
     [delegate release];
     [bgiv release];
@@ -179,7 +180,7 @@
             {
                 [delegate didShowPage:displayView atIndex:currentIndex];
             }
-        }        
+        }
         else if( currentIndex == pageViews.count - 1 )
         {
             if( [delegate respondsToSelector:@selector(willOverUpbound)] )

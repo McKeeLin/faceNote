@@ -61,7 +61,7 @@
     NSString *Id = @"funcVCCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Id];
     if( !cell ){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Id];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Id] autorelease];
     }
     // Configure the cell...
     cell.textLabel.text = @"iap-buy";
@@ -72,7 +72,7 @@
 {
     if( indexPath.section == 0 ){
         if( indexPath.row == 0 ){
-            iapVC *vc = [[iapVC alloc] initWithStyle:UITableViewStyleGrouped];
+            iapVC *vc = [[[iapVC alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
             [self presentViewController:vc animated:YES completion:nil];
         }
     }

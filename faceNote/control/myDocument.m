@@ -9,11 +9,12 @@
 #import "myDocument.h"
 
 @implementation myDocument
-@synthesize srcFile,data;
+@synthesize data;
 
-- (void)initData
+- (void)dealloc
 {
-    ;
+    [data release];
+    [super dealloc];
 }
 
 - (id)contentsForType:(NSString *)typeName error:(NSError **)outError

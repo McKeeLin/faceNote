@@ -39,7 +39,7 @@
         self.autoresizesSubviews = YES;
         UIImageView *iv = [[UIImageView alloc] initWithFrame:frame];
         iv.image = [UIImage imageWithContentsOfFile:path];
-        iv.layer.cornerRadius = 17;
+        iv.layer.cornerRadius = 8.5;
         iv.layer.masksToBounds = YES;
         iv.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:iv];
@@ -57,6 +57,7 @@
 
 - (void)dealloc
 {
+    NSLog(@"%s", __func__);
     [photoPath release];
     [info release];
     [infoView release];

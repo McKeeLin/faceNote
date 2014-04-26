@@ -49,7 +49,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     [hub show:YES];
-    SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:nil];
+    SKProductsRequest *request = [[[SKProductsRequest alloc] initWithProductIdentifiers:nil] autorelease];
     [request start];
 }
 

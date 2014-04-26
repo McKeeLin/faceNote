@@ -41,7 +41,7 @@
 
 @property (retain) NSMutableArray *pageViews;
 @property (assign) NSInteger currentIndex;
-@property (retain) id<pageMgrViewDelegate> delegate;
+@property (assign) id<pageMgrViewDelegate> delegate;
 
 
 /**
