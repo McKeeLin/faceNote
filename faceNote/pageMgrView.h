@@ -42,6 +42,8 @@
 @property (retain) NSMutableArray *pageViews;
 @property (assign) NSInteger currentIndex;
 @property (assign) id<pageMgrViewDelegate> delegate;
+@property (retain) UISwipeGestureRecognizer *rsgr;
+@property (retain) UISwipeGestureRecognizer *lsgr;
 
 
 /**

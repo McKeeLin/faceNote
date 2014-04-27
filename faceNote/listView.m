@@ -93,15 +93,19 @@
         NSString *tips = @"1.向左滑动可切换一照相视图\n\n2.点击缩略图可浏览照片";//@"1.swipe to left to switch the camera view \n\n2.tap the picture nail to browse the album.";
         [dismissableTips showTips:tips blues:[NSArray arrayWithObject:tips] atView:self seconds:10 block:nil];
     }
-    [[icloudHelper helper] queryGroups];
 }
 
 - (void)loadImages
 {
+    //
+    [[icloudHelper helper] queryGroups];
     [groups removeAllObjects];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [paths objectAtIndex:0];
-    NSString *photosDir = [NSString stringWithFormat:@"%@/photos", documentPath];
+    
+    NSURL *containerUrl = [icloudHelper helper].containerUrl;
+    NSString *containerPath = [containerUrl path];
+    NSString *photosDir = [NSString stringWithFormat:@"%@/Documents/photos",containerPath];
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *yearMonths = [fm subpathsAtPath:photosDir];
     for( NSString * yearMonth in yearMonths )

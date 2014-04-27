@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface icloudHelper : NSObject
+@property (retain) NSURL *containerUrl;
 
 + (icloudHelper*)helper;
 

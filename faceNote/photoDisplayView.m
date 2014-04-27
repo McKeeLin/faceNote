@@ -12,6 +12,14 @@
 #import "photoView.h"
 #import "icloudHelper.h"
 
+@interface photoDisplayView()<UIGestureRecognizerDelegate>
+{
+    CGFloat yStart;
+    CGFloat viewYStart;
+    CGRect originalFrame;
+}
+@end
+
 @implementation photoDisplayView
 @synthesize point,vc;
 
@@ -46,13 +54,23 @@
         UISwipeGestureRecognizer *upSgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeUp:)];
         upSgr.numberOfTouchesRequired = 1;
         upSgr.direction = UISwipeGestureRecognizerDirectionUp;
-        [self addGestureRecognizer:upSgr];
+//        [self addGestureRecognizer:upSgr];
+        [upSgr release];
         
         UISwipeGestureRecognizer *downSgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeDown:)];
         downSgr.numberOfTouchesRequired = 1;
         downSgr.direction = UISwipeGestureRecognizerDirectionDown;
-        [self addGestureRecognizer:downSgr];
+//        [self addGestureRecognizer:downSgr];
+        [downSgr release];
         
+        UIPanGestureRecognizer *dragUpGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onDragUp:)];
+        dragUpGesture.delegate = self;
+        [dragUpGesture requireGestureRecognizerToFail:self.rsgr];
+        [dragUpGesture requireGestureRecognizerToFail:self.lsgr];
+        [self addGestureRecognizer:dragUpGesture];
+        UIView *currentPage = [self.pageViews objectAtIndex:self.currentIndex];
+        originalFrame = currentPage.frame;
+        [dragUpGesture release];
     }
     return self;
 }
@@ -100,7 +118,6 @@
     }
     
     UIView *currentPage = [self.pageViews objectAtIndex:self.currentIndex];
-    CGRect originalFrame = currentPage.frame;
     if( currentPage ){
         [UIView animateWithDuration:1.0 animations:^(){
             currentPage.frame = CGRectOffset(originalFrame, 0, -self.frame.size.height);
@@ -129,41 +146,86 @@
             else if( self.pageViews.count == 1 ){
                 [self.pageViews removeObject:currentPage];
             }
-            
-            /*
-            if( self.currentIndex == self.pageViews.count - 1 ){
-                // move left side page to current position
-                if( self.currentIndex > 0 )
-                {
-                    UIView *leftSideView = [self.pageViews objectAtIndex:self.currentIndex-1];
-                    [UIView animateWithDuration:0.5 animations:^(){
-                        leftSideView.frame = self.bounds;
-                    } completion:^(BOOL bfinished){
-                        [self.pageViews removeObject:currentPage];
-                        self.currentIndex--;
-                    }];
-                }
-                else{
-                    [self.pageViews removeObject:currentPage];
-                }
-            }
-            else{
-                // move right side page to current position
-                if( self.pageViews.count > 1 ){
-                    UIView *rightSideView = [self.pageViews objectAtIndex:self.currentIndex+1];
-                    [UIView animateWithDuration:0.5 animations:^(){
-                        rightSideView.frame = self.bounds;
-                    } completion:^(BOOL bfinished){
-                        [self.pageViews removeObject:currentPage];
-                    }];
-                }
-                else{
-                    [self.pageViews removeObject:currentPage];
-                }
-            }
-             */
         }];
     }
+}
+
+- (void)onDragUp:(UIPanGestureRecognizer*)pgr
+{
+    NSLog(@"%s",__func__);
+    if( self.pageViews.count == 0 ){
+        [[ViewController defaultVC] showListFromPhotoView];
+        return;
+    }
+    
+    CGPoint currentPoint = [pgr translationInView:self];
+    UIView *view = [self.pageViews objectAtIndex:self.currentIndex];
+    __block CGRect viewFrame = view.frame;
+    
+    if( pgr.state == UIGestureRecognizerStateEnded )
+    {
+        NSLog(@"end");
+        if( yStart - currentPoint.y > viewFrame.size.height / 2 )
+        {
+            UIView *currentPage = [self.pageViews objectAtIndex:self.currentIndex];
+            if( currentPage ){
+                [UIView animateWithDuration:1.0 animations:^(){
+                    currentPage.frame = CGRectOffset(originalFrame, 0, -self.frame.size.height);
+                }completion:^(BOOL bfinished){
+                    if( self.pageViews.count > 1 )
+                    {
+                        if( self.currentIndex == self.pageViews.count - 1 )
+                        {
+                            UIView *leftSideView = [self.pageViews objectAtIndex:self.currentIndex-1];
+                            [UIView animateWithDuration:0.5 animations:^(){
+                                leftSideView.frame = originalFrame;
+                            } completion:^(BOOL bfinished){
+                                [self.pageViews removeObject:currentPage];
+                                self.currentIndex--;
+                            }];
+                        }
+                        else{
+                            UIView *rightSideView = [self.pageViews objectAtIndex:self.currentIndex+1];
+                            [UIView animateWithDuration:0.5 animations:^(){
+                                rightSideView.frame = originalFrame;
+                            } completion:^(BOOL bfinished){
+                                [self.pageViews removeObject:currentPage];
+                            }];
+                        }
+                    }
+                    else if( self.pageViews.count == 1 ){
+                        [self.pageViews removeObject:currentPage];
+                    }
+                }];
+            }
+        }
+        else{
+            [UIView animateWithDuration:0.5 animations:^(void){
+                viewFrame.origin.y = viewYStart;
+                view.frame = viewFrame;
+            }];
+        }
+    }
+    else if( pgr.state == UIGestureRecognizerStateBegan )
+    {
+        NSLog(@"began");
+        CGPoint currentPoint = [pgr translationInView:self];
+        yStart = currentPoint.y;
+        UIView *view = [self.pageViews objectAtIndex:self.currentIndex];
+        viewYStart = view.frame.origin.y;
+    }
+    else if( pgr.state == UIGestureRecognizerStateChanged ){
+        viewFrame.origin.y = viewYStart - (yStart - currentPoint.y);
+        view.frame = viewFrame;
+    }
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    NSLog(@"%s",__func__);
+    if( [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] ){
+    }
+    return YES;
 }
 
 @end

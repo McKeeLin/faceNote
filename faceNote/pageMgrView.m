@@ -22,7 +22,7 @@
 @end
 
 @implementation pageMgrView
-@synthesize pageViews,delegate,currentIndex;
+@synthesize pageViews,delegate,currentIndex,rsgr,lsgr;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -75,15 +75,13 @@
             [self addSubview:page];
             left += width;
         }
-        UISwipeGestureRecognizer *rsgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeGestureAction:)];
+        rsgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeGestureAction:)];
         rsgr.direction = UISwipeGestureRecognizerDirectionRight;
         [self addGestureRecognizer:rsgr];
-        [rsgr release];
         
-        UISwipeGestureRecognizer *lsgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeGestureAction:)];
+        lsgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeGestureAction:)];
         lsgr.direction = UISwipeGestureRecognizerDirectionLeft;
         [self addGestureRecognizer:lsgr];
-        [lsgr release];
     }
     return self;
 }
@@ -95,6 +93,10 @@
     [delegate release];
     [bgiv release];
     [under release];
+    [self removeGestureRecognizer:rsgr];
+    [self removeGestureRecognizer:lsgr];
+    [rsgr release];
+    [lsgr release];
     [super dealloc];
 }
 

@@ -14,7 +14,6 @@
 {
     __strong NSMetadataQuery *query;
 }
-@property (retain) NSURL *containerUrl;
 @end
 
 @implementation icloudHelper
@@ -145,17 +144,32 @@
 
 - (void)onGatheringFinished:(NSNotification*)notification
 {
+    NSLog(@"%s,%@", __func__, notification);
     NSArray *result = query.results;
     for( NSMetadataItem *item in result )
     {
-        NSURL * fileURL = [item valueForAttribute:NSMetadataItemURLKey];
+        /*
         for( NSDictionary *attr in item.attributes )
         {
             NSLog(@"%@", attr);
         }
+        */
+        
+        BOOL isDownloading = [[item valueForAttribute:NSMetadataUbiquitousItemIsDownloadingKey] boolValue];
+        BOOL isDownloaded = [[item valueForAttribute:NSMetadataUbiquitousItemIsDownloadedKey] boolValue];
+        if( !isDownloaded && !isDownloading ){
+            NSError *err = nil;
+            NSURL * fileURL = [item valueForAttribute:NSMetadataItemURLKey];
+            BOOL result = [[NSFileManager defaultManager] startDownloadingUbiquitousItemAtURL:fileURL error:&err];
+            if( !result && err ){
+                NSLog(@"%s, error:%@", __func__, err);
+            }
+            else{
+                NSLog(@"start download %@ success", fileURL);
+            }
+        }
     }
     [query stopQuery];
-    NSLog(@"%s,%@", __func__, notification);
 }
 
 - (void)onGatheringDidStart:(NSNotification*)notification
@@ -165,12 +179,14 @@
 
 - (void)onQueryDidUpdate:(NSNotification*)notification
 {
-    NSLog(@"%s,%@", __func__, notification);
+    NSDictionary *info = notification.userInfo;
+    NSLog(@"%s,%@", __func__, info);
 }
 
 - (void)onGatheringProgress:(NSNotification*)notification
 {
-    NSLog(@"%s,%@", __func__, notification);
+    NSDictionary *info = notification.userInfo;
+    NSLog(@"%s,%@", __func__, info);
 }
 
 @end

@@ -24,6 +24,7 @@
 #import "dismissableTips.h"
 #import "funcVC.h"
 #import "appInfoObj.h"
+#import "icloudHelper.h"
 
 @interface captureView()<AVCaptureAudioDataOutputSampleBufferDelegate>
 {
@@ -83,6 +84,9 @@
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         self.documentPath = [paths objectAtIndex:0];
+        
+        NSURL *containerUrl = [icloudHelper helper].containerUrl;
+        self.documentPath = [NSString stringWithFormat:@"%@/Documents", [containerUrl path]];
         
         frontView = [[UIView alloc] initWithFrame:frame];
         [self addSubview:frontView];
