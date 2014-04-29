@@ -199,15 +199,7 @@
         btn.tag = index;
         [btn addTarget:self action:@selector(onTouchPhoto:) forControlEvents:UIControlEventTouchUpInside];
         NSLog(@".................1");
-        UIImage *img1 = [[UIImage alloc] initWithContentsOfFile:[photoPaths objectAtIndex:index]];
-#if(TARGET_IPHONE_SIMULATOR)
-        UIImage *img = [[UIImage alloc] initWithCGImage:img1.CGImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
-#else
-        UIImage *img = [[UIImage alloc] initWithCGImage:img1.CGImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationRight];
-#endif
-        [img1 release];
-        NSLog(@".................11");
-        
+        UIImage *img = [[UIImage alloc] initWithContentsOfFile:[photoPaths objectAtIndex:index]];
         CGSize size = img.size;
         CGFloat newWidth = width;
         CGFloat newHeight = height;

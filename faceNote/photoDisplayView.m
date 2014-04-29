@@ -167,7 +167,7 @@
         NSLog(@"end");
         if( yStart - currentPoint.y > viewFrame.size.height / 2 )
         {
-            UIView *currentPage = [self.pageViews objectAtIndex:self.currentIndex];
+            photoView *currentPage = (photoView*)[self.pageViews objectAtIndex:self.currentIndex];
             if( currentPage ){
                 [UIView animateWithDuration:1.0 animations:^(){
                     currentPage.frame = CGRectOffset(originalFrame, 0, -self.frame.size.height);
@@ -195,6 +195,15 @@
                     }
                     else if( self.pageViews.count == 1 ){
                         [self.pageViews removeObject:currentPage];
+                    }
+                    
+                    // remove from iCloud
+                    NSURL *url = [NSURL fileURLWithPath:currentPage.photoPath];
+                    NSError *err = nil;
+                    [[NSFileManager defaultManager] removeItemAtPath:currentPage.photoPath error:&err];
+                    if( err )
+                    {
+                        NSLog(@"%s, delete %@ failed, error:%@", __func__, currentPage.photoPath, err.localizedDescription);
                     }
                 }];
             }
