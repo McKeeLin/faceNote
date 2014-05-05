@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <StoreKit/StoreKit.h>
+
+#define PRODUCT1_ID    @"com.mckeelin.facenote.nuncuomsumable"
+#define PRODUCT2_ID    @"facenote.savetoiCloud"
+#define PRODUCT3_ID    @"facenote.removeFromiCloud"
+
+typedef void(^QUERYBLOCK)(int status);
 
 @interface iAPHelper : NSObject
+
+@property NSMutableArray *products;
+
+- (void)queryProductsWithBlock:(QUERYBLOCK)block;
+
+- (void)buyProduct:(SKProduct*)product;
 
 @end

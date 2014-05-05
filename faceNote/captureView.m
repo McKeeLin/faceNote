@@ -25,6 +25,7 @@
 #import "funcVC.h"
 #import "appInfoObj.h"
 #import "icloudHelper.h"
+#import "iapVC.h"
 
 @interface captureView()<AVCaptureAudioDataOutputSampleBufferDelegate>
 {
@@ -481,9 +482,9 @@
 
 - (void)onTap:(UITapGestureRecognizer *)tap
 {
-    funcVC *funvc = [[funcVC alloc] initWithStyle:UITableViewStyleGrouped];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:funvc animated:YES completion:^(){
-        [funvc release];
+    iapVC *iap = [[iapVC alloc] init];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:iap animated:YES completion:^(){
+        [iap release];
     }];
 }
 

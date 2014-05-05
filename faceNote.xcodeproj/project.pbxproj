@@ -15,6 +15,8 @@
 		0811955B1900A9F700C27778 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 081195551900A9F700C27778 /* icon80.png */; };
 		0811955E1900B41500C27778 /* dismissableTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 0811955D1900B41500C27778 /* dismissableTips.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		081195611900B94A00C27778 /* tipsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 081195601900B94A00C27778 /* tipsLabel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		08320E701914C6B500066C83 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08320E6F1914C6B500066C83 /* ImageIO.framework */; };
+		08320E981914DF1A00066C83 /* thumbImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08320E971914DF1A00066C83 /* thumbImageHelper.m */; };
 		08645EDD190A6D5D005F3025 /* myDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 08645EDC190A6D5D005F3025 /* myDocument.m */; };
 		0866B57B19079EF40056ABB1 /* appInfoObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0866B57A19079EF40056ABB1 /* appInfoObj.m */; };
 		0898ABAE1901121B00268357 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0898ABAD1901121B00268357 /* StoreKit.framework */; };
@@ -89,6 +91,9 @@
 		0811955D1900B41500C27778 /* dismissableTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dismissableTips.m; sourceTree = "<group>"; };
 		0811955F1900B94A00C27778 /* tipsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tipsLabel.h; sourceTree = "<group>"; };
 		081195601900B94A00C27778 /* tipsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tipsLabel.m; sourceTree = "<group>"; };
+		08320E6F1914C6B500066C83 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		08320E961914DF1A00066C83 /* thumbImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thumbImageHelper.h; sourceTree = "<group>"; };
+		08320E971914DF1A00066C83 /* thumbImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thumbImageHelper.m; sourceTree = "<group>"; };
 		08645EDB190A6D5D005F3025 /* myDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myDocument.h; sourceTree = "<group>"; };
 		08645EDC190A6D5D005F3025 /* myDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myDocument.m; sourceTree = "<group>"; };
 		0866B57919079EF40056ABB1 /* appInfoObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = appInfoObj.h; sourceTree = "<group>"; };
@@ -195,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08320E701914C6B500066C83 /* ImageIO.framework in Frameworks */,
 				0898ABB419011F6600268357 /* SystemConfiguration.framework in Frameworks */,
 				0898ABAE1901121B00268357 /* StoreKit.framework in Frameworks */,
 				5DF934FA1852CDBD00560259 /* CoreData.framework in Frameworks */,
@@ -241,6 +247,8 @@
 				08C69C381907E9DF0043D95B /* icloudHelper.m */,
 				08645EDB190A6D5D005F3025 /* myDocument.h */,
 				08645EDC190A6D5D005F3025 /* myDocument.m */,
+				08320E961914DF1A00066C83 /* thumbImageHelper.h */,
+				08320E971914DF1A00066C83 /* thumbImageHelper.m */,
 			);
 			path = control;
 			sourceTree = "<group>";
@@ -292,6 +300,7 @@
 		5D3DA5E818265C4B008FCB17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08320E6F1914C6B500066C83 /* ImageIO.framework */,
 				0898ABB319011F6600268357 /* SystemConfiguration.framework */,
 				0898ABAD1901121B00268357 /* StoreKit.framework */,
 				5D3DA61A18273475008FCB17 /* CoreAudio.framework */,
@@ -513,6 +522,7 @@
 				5D1907B31844DE9200CA19EB /* UIImage+UIImageScale.m in Sources */,
 				5D19080818465CEC00CA19EB /* photoView.m in Sources */,
 				5D19080B18465F0500CA19EB /* photoDisplayView.m in Sources */,
+				08320E981914DF1A00066C83 /* thumbImageHelper.m in Sources */,
 				08C69C391907E9DF0043D95B /* icloudHelper.m in Sources */,
 				5DD10F3B184B6EBF0009A7E3 /* UIImage+BoxBlur.m in Sources */,
 				0898ABBB1901476000268357 /* iapVC.m in Sources */,
@@ -625,15 +635,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = faceNote/faceNote.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: JingLong Lin (D9KLEDDTR3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JingLong Lin (D9KLEDDTR3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "faceNote/faceNote-Prefix.pch";
 				INFOPLIST_FILE = "faceNote/faceNote-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8EC440EC-389E-4C2F-8644-47BE8A8378F0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8EC440EC-389E-4C2F-8644-47BE8A8378F0";
+				PROVISIONING_PROFILE = "A6D70FB4-D325-42B8-9AFC-65876CA7AD12";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6D70FB4-D325-42B8-9AFC-65876CA7AD12";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

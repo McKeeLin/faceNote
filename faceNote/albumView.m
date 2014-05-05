@@ -11,6 +11,7 @@
 #import "photoDisplayView.h"
 #import "photoView.h"
 #import "ViewController.h"
+#import "thumbImageHelper.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface albumView()
@@ -198,64 +199,74 @@
         btn.backgroundColor = [UIColor grayColor];
         btn.tag = index;
         [btn addTarget:self action:@selector(onTouchPhoto:) forControlEvents:UIControlEventTouchUpInside];
-        NSLog(@".................1");
-        UIImage *img = [[UIImage alloc] initWithContentsOfFile:[photoPaths objectAtIndex:index]];
-        CGSize size = img.size;
-        CGFloat newWidth = width;
-        CGFloat newHeight = height;
-        
-        CGFloat horScale = size.width / width;
-        CGFloat verScale = size.height / height;
-        if( verScale < horScale )
-        {
-            newHeight = size.height / verScale;
-            newWidth = size.width / verScale;
+        NSString *path = [photoPaths objectAtIndex:index];
+        UIImage *btnImg = [[thumbImageHelper helper].thumbImages objectForKey:path];
+        if( !btnImg ){
+            NSLog(@".................1");
+            UIImage *img = [[UIImage alloc] initWithContentsOfFile:[photoPaths objectAtIndex:index]];
+            CGSize size = img.size;
+            CGFloat newWidth = width;
+            CGFloat newHeight = height;
+            
+            CGFloat horScale = size.width / width;
+            CGFloat verScale = size.height / height;
+            if( verScale < horScale )
+            {
+                newHeight = size.height / verScale;
+                newWidth = size.width / verScale;
+            }
+            else
+            {
+                newWidth = size.width / horScale;
+                newHeight = size.height / horScale;
+            }
+            ///*
+            //    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+            //    UIGraphicsBeginImageContextWithOptions(CGSizeMake(newWidth, newHeight), YES, 0.0);
+            NSLog(@"................11");
+            UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            if( !context )
+            {
+                UIGraphicsEndImageContext();
+                [img release];
+                return;
+            }
+            
+            NSLog(@".................2");
+            [img drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+            /*
+             CALayer *layer = [[CALayer alloc] init];
+             layer.bounds = CGRectMake(0, 0, newWidth, newHeight);
+             layer.contentsGravity = kCAGravityResizeAspectFill;
+             layer.contents = (id)img.CGImage;
+             [layer renderInContext:context];
+             */
+            NSLog(@".................3");
+            UIImage *newImg = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            //    UIImage *scaleImg = [UIImage imageWithCGImage:img.CGImage scale:scale orientation:UIImageOrientationRight];
+            CGFloat newTop = (newHeight - height)/2;
+            if( newTop < 0 ) newTop *= -1;
+            CGFloat newLeft = (newWidth - width)/2;
+            if( newLeft < 0 ) newLeft *= -1;
+            NSLog(@".................4");
+            CGImageRef imgRef = CGImageCreateWithImageInRect(newImg.CGImage, CGRectMake(newLeft, newTop, width, height));
+            NSLog(@".................5");
+            btnImg = [[UIImage alloc] initWithCGImage:imgRef];
+            [[thumbImageHelper helper].thumbImages setObject:btnImg forKey:path];
+            CGImageRelease(imgRef);
+            //*/
+            NSLog(@".................6");
+            [img release];
+            [btn setImage:btnImg forState:UIControlStateNormal];
+            NSLog(@".................7");
+            [btnImg release];
         }
         else
         {
-            newWidth = size.width / horScale;
-            newHeight = size.height / horScale;
+            [btn setImage:btnImg forState:UIControlStateNormal];
         }
-        ///*
-        //    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
-        //    UIGraphicsBeginImageContextWithOptions(CGSizeMake(newWidth, newHeight), YES, 0.0);
-        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        if( !context )
-        {
-            UIGraphicsEndImageContext();
-            [img release];
-            return;
-        }
-        
-        NSLog(@".................2");
-        [img drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
-        /*
-         CALayer *layer = [[CALayer alloc] init];
-         layer.bounds = CGRectMake(0, 0, newWidth, newHeight);
-         layer.contentsGravity = kCAGravityResizeAspectFill;
-         layer.contents = (id)img.CGImage;
-         [layer renderInContext:context];
-         */
-        NSLog(@".................3");
-        UIImage *newImg = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        //    UIImage *scaleImg = [UIImage imageWithCGImage:img.CGImage scale:scale orientation:UIImageOrientationRight];
-        CGFloat newTop = (newHeight - height)/2;
-        if( newTop < 0 ) newTop *= -1;
-        CGFloat newLeft = (newWidth - width)/2;
-        if( newLeft < 0 ) newLeft *= -1;
-        NSLog(@".................4");
-        CGImageRef imgRef = CGImageCreateWithImageInRect(newImg.CGImage, CGRectMake(newLeft, newTop, width, height));
-        NSLog(@".................5");
-        UIImage *btnImg = [[UIImage alloc] initWithCGImage:imgRef];
-        CGImageRelease(imgRef);
-        //*/
-        NSLog(@".................6");
-        [btn setImage:btnImg forState:UIControlStateNormal];
-        NSLog(@".................7");
-        [btnImg release];
-        [img release];
         [self addSubview:btn];
         [subBounds addObject:btn];
     });

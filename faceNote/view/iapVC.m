@@ -9,11 +9,12 @@
 #import "iapVC.h"
 #import <StoreKit/StoreKit.h>
 #import "MBProgressHUD.h"
+#import "iAPHelper.h"
 
-@interface iapVC ()<SKPaymentTransactionObserver,SKProductsRequestDelegate,SKRequestDelegate>
+@interface iapVC ()
 {
-    NSMutableArray *products;
     MBProgressHUD *hub;
+    iAPHelper *iap;
 }
 @end
 
@@ -24,15 +25,13 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        products = [[NSMutableArray alloc] initWithCapacity:0];
-        hub = [[MBProgressHUD alloc] initWithView:self.view];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [products release];
+    [iap release];
     [hub release];
     [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
     [super dealloc];
@@ -41,16 +40,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    iap = [[iAPHelper alloc] init];
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDoubleTap:)];
+    tgr.numberOfTapsRequired = 2;
+    tgr.numberOfTouchesRequired = 1;
+    [self.tableView addGestureRecognizer:tgr];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    [hub show:YES];
-    SKProductsRequest *request = [[[SKProductsRequest alloc] initWithProductIdentifiers:nil] autorelease];
-    [request start];
+    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+    [iap queryProductsWithBlock:^(int status){
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.tableView animated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +73,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return products.count;
+    return iap.products.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,7 +84,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Id];
     }
     // Configure the cell...
-    SKProduct *product = [products objectAtIndex:indexPath.row];
+    SKProduct *product = [iap.products objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", product.localizedTitle];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%f（元）", product.price.floatValue];
     return cell;
@@ -101,9 +106,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SKProduct *product = [products objectAtIndex:indexPath.row];
-    SKPayment *payment = [SKPayment paymentWithProduct:product];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
+    SKProduct *product = [iap.products objectAtIndex:indexPath.row];
+    [iap buyProduct:product];
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
@@ -126,21 +130,10 @@
     }
 }
 
-- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
-{
-    [products addObjectsFromArray:response.products];
-}
 
-- (void)request:(SKRequest *)request didFailWithError:(NSError *)error
+- (void)onDoubleTap:(UITapGestureRecognizer*)tgr
 {
-    NSLog(@"%s,error:%@", __func__,error.localizedDescription);
-    [hub hide:YES];
-}
-
-- (void)requestDidFinish:(SKRequest *)request
-{
-    NSLog(@"%s", __func__);
-    [hub hide:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
