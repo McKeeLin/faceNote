@@ -17,7 +17,7 @@
 @end
 
 @implementation icloudHelper
-@synthesize containerUrl;
+@synthesize containerUrl,appDocumentPath,iCloudDocumentPath;
 
 + (icloudHelper*)helper
 {
@@ -69,6 +69,9 @@
 {
     NSString *Id = [NSString stringWithFormat:@"D9KLEDDTR3.%@", [NSBundle mainBundle].bundleIdentifier];
     self.containerUrl = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:Id];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    self.appDocumentPath = [paths objectAtIndex:0];
+    self.iCloudDocumentPath = [[self.containerUrl path] stringByAppendingPathComponent:@"Documents"];
     NSLog(@"%s, url:%@", __func__, containerUrl);
     return  containerUrl != nil;
 }

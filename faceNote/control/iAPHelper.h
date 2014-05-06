@@ -18,9 +18,12 @@ typedef void(^QUERYBLOCK)(int status);
 @interface iAPHelper : NSObject
 
 @property NSMutableArray *products;
+@property BOOL bPurchased;
 
 - (void)queryProductsWithBlock:(QUERYBLOCK)block;
 
 - (void)buyProduct:(SKProduct*)product;
+
++ (iAPHelper*)helper;
 
 @end

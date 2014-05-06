@@ -9,7 +9,6 @@
 #ifndef faceNote_def_h
 #define faceNote_def_h
 
-
 #define FILE_TYPE   @"png"
 
 extern CGFloat appWidth;

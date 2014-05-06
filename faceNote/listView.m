@@ -18,6 +18,8 @@
 #import "dismissableTips.h"
 #import <QuartzCore/QuartzCore.h>
 #import "icloudHelper.h"
+#import "MBProgressHUD.h"
+#import "iAPHelper.h"
 
 #define HEADERVIEW_HEIGHT   50
 
@@ -45,7 +47,6 @@
         table.delegate = self;
         [self addSubview:table];
         groups = [[NSMutableArray alloc] initWithCapacity:0];
-        [self loadImages];
         
         imgViews = [[NSMutableArray alloc] initWithCapacity:0];
         
@@ -78,12 +79,6 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    ;
-}
-
-
-- (void)didMoveToSuperview
-{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *key = @"listViewShown";
     BOOL shown = [defaults boolForKey:key];
@@ -93,6 +88,41 @@
         NSString *tips = @"1.向左滑动可切换一照相视图\n\n2.点击缩略图可浏览照片";//@"1.swipe to left to switch the camera view \n\n2.tap the picture nail to browse the album.";
         [dismissableTips showTips:tips blues:[NSArray arrayWithObject:tips] atView:self seconds:10 block:nil];
     }
+    
+    NSLog(@"%s", __func__);
+    if( newSuperview ){
+        if( [iAPHelper helper].bPurchased ){
+            NSFileManager *fm = [NSFileManager defaultManager];
+            NSArray *subs = [fm subpathsAtPath:[icloudHelper helper].iCloudDocumentPath];
+            for( NSString *sub in subs){
+                NSString *localPath = [sub stringByReplacingOccurrencesOfString:[icloudHelper helper].iCloudDocumentPath withString:[icloudHelper helper].appDocumentPath];
+                BOOL isDir = NO;
+                NSError *err;
+                if( ![fm fileExistsAtPath:localPath isDirectory:&isDir] ){
+                    if( isDir ){
+                        if( ![fm createDirectoryAtPath:localPath withIntermediateDirectories:YES attributes:nil error:&err] ){
+                            NSLog(@"%s, create path %@ failed, error:%@", __func__, localPath, err.localizedDescription);
+                        }
+                    }
+                    else{
+                        NSRange r = [localPath rangeOfString:FILE_TYPE];
+                        if( r.location != NSNotFound ){
+                            if( ![fm copyItemAtPath:sub toPath:localPath error:&err] ){
+                                NSLog(@"%s, copy %@ to %@ failed, %@", __func__, sub, localPath, err.localizedDescription);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        [self loadImages];
+    }
+}
+
+
+- (void)didMoveToSuperview
+{
 }
 
 - (void)loadImages
@@ -106,6 +136,7 @@
     NSURL *containerUrl = [icloudHelper helper].containerUrl;
     NSString *containerPath = [containerUrl path];
     NSString *photosDir = [NSString stringWithFormat:@"%@/Documents/photos",containerPath];
+    photosDir = [[icloudHelper helper].appDocumentPath stringByAppendingPathComponent:@"photos"];
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *yearMonths = [fm subpathsAtPath:photosDir];
     for( NSString * yearMonth in yearMonths )

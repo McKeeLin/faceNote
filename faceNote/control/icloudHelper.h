@@ -10,6 +10,8 @@
 
 @interface icloudHelper : NSObject
 @property (retain) NSURL *containerUrl;
+@property (retain) NSString *appDocumentPath;
+@property (retain) NSString *iCloudDocumentPath;
 
 + (icloudHelper*)helper;
 

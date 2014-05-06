@@ -26,6 +26,7 @@
 #import "appInfoObj.h"
 #import "icloudHelper.h"
 #import "iapVC.h"
+#import "iAPHelper.h"
 
 @interface captureView()<AVCaptureAudioDataOutputSampleBufferDelegate>
 {
@@ -83,11 +84,7 @@
         [self addGestureRecognizer:tgr];
         [tgr release];
         
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        self.documentPath = [paths objectAtIndex:0];
-        
-        NSURL *containerUrl = [icloudHelper helper].containerUrl;
-        self.documentPath = [NSString stringWithFormat:@"%@/Documents", [containerUrl path]];
+        self.documentPath = [icloudHelper helper].appDocumentPath;
         
         frontView = [[UIView alloc] initWithFrame:frame];
         [self addSubview:frontView];
@@ -345,6 +342,7 @@
                     NSString *name = [fmt stringFromDate:date];
                     NSString *filePath = [NSString stringWithFormat:@"%@/%@.%@", dir, name, FILE_TYPE];
                     NSLog(@"%s,path:%@", __func__, filePath);
+                    /*
                     if( ![fm fileExistsAtPath:self.documentPath] )
                     {
                         [fm createDirectoryAtPath:self.documentPath withIntermediateDirectories:NO attributes:nil error:&error];
@@ -353,10 +351,31 @@
                             NSLog(@"%s, create path failed:%@", __func__, error);
                         }
                     }
+                    */
                     BOOL bResult = [imageData writeToFile:filePath atomically:YES];
                     if( !bResult )
                     {
                         NSLog(@"%s, save picture:%@ failed", __func__, filePath);
+                    }
+                    
+                    if( [iAPHelper helper].bPurchased ){
+                        NSString *iCloudDir = [NSString stringWithFormat:@"%@/Documents/photos/%@/%@", [[icloudHelper helper].containerUrl path], yearMonth, day];
+                        if( ![fm fileExistsAtPath:iCloudDir] )
+                        {
+                            if( ![fm createDirectoryAtPath:iCloudDir withIntermediateDirectories:YES attributes:nil error:&error] )
+                            {
+                                if( error )
+                                {
+                                    NSLog(@"%s, create path failed:%@", __func__, error);
+                                    error = nil;
+                                }
+                            }
+                        }
+                        NSString *iCloudFile = [iCloudDir stringByAppendingFormat:@"/%@.%@", name, FILE_TYPE];
+                        if( ![fm copyItemAtPath:filePath toPath:iCloudFile error:&error] )
+                        {
+                            NSLog(@"move to icloud container failed, error:%@", error.localizedDescription);
+                        }
                     }
                     
                     [[dataManager defaultMgr] insertPhotoInfoInBlock:^(PhotoInfo *info){

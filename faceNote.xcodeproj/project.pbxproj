@@ -91,6 +91,7 @@
 		0811955D1900B41500C27778 /* dismissableTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dismissableTips.m; sourceTree = "<group>"; };
 		0811955F1900B94A00C27778 /* tipsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tipsLabel.h; sourceTree = "<group>"; };
 		081195601900B94A00C27778 /* tipsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tipsLabel.m; sourceTree = "<group>"; };
+		081BCE951918DDAC00DF9FE1 /* mission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mission.h; sourceTree = "<group>"; };
 		08320E6F1914C6B500066C83 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		08320E961914DF1A00066C83 /* thumbImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thumbImageHelper.h; sourceTree = "<group>"; };
 		08320E971914DF1A00066C83 /* thumbImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thumbImageHelper.m; sourceTree = "<group>"; };
@@ -379,6 +380,7 @@
 				5D4770EA18540CAA00A06C23 /* photoInfoView.m */,
 				5DF7F7421879A6C400A72E94 /* maskView.h */,
 				5DF7F7431879A6C400A72E94 /* maskView.m */,
+				081BCE951918DDAC00DF9FE1 /* mission.h */,
 			);
 			path = faceNote;
 			sourceTree = "<group>";

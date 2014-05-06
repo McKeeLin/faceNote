@@ -11,6 +11,7 @@
 #import "dismissableTips.h"
 #import "photoView.h"
 #import "icloudHelper.h"
+#import "iAPHelper.h"
 
 @interface photoDisplayView()<UIGestureRecognizerDelegate>
 {
@@ -204,6 +205,13 @@
                     if( err )
                     {
                         NSLog(@"%s, delete %@ failed, error:%@", __func__, currentPage.photoPath, err.localizedDescription);
+                    }
+                    
+                    if( [iAPHelper helper].bPurchased ){
+                        NSString *iCloudFile = [currentPage.photoPath stringByReplacingOccurrencesOfString:[icloudHelper helper].appDocumentPath withString:[icloudHelper helper].iCloudDocumentPath];
+                        if( ![[NSFileManager defaultManager] removeItemAtPath:iCloudFile error:&err] ){
+                            NSLog(@"remove icloud file:%@ failed, error:%@", iCloudFile, err.description);
+                        }
                     }
                 }];
             }

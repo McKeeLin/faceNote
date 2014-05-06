@@ -33,7 +33,6 @@
 {
     [iap release];
     [hub release];
-    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
     [super dealloc];
 }
 

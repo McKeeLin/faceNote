@@ -12,12 +12,23 @@
 {
     
 }
+
 @property (copy)QUERYBLOCK queryBlock;
 
 @end
 
 @implementation iAPHelper
-@synthesize products,queryBlock;
+@synthesize products,queryBlock,bPurchased;
+
++ (iAPHelper*)helper
+{
+    static iAPHelper *g_iapHelper = nil;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^(){
+        g_iapHelper = [[iAPHelper alloc] init];
+    });
+    return g_iapHelper;
+}
 
 - (id)init
 {
@@ -25,6 +36,7 @@
     if( self ){
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
         products = [[NSMutableArray alloc] initWithCapacity:0];
+        bPurchased = YES;
     }
     return self;
 }
