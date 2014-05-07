@@ -17,4 +17,6 @@
 
 - (id)initWithFrame:(CGRect)frame album:(album*)am;
 
+- (void)relayout;
+
 @end

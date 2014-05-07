@@ -10,10 +10,14 @@
 
 @class ViewController;
 
+@class albumView;
+
 @interface photoDisplayView : pageMgrView
 
 @property (assign) CGPoint point;
 
 @property (retain) ViewController *vc;
+
+@property (assign) albumView *av;
 
 @end

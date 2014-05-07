@@ -50,6 +50,17 @@
     return self;
 }
 
+- (void)relayout
+{
+    NSArray *subViews = [NSArray arrayWithArray:self.subviews];
+    for( UIView *subView in subViews ){
+        [subView removeFromSuperview];
+    }
+    [subBounds removeAllObjects];
+    NSInteger radom = 517;
+    [self initSubBoundsWith:radom count:self.photoPaths.count];
+}
+
 - (void)dealloc
 {
     [subBounds release];
@@ -275,7 +286,7 @@
 - (void)onTouchPhoto:(id)sender
 {
     UIButton *btn = (UIButton*)sender;
-    [[ViewController defaultVC] showPhotoFromListViewWithPaths:photoPaths defaultIndex:btn.tag];
+    [[ViewController defaultVC] showPhotoFromListViewWithPaths:photoPaths defaultIndex:btn.tag albumView:self];
 }
 
 @end

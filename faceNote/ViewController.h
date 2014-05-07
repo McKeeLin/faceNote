@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class album;
+@class albumView;
 
 @interface ViewController : UIViewController
 
@@ -23,7 +24,7 @@
 
 - (void)showCameraFromPhotoView;
 
-- (void)showPhotoFromListViewWithPaths:(NSArray*)photoPaths defaultIndex:(NSInteger)index;
+- (void)showPhotoFromListViewWithPaths:(NSArray*)photoPaths defaultIndex:(NSInteger)index albumView:(albumView*)av;
 
 - (void)showPhotoFromTagEditView;
 

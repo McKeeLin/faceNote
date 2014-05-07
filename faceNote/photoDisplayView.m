@@ -12,6 +12,7 @@
 #import "photoView.h"
 #import "icloudHelper.h"
 #import "iAPHelper.h"
+#import "albumView.h"
 
 @interface photoDisplayView()<UIGestureRecognizerDelegate>
 {
@@ -22,7 +23,7 @@
 @end
 
 @implementation photoDisplayView
-@synthesize point,vc;
+@synthesize point,vc,av;
 
 - (void)dealloc
 {
@@ -101,7 +102,9 @@
     [UIView setAnimationPosition:CGPointMake(0, 0)];
     [UIView commitAnimations];
     */
-    
+    if( av ){
+        [av relayout];
+    }
     [[ViewController defaultVC] showListFromPhotoView];
 }
 

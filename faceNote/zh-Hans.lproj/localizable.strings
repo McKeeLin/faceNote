@@ -1,0 +1,15 @@
+/* 
+  localizable.strings
+  faceNote
+
+  Created by 林景隆 on 5/7/14.
+  Copyright (c) 2014 cndatacom. All rights reserved.
+*/
+
+
+"setting" = "设置";
+"back" = "返回";
+"iCloudFunc" = "iCloud功能";
+"gestureCode" = "手势密码";
+"enableICloud" = "开启iCloud同步功能";
+"buyICloud" ＝ "购买iCloud同步功能";"

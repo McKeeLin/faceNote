@@ -17,6 +17,12 @@
 		081195611900B94A00C27778 /* tipsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 081195601900B94A00C27778 /* tipsLabel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		08320E701914C6B500066C83 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08320E6F1914C6B500066C83 /* ImageIO.framework */; };
 		08320E981914DF1A00066C83 /* thumbImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08320E971914DF1A00066C83 /* thumbImageHelper.m */; };
+		0842994E191A358A00E1EDDF /* settingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0842994D191A358A00E1EDDF /* settingView.m */; };
+		08429951191A363600E1EDDF /* topbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08429950191A363600E1EDDF /* topbarView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		08429954191A368600E1EDDF /* baseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08429953191A368600E1EDDF /* baseView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		08429957191A36C600E1EDDF /* UIApplication+utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 08429956191A36C600E1EDDF /* UIApplication+utility.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		0842995A191A38BC00E1EDDF /* localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0842995C191A38BC00E1EDDF /* localizable.strings */; };
+		08429962191A3DD600E1EDDF /* UIColor+utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 08429961191A3DD600E1EDDF /* UIColor+utility.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		08645EDD190A6D5D005F3025 /* myDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 08645EDC190A6D5D005F3025 /* myDocument.m */; };
 		0866B57B19079EF40056ABB1 /* appInfoObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0866B57A19079EF40056ABB1 /* appInfoObj.m */; };
 		0898ABAE1901121B00268357 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0898ABAD1901121B00268357 /* StoreKit.framework */; };
@@ -52,7 +58,6 @@
 		5D3DA60318265C4B008FCB17 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3DA60218265C4B008FCB17 /* ViewController.m */; };
 		5D3DA60618265C4B008FCB17 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3DA60418265C4B008FCB17 /* ViewController.xib */; };
 		5D3DA60E18265E3F008FCB17 /* captureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3DA60D18265E3F008FCB17 /* captureView.m */; };
-		5D3DA61418266131008FCB17 /* settingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3DA61318266131008FCB17 /* settingView.m */; };
 		5D3DA61618267445008FCB17 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3DA61518267445008FCB17 /* AVFoundation.framework */; };
 		5D3DA61918269D48008FCB17 /* dataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3DA61818269D47008FCB17 /* dataManager.m */; };
 		5D3DA61B18273475008FCB17 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3DA61A18273475008FCB17 /* CoreAudio.framework */; };
@@ -95,6 +100,20 @@
 		08320E6F1914C6B500066C83 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		08320E961914DF1A00066C83 /* thumbImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thumbImageHelper.h; sourceTree = "<group>"; };
 		08320E971914DF1A00066C83 /* thumbImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thumbImageHelper.m; sourceTree = "<group>"; };
+		0842994C191A358A00E1EDDF /* settingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingView.h; sourceTree = "<group>"; };
+		0842994D191A358A00E1EDDF /* settingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = settingView.m; sourceTree = "<group>"; };
+		0842994F191A363600E1EDDF /* topbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topbarView.h; sourceTree = "<group>"; };
+		08429950191A363600E1EDDF /* topbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topbarView.m; sourceTree = "<group>"; };
+		08429952191A368600E1EDDF /* baseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baseView.h; sourceTree = "<group>"; };
+		08429953191A368600E1EDDF /* baseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = baseView.m; sourceTree = "<group>"; };
+		08429955191A36C600E1EDDF /* UIApplication+utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+utility.h"; sourceTree = "<group>"; };
+		08429956191A36C600E1EDDF /* UIApplication+utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+utility.m"; sourceTree = "<group>"; };
+		0842995B191A38BC00E1EDDF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/localizable.strings; sourceTree = "<group>"; };
+		0842995D191A3C5000E1EDDF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ViewController.xib"; sourceTree = "<group>"; };
+		0842995E191A3C5000E1EDDF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		0842995F191A3C5000E1EDDF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/localizable.strings"; sourceTree = "<group>"; };
+		08429960191A3DD600E1EDDF /* UIColor+utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+utility.h"; sourceTree = "<group>"; };
+		08429961191A3DD600E1EDDF /* UIColor+utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+utility.m"; sourceTree = "<group>"; };
 		08645EDB190A6D5D005F3025 /* myDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myDocument.h; sourceTree = "<group>"; };
 		08645EDC190A6D5D005F3025 /* myDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myDocument.m; sourceTree = "<group>"; };
 		0866B57919079EF40056ABB1 /* appInfoObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = appInfoObj.h; sourceTree = "<group>"; };
@@ -152,8 +171,6 @@
 		5D3DA60518265C4B008FCB17 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		5D3DA60C18265E3F008FCB17 /* captureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = captureView.h; sourceTree = "<group>"; };
 		5D3DA60D18265E3F008FCB17 /* captureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = captureView.m; sourceTree = "<group>"; };
-		5D3DA61218266131008FCB17 /* settingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingView.h; sourceTree = "<group>"; };
-		5D3DA61318266131008FCB17 /* settingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = settingView.m; sourceTree = "<group>"; };
 		5D3DA61518267445008FCB17 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5D3DA61718269D47008FCB17 /* dataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataManager.h; sourceTree = "<group>"; };
 		5D3DA61818269D47008FCB17 /* dataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dataManager.m; sourceTree = "<group>"; };
@@ -257,6 +274,16 @@
 		0898ABB51901442A00268357 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				08429960191A3DD600E1EDDF /* UIColor+utility.h */,
+				08429961191A3DD600E1EDDF /* UIColor+utility.m */,
+				08429955191A36C600E1EDDF /* UIApplication+utility.h */,
+				08429956191A36C600E1EDDF /* UIApplication+utility.m */,
+				08429952191A368600E1EDDF /* baseView.h */,
+				08429953191A368600E1EDDF /* baseView.m */,
+				0842994F191A363600E1EDDF /* topbarView.h */,
+				08429950191A363600E1EDDF /* topbarView.m */,
+				0842994C191A358A00E1EDDF /* settingView.h */,
+				0842994D191A358A00E1EDDF /* settingView.m */,
 				0898ABBC19014ABE00268357 /* MBProgressHUD.h */,
 				0898ABBD19014ABE00268357 /* MBProgressHUD.m */,
 				0898ABB61901447000268357 /* funcVC.h */,
@@ -340,8 +367,6 @@
 				5D3DA5F018265C4B008FCB17 /* Supporting Files */,
 				5D3DA60C18265E3F008FCB17 /* captureView.h */,
 				5D3DA60D18265E3F008FCB17 /* captureView.m */,
-				5D3DA61218266131008FCB17 /* settingView.h */,
-				5D3DA61318266131008FCB17 /* settingView.m */,
 				5D3DA61718269D47008FCB17 /* dataManager.h */,
 				5D3DA61818269D47008FCB17 /* dataManager.m */,
 				5D01EDD318294D52000C3094 /* pageMgrView.h */,
@@ -395,6 +420,7 @@
 				5D3DA5FB18265C4B008FCB17 /* Default.png */,
 				5D3DA5FD18265C4B008FCB17 /* Default@2x.png */,
 				5D3DA5FF18265C4B008FCB17 /* Default-568h@2x.png */,
+				0842995C191A38BC00E1EDDF /* localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -455,6 +481,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 5D3DA5DD18265C4A008FCB17;
 			productRefGroup = 5D3DA5E718265C4B008FCB17 /* Products */;
@@ -480,6 +507,7 @@
 				081195591900A9F700C27778 /* icon57.png in Resources */,
 				5D3DA5FE18265C4B008FCB17 /* Default@2x.png in Resources */,
 				5D3DA60018265C4B008FCB17 /* Default-568h@2x.png in Resources */,
+				0842995A191A38BC00E1EDDF /* localizable.strings in Resources */,
 				081195561900A9F700C27778 /* icon114.png in Resources */,
 				081195581900A9F700C27778 /* icon29.png in Resources */,
 				5D3DA60618265C4B008FCB17 /* ViewController.xib in Resources */,
@@ -504,15 +532,16 @@
 				5D3DA60318265C4B008FCB17 /* ViewController.m in Sources */,
 				5D71914A18420E9D008725F1 /* listCell.m in Sources */,
 				5D3DA60E18265E3F008FCB17 /* captureView.m in Sources */,
-				5D3DA61418266131008FCB17 /* settingView.m in Sources */,
 				0898ABBE19014ABE00268357 /* MBProgressHUD.m in Sources */,
 				5D3DA61918269D48008FCB17 /* dataManager.m in Sources */,
 				0898ABB81901447000268357 /* funcVC.m in Sources */,
 				5D7191471840FF05008725F1 /* albumView.m in Sources */,
+				08429957191A36C600E1EDDF /* UIApplication+utility.m in Sources */,
 				5D01EDD518294D52000C3094 /* pageMgrView.m in Sources */,
 				0898ABB21901130000268357 /* iAPHelper.m in Sources */,
 				5D01EDD81829D7D4000C3094 /* listView.m in Sources */,
 				5D1740B518371226000F0673 /* locationMgr.m in Sources */,
+				0842994E191A358A00E1EDDF /* settingView.m in Sources */,
 				5DCDC902183CA9490004D18D /* transparentBtn.m in Sources */,
 				5DCDC905183CAD650004D18D /* UIApplication+appSize.m in Sources */,
 				5D4770E818537DF000A06C23 /* autoSizeLabel.m in Sources */,
@@ -520,9 +549,11 @@
 				5D1907AD184381B000CA19EB /* albumGroup.m in Sources */,
 				0866B57B19079EF40056ABB1 /* appInfoObj.m in Sources */,
 				5DF7F7441879A6C400A72E94 /* maskView.m in Sources */,
+				08429962191A3DD600E1EDDF /* UIColor+utility.m in Sources */,
 				5D1907B01843826B00CA19EB /* album.m in Sources */,
 				5D1907B31844DE9200CA19EB /* UIImage+UIImageScale.m in Sources */,
 				5D19080818465CEC00CA19EB /* photoView.m in Sources */,
+				08429951191A363600E1EDDF /* topbarView.m in Sources */,
 				5D19080B18465F0500CA19EB /* photoDisplayView.m in Sources */,
 				08320E981914DF1A00066C83 /* thumbImageHelper.m in Sources */,
 				08C69C391907E9DF0043D95B /* icloudHelper.m in Sources */,
@@ -534,6 +565,7 @@
 				5DD10F42184B822E0009A7E3 /* maskGlassView.m in Sources */,
 				5DD10F45184DBACE0009A7E3 /* listToolBar.m in Sources */,
 				5D54DEFF184F777D0061AA46 /* UIImage+blur.m in Sources */,
+				08429954191A368600E1EDDF /* baseView.m in Sources */,
 				5DF934F51851C65B00560259 /* Model.xcdatamodeld in Sources */,
 				5DF934F81852CA2600560259 /* PhotoInfo.m in Sources */,
 			);
@@ -542,10 +574,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0842995C191A38BC00E1EDDF /* localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0842995B191A38BC00E1EDDF /* en */,
+				0842995F191A3C5000E1EDDF /* zh-Hans */,
+			);
+			name = localizable.strings;
+			sourceTree = "<group>";
+		};
 		5D3DA5F218265C4B008FCB17 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5D3DA5F318265C4B008FCB17 /* en */,
+				0842995E191A3C5000E1EDDF /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -554,6 +596,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5D3DA60518265C4B008FCB17 /* en */,
+				0842995D191A3C5000E1EDDF /* zh-Hans */,
 			);
 			name = ViewController.xib;
 			sourceTree = "<group>";

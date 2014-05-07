@@ -205,7 +205,7 @@ ViewController *g_vc;
     self.ltv = nil;
 }
 
-- (void)showPhotoFromListViewWithPaths:(NSArray *)photoPaths defaultIndex:(NSInteger)index
+- (void)showPhotoFromListViewWithPaths:(NSArray *)photoPaths defaultIndex:(NSInteger)index albumView:(albumView*)av
 {
     if( !pdv )
     {
@@ -222,6 +222,7 @@ ViewController *g_vc;
         }
         photoDisplayView *pdView = [[photoDisplayView alloc] initWithFrame:bounds subViews:photoes defaultIndex:index delegate:nil];
         pdView.vc = self;
+        pdView.av = av;
         self.pdv = pdView;
         [pdView release];
         [photoes release];
