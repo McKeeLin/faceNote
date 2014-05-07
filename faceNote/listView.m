@@ -95,10 +95,12 @@
             NSFileManager *fm = [NSFileManager defaultManager];
             NSArray *subs = [fm subpathsAtPath:[icloudHelper helper].iCloudDocumentPath];
             for( NSString *sub in subs){
-                NSString *localPath = [sub stringByReplacingOccurrencesOfString:[icloudHelper helper].iCloudDocumentPath withString:[icloudHelper helper].appDocumentPath];
+                NSString *iCloudPath = [[icloudHelper helper].iCloudDocumentPath stringByAppendingPathComponent:sub];
+                NSString *localPath = [iCloudPath stringByReplacingOccurrencesOfString:[icloudHelper helper].iCloudDocumentPath withString:[icloudHelper helper].appDocumentPath];
                 BOOL isDir = NO;
+                [fm fileExistsAtPath:iCloudPath isDirectory:&isDir];
                 NSError *err;
-                if( ![fm fileExistsAtPath:localPath isDirectory:&isDir] ){
+                if( ![fm fileExistsAtPath:localPath] ){
                     if( isDir ){
                         if( ![fm createDirectoryAtPath:localPath withIntermediateDirectories:YES attributes:nil error:&err] ){
                             NSLog(@"%s, create path %@ failed, error:%@", __func__, localPath, err.localizedDescription);
@@ -107,8 +109,11 @@
                     else{
                         NSRange r = [localPath rangeOfString:FILE_TYPE];
                         if( r.location != NSNotFound ){
-                            if( ![fm copyItemAtPath:sub toPath:localPath error:&err] ){
-                                NSLog(@"%s, copy %@ to %@ failed, %@", __func__, sub, localPath, err.localizedDescription);
+                            if( [fm isReadableFileAtPath:iCloudPath] )
+                            {
+                                if( ![fm copyItemAtPath:iCloudPath toPath:localPath error:&err] ){
+                                    NSLog(@"%s, copy %@ to %@ failed, %@", __func__, iCloudPath, localPath, err.localizedDescription);
+                                }
                             }
                         }
                     }
