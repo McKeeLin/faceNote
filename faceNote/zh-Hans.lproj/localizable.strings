@@ -12,4 +12,14 @@
 "iCloudFunc" = "iCloud功能";
 "gestureCode" = "手势密码";
 "enableICloud" = "开启iCloud同步功能";
-"buyICloud" ＝ "购买iCloud同步功能";"
+"buyICloud" = "购买iCloud同步功能";
+"OpenGestureCode" = "开启手势密码";
+"SetGestureCode" = "设置手势密码";
+"RememberGestureCode" = "新的手势密码已经生效，请牢记！";
+"GestureCodeRecomend" = "为了操作安全考虑，强烈建议你设置手势密码！";
+"OriginalGestureCode" = "请输入原手势密码！";
+"OriginalGestureCodeNotRight" = "原手势密码错误！";
+"GestureCodeAgain" = "请再次输入手势密码！";
+"inputGestureCode" = "请输新入手势密码";
+"gestureCodeNotRightInputAgain" = "手势密码不对，请重新输入！";
+"gestureCodeVerifyCaption" = "验证";

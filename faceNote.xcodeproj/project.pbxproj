@@ -15,6 +15,14 @@
 		0811955B1900A9F700C27778 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 081195551900A9F700C27778 /* icon80.png */; };
 		0811955E1900B41500C27778 /* dismissableTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 0811955D1900B41500C27778 /* dismissableTips.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		081195611900B94A00C27778 /* tipsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 081195601900B94A00C27778 /* tipsLabel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		0821B90C191B1ED8006AB758 /* NormalCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B905191B1ED8006AB758 /* NormalCircle.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		0821B90D191B1ED8006AB758 /* SPLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B907191B1ED8006AB758 /* SPLine.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		0821B90E191B1ED8006AB758 /* SPLockOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B909191B1ED8006AB758 /* SPLockOverlay.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		0821B90F191B1ED8006AB758 /* SPLockScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B90B191B1ED8006AB758 /* SPLockScreen.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		0821B914191B2281006AB758 /* gestureCodeSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B911191B2281006AB758 /* gestureCodeSettingView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		0821B915191B2281006AB758 /* gestureCodeVerifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B913191B2281006AB758 /* gestureCodeVerifyView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		0821B918191B23B6006AB758 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B917191B23B6006AB758 /* UICKeyChainStore.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		0821B91A191B247E006AB758 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0821B919191B247E006AB758 /* Security.framework */; };
 		08320E701914C6B500066C83 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08320E6F1914C6B500066C83 /* ImageIO.framework */; };
 		08320E981914DF1A00066C83 /* thumbImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08320E971914DF1A00066C83 /* thumbImageHelper.m */; };
 		0842994E191A358A00E1EDDF /* settingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0842994D191A358A00E1EDDF /* settingView.m */; };
@@ -97,6 +105,21 @@
 		0811955F1900B94A00C27778 /* tipsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tipsLabel.h; sourceTree = "<group>"; };
 		081195601900B94A00C27778 /* tipsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tipsLabel.m; sourceTree = "<group>"; };
 		081BCE951918DDAC00DF9FE1 /* mission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mission.h; sourceTree = "<group>"; };
+		0821B904191B1ED8006AB758 /* NormalCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalCircle.h; sourceTree = "<group>"; };
+		0821B905191B1ED8006AB758 /* NormalCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalCircle.m; sourceTree = "<group>"; };
+		0821B906191B1ED8006AB758 /* SPLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLine.h; sourceTree = "<group>"; };
+		0821B907191B1ED8006AB758 /* SPLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLine.m; sourceTree = "<group>"; };
+		0821B908191B1ED8006AB758 /* SPLockOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLockOverlay.h; sourceTree = "<group>"; };
+		0821B909191B1ED8006AB758 /* SPLockOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLockOverlay.m; sourceTree = "<group>"; };
+		0821B90A191B1ED8006AB758 /* SPLockScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLockScreen.h; sourceTree = "<group>"; };
+		0821B90B191B1ED8006AB758 /* SPLockScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLockScreen.m; sourceTree = "<group>"; };
+		0821B910191B2281006AB758 /* gestureCodeSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gestureCodeSettingView.h; sourceTree = "<group>"; };
+		0821B911191B2281006AB758 /* gestureCodeSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gestureCodeSettingView.m; sourceTree = "<group>"; };
+		0821B912191B2281006AB758 /* gestureCodeVerifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gestureCodeVerifyView.h; sourceTree = "<group>"; };
+		0821B913191B2281006AB758 /* gestureCodeVerifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gestureCodeVerifyView.m; sourceTree = "<group>"; };
+		0821B916191B23B6006AB758 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICKeyChainStore.h; sourceTree = "<group>"; };
+		0821B917191B23B6006AB758 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
+		0821B919191B247E006AB758 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		08320E6F1914C6B500066C83 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		08320E961914DF1A00066C83 /* thumbImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thumbImageHelper.h; sourceTree = "<group>"; };
 		08320E971914DF1A00066C83 /* thumbImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thumbImageHelper.m; sourceTree = "<group>"; };
@@ -218,6 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0821B91A191B247E006AB758 /* Security.framework in Frameworks */,
 				08320E701914C6B500066C83 /* ImageIO.framework in Frameworks */,
 				0898ABB419011F6600268357 /* SystemConfiguration.framework in Frameworks */,
 				0898ABAE1901121B00268357 /* StoreKit.framework in Frameworks */,
@@ -254,9 +278,27 @@
 			path = faceNote/icon;
 			sourceTree = "<group>";
 		};
+		0821B903191B1ED8006AB758 /* patternLock */ = {
+			isa = PBXGroup;
+			children = (
+				0821B904191B1ED8006AB758 /* NormalCircle.h */,
+				0821B905191B1ED8006AB758 /* NormalCircle.m */,
+				0821B906191B1ED8006AB758 /* SPLine.h */,
+				0821B907191B1ED8006AB758 /* SPLine.m */,
+				0821B908191B1ED8006AB758 /* SPLockOverlay.h */,
+				0821B909191B1ED8006AB758 /* SPLockOverlay.m */,
+				0821B90A191B1ED8006AB758 /* SPLockScreen.h */,
+				0821B90B191B1ED8006AB758 /* SPLockScreen.m */,
+			);
+			name = patternLock;
+			path = faceNote/patternLock;
+			sourceTree = SOURCE_ROOT;
+		};
 		0898ABAF190112C900268357 /* control */ = {
 			isa = PBXGroup;
 			children = (
+				0821B916191B23B6006AB758 /* UICKeyChainStore.h */,
+				0821B917191B23B6006AB758 /* UICKeyChainStore.m */,
 				0898ABB01901130000268357 /* iAPHelper.h */,
 				0898ABB11901130000268357 /* iAPHelper.m */,
 				0866B57919079EF40056ABB1 /* appInfoObj.h */,
@@ -274,6 +316,11 @@
 		0898ABB51901442A00268357 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				0821B910191B2281006AB758 /* gestureCodeSettingView.h */,
+				0821B911191B2281006AB758 /* gestureCodeSettingView.m */,
+				0821B912191B2281006AB758 /* gestureCodeVerifyView.h */,
+				0821B913191B2281006AB758 /* gestureCodeVerifyView.m */,
+				0821B903191B1ED8006AB758 /* patternLock */,
 				08429960191A3DD600E1EDDF /* UIColor+utility.h */,
 				08429961191A3DD600E1EDDF /* UIColor+utility.m */,
 				08429955191A36C600E1EDDF /* UIApplication+utility.h */,
@@ -328,6 +375,7 @@
 		5D3DA5E818265C4B008FCB17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0821B919191B247E006AB758 /* Security.framework */,
 				08320E6F1914C6B500066C83 /* ImageIO.framework */,
 				0898ABB319011F6600268357 /* SystemConfiguration.framework */,
 				0898ABAD1901121B00268357 /* StoreKit.framework */,
@@ -531,17 +579,21 @@
 				5D3DA5FA18265C4B008FCB17 /* AppDelegate.m in Sources */,
 				5D3DA60318265C4B008FCB17 /* ViewController.m in Sources */,
 				5D71914A18420E9D008725F1 /* listCell.m in Sources */,
+				0821B918191B23B6006AB758 /* UICKeyChainStore.m in Sources */,
 				5D3DA60E18265E3F008FCB17 /* captureView.m in Sources */,
 				0898ABBE19014ABE00268357 /* MBProgressHUD.m in Sources */,
 				5D3DA61918269D48008FCB17 /* dataManager.m in Sources */,
 				0898ABB81901447000268357 /* funcVC.m in Sources */,
 				5D7191471840FF05008725F1 /* albumView.m in Sources */,
+				0821B90E191B1ED8006AB758 /* SPLockOverlay.m in Sources */,
 				08429957191A36C600E1EDDF /* UIApplication+utility.m in Sources */,
+				0821B915191B2281006AB758 /* gestureCodeVerifyView.m in Sources */,
 				5D01EDD518294D52000C3094 /* pageMgrView.m in Sources */,
 				0898ABB21901130000268357 /* iAPHelper.m in Sources */,
 				5D01EDD81829D7D4000C3094 /* listView.m in Sources */,
 				5D1740B518371226000F0673 /* locationMgr.m in Sources */,
 				0842994E191A358A00E1EDDF /* settingView.m in Sources */,
+				0821B90C191B1ED8006AB758 /* NormalCircle.m in Sources */,
 				5DCDC902183CA9490004D18D /* transparentBtn.m in Sources */,
 				5DCDC905183CAD650004D18D /* UIApplication+appSize.m in Sources */,
 				5D4770E818537DF000A06C23 /* autoSizeLabel.m in Sources */,
@@ -550,9 +602,11 @@
 				0866B57B19079EF40056ABB1 /* appInfoObj.m in Sources */,
 				5DF7F7441879A6C400A72E94 /* maskView.m in Sources */,
 				08429962191A3DD600E1EDDF /* UIColor+utility.m in Sources */,
+				0821B914191B2281006AB758 /* gestureCodeSettingView.m in Sources */,
 				5D1907B01843826B00CA19EB /* album.m in Sources */,
 				5D1907B31844DE9200CA19EB /* UIImage+UIImageScale.m in Sources */,
 				5D19080818465CEC00CA19EB /* photoView.m in Sources */,
+				0821B90F191B1ED8006AB758 /* SPLockScreen.m in Sources */,
 				08429951191A363600E1EDDF /* topbarView.m in Sources */,
 				5D19080B18465F0500CA19EB /* photoDisplayView.m in Sources */,
 				08320E981914DF1A00066C83 /* thumbImageHelper.m in Sources */,
@@ -567,6 +621,7 @@
 				5D54DEFF184F777D0061AA46 /* UIImage+blur.m in Sources */,
 				08429954191A368600E1EDDF /* baseView.m in Sources */,
 				5DF934F51851C65B00560259 /* Model.xcdatamodeld in Sources */,
+				0821B90D191B1ED8006AB758 /* SPLine.m in Sources */,
 				5DF934F81852CA2600560259 /* PhotoInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

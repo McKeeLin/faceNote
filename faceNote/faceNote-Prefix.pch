@@ -15,3 +15,9 @@
 
 #define UICOLOR(r,g,b,a)  [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 
+#define SETTING_GESTURE_CODE    @"faceNoteGestureCode"
+#define kGestureCodeEnable      @"kGestureCodeEnable"
+#define kGestureCode            @"kGestureCode"
+#define kICloudPurchased        @"kICloudPurchased"
+#define kICloudEnable           @"kICloudEnable"
+

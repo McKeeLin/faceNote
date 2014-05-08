@@ -14,6 +14,7 @@
 @interface albumView : UIView
 
 @property NSInteger albumHeight;
+@property (retain) NSMutableArray *photoPaths;
 
 - (id)initWithFrame:(CGRect)frame album:(album*)am;
 

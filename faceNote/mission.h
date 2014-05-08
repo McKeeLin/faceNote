@@ -12,7 +12,7 @@
 /* √ (alt+v)
  picture save at user document path and optionally at iCloud container √
  picture delete from user document path and optionaly from iCloud container √
- update the list view after photo deleted
+ update the list view after photo deleted √
  setingView
  iCloudFunction buy view
  gesture code setting view

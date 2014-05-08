@@ -102,9 +102,6 @@
     [UIView setAnimationPosition:CGPointMake(0, 0)];
     [UIView commitAnimations];
     */
-    if( av ){
-        [av relayout];
-    }
     [[ViewController defaultVC] showListFromPhotoView];
 }
 
@@ -208,6 +205,12 @@
                     if( err )
                     {
                         NSLog(@"%s, delete %@ failed, error:%@", __func__, currentPage.photoPath, err.localizedDescription);
+                    }
+                    else{
+                        if( av ){
+                            [av.photoPaths removeObject:currentPage.photoPath];
+                            [av relayout];
+                        }
                     }
                     
                     if( [iAPHelper helper].bPurchased ){

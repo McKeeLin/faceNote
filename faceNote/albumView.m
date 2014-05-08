@@ -19,7 +19,6 @@
     NSMutableArray *subBounds;
 }
 
-@property (retain) NSArray *photoPaths;
 
 @end
 
@@ -41,7 +40,8 @@
     self = [super initWithFrame:frame];
     if( self )
     {
-        self.photoPaths = am.photos;
+        self.photoPaths = [[NSMutableArray alloc] initWithCapacity:0];
+        [self.photoPaths addObjectsFromArray:am.photos];
         subBounds = [[NSMutableArray alloc] initWithCapacity:0];
         albumHeight = 150;
         NSInteger radom = am.title.integerValue;
@@ -57,6 +57,11 @@
         [subView removeFromSuperview];
     }
     [subBounds removeAllObjects];
+    
+    for( NSString *path in photoPaths ){
+        [[thumbImageHelper helper].thumbImages removeObjectForKey:path];
+    }
+    
     NSInteger radom = 517;
     [self initSubBoundsWith:radom count:self.photoPaths.count];
 }
@@ -212,6 +217,14 @@
         [btn addTarget:self action:@selector(onTouchPhoto:) forControlEvents:UIControlEventTouchUpInside];
         NSString *path = [photoPaths objectAtIndex:index];
         UIImage *btnImg = [[thumbImageHelper helper].thumbImages objectForKey:path];
+        if( btnImg )
+        {
+            CGSize btnImgSize = btnImg.size;
+            if( btnImgSize.width != width || btnImgSize.height != height ){
+                btnImg = nil;
+                [[thumbImageHelper helper].thumbImages setObject:btnImg forKey:path];
+            }
+        }
         if( !btnImg ){
             NSLog(@".................1");
             UIImage *img = [[UIImage alloc] initWithContentsOfFile:[photoPaths objectAtIndex:index]];

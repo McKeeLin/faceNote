@@ -11,4 +11,14 @@
 "iCloudFunc" = "iCloud function";
 "gestureCode" = "gesture code";
 "enableICloud" = "enable iCloud synchronization";
-"buyICloud" ＝ "buy iCloud synchronization";"
+"buyICloud" = "buy iCloud synchronization";
+"OpenGestureCode" = "open getsture code";
+"SetGestureCode" = "SetGetstureCode";
+"RememberGestureCode" = "Please remember your gesture code, it's valid now!";
+"GestureCodeRecomend" = "A gesture code setting is recommend!";
+"OriginalGestureCode" = "please input the original gesture code";
+"OriginalGestureCodeNotRight" = "the original gesture code is not right";
+"GestureCodeAgain" = "input the gesture code again";
+"inputGestureCode" = "input a new gesture code";
+"gestureCodeNotRightInputAgain" = "the gesture code is not right, please input again!";
+"gestureCodeVerifyCaption" = "verify";
