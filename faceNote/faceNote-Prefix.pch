@@ -21,3 +21,4 @@
 #define kICloudPurchased        @"kICloudPurchased"
 #define kICloudEnable           @"kICloudEnable"
 
+#define ICLOUD_SYNCHRONIZATION_PRODUCT_ID   @"com.mckeelin.facenote.icloudsynchronization"

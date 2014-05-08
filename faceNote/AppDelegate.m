@@ -11,6 +11,8 @@
 #import "ViewController.h"
 #import "appInfoObj.h"
 #import "icloudHelper.h"
+#import "iAPHelper.h"
+#import "gestureCodeVerifyView.h"
 
 @interface AppDelegate()
 {
@@ -62,6 +64,12 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[icloudHelper helper] isEnable];
+    NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:kGestureCodeEnable];
+    if( number && number.boolValue ){
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        gestureCodeVerifyView *view = [[gestureCodeVerifyView alloc] initWithFrame:window.bounds];
+        [window addSubview:view];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

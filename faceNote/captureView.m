@@ -27,6 +27,7 @@
 #import "icloudHelper.h"
 #import "iapVC.h"
 #import "iAPHelper.h"
+#import "settingView.h"
 
 @interface captureView()<AVCaptureAudioDataOutputSampleBufferDelegate>
 {
@@ -78,14 +79,19 @@
         [self addGestureRecognizer:sdgr];
         [sdgr release];
         
+        UISwipeGestureRecognizer *swipeToLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSlideToLeft:)];
+        swipeToLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+        swipeToLeft.numberOfTouchesRequired = 1;
+        [self addGestureRecognizer:swipeToLeft];
+        [swipeToLeft release];
+        
         UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
         tgr.numberOfTouchesRequired = 1;
         tgr.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tgr];
         [tgr release];
         
-        self.documentPath = [icloudHelper helper].appDocumentPath;
-        
+        self.documentPath = [icloudHelper helper].appDocumentPath;        
         frontView = [[UIView alloc] initWithFrame:frame];
         [self addSubview:frontView];
         
@@ -505,6 +511,11 @@
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:iap animated:YES completion:^(){
         [iap release];
     }];
+}
+
+- (void)onSlideToLeft:(UISwipeGestureRecognizer*)sgr{
+    settingView *view = [[settingView alloc] initWithFrame:self.bounds];
+    [self addSubview:view];
 }
 
 - (void)onSlideToRight:(UISwipeGestureRecognizer*)sgr

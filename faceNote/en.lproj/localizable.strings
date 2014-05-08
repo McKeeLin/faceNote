@@ -22,3 +22,7 @@
 "inputGestureCode" = "input a new gesture code";
 "gestureCodeNotRightInputAgain" = "the gesture code is not right, please input again!";
 "gestureCodeVerifyCaption" = "verify";
+"OK" = "OK";
+"tips" = "tips";
+"buyICloudSynchronizationSucceeded" = "buy iCloud synchronization succeeded!";
+"buyICloudSynchronizationFailed" = "buy iCloud synchronization failed!";

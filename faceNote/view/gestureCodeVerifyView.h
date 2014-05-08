@@ -46,6 +46,6 @@
  *
  *  @return <#return value description#>
  */
-- (id)initWithFrame:(CGRect)frame code:(NSString*)codeString limit:(int)limit delegate:(id)dele;
+- (id)initWithFrame:(CGRect)frame code:(NSString*)codeString limit:(int)limit delegate:(id)dele back:(BOOL)backEnable;
 
 @end

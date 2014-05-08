@@ -14,6 +14,7 @@
 #define PRODUCT3_ID    @"facenote.removeFromiCloud"
 
 typedef void(^QUERYBLOCK)(int status);
+typedef void(^BUYICLOUDSYNCHRONIZATIONBLOCK)(int status);
 
 @interface iAPHelper : NSObject
 
@@ -23,6 +24,8 @@ typedef void(^QUERYBLOCK)(int status);
 - (void)queryProductsWithBlock:(QUERYBLOCK)block;
 
 - (void)buyProduct:(SKProduct*)product;
+
+- (void)buyICloudSynchronizationProductWithBlock:(BUYICLOUDSYNCHRONIZATIONBLOCK)block;
 
 + (iAPHelper*)helper;
 

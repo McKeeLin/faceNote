@@ -7,18 +7,20 @@
 //
 
 #import "iAPHelper.h"
+#import "UICKeyChainStore.h"
 
 @interface iAPHelper()<SKPaymentTransactionObserver,SKProductsRequestDelegate,SKRequestDelegate>
 {
-    
+    SKProduct *iCloudSynchronizationProduct;
 }
 
 @property (copy)QUERYBLOCK queryBlock;
+@property (copy)BUYICLOUDSYNCHRONIZATIONBLOCK buyICloudSynchronizationBlock;
 
 @end
 
 @implementation iAPHelper
-@synthesize products,queryBlock,bPurchased;
+@synthesize products,queryBlock,bPurchased,buyICloudSynchronizationBlock;
 
 + (iAPHelper*)helper
 {
@@ -36,7 +38,16 @@
     if( self ){
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
         products = [[NSMutableArray alloc] initWithCapacity:0];
-        bPurchased = YES;
+        NSString *purchased = [[UICKeyChainStore keyChainStore] stringForKey:kICloudPurchased];
+        if( purchased && [purchased isEqualToString:@"YES"] ){
+            bPurchased = YES;
+        }
+        else{
+            bPurchased = NO;
+            NSSet *set = [NSSet setWithObjects:ICLOUD_SYNCHRONIZATION_PRODUCT_ID, nil];
+            SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
+            request.delegate = self;
+        }
     }
     return self;
 }
@@ -44,7 +55,7 @@
 - (void)queryProductsWithBlock:(void(^)(int status))block
 {
     self.queryBlock = block;
-    NSSet *set = [NSSet setWithObjects:PRODUCT1_ID, PRODUCT2_ID, PRODUCT3_ID, nil];
+    NSSet *set = [NSSet setWithObjects:ICLOUD_SYNCHRONIZATION_PRODUCT_ID, nil];
     SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
     request.delegate = self;
     [request start];
@@ -69,12 +80,23 @@
             break;
         case SKPaymentTransactionStatePurchased:
             state = @"SKPaymentTransactionStatePurchased";
+            self.bPurchased = YES;
+            [[UICKeyChainStore keyChainStore] setString:@"YES" forKey:kICloudPurchased];
+            NSLog(@"..........%@", transaction.transactionIdentifier);
+            if( buyICloudSynchronizationBlock ){
+                buyICloudSynchronizationBlock( 0 );
+            }
             break;
         case SKPaymentTransactionStateFailed:
             state = @"SKPaymentTransactionStateFailed";
+            if( buyICloudSynchronizationBlock ){
+                buyICloudSynchronizationBlock( 99 );
+            }
             break;
         case SKPaymentTransactionStateRestored:
             state = @"SKPaymentTransactionStateRestored";
+            self.bPurchased = NO;
+            [[UICKeyChainStore keyChainStore] setString:@"NO" forKey:kICloudPurchased];
             break;
     }
     NSLog(@"%s, state:%@", __func__, state);
@@ -108,6 +130,13 @@
     if( queryBlock ){
         queryBlock( 0 );
     }
+    
+    for( SKProduct *product in response.products ){
+        if( [product.productIdentifier isEqualToString:ICLOUD_SYNCHRONIZATION_PRODUCT_ID] ){
+            iCloudSynchronizationProduct = product;
+            break;
+        }
+    }
 }
 
 #pragma mark - SKRequestDelegate
@@ -127,6 +156,14 @@
 {
     SKPayment *payment = [SKPayment paymentWithProduct:product];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
+}
+
+- (void)buyICloudSynchronizationProductWithBlock:(BUYICLOUDSYNCHRONIZATIONBLOCK)block
+{
+    if( iCloudSynchronizationProduct ){
+        buyICloudSynchronizationBlock = block;
+        [self buyProduct:iCloudSynchronizationProduct];
+    }
 }
 
 @end

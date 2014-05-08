@@ -23,3 +23,7 @@
 "inputGestureCode" = "请输新入手势密码";
 "gestureCodeNotRightInputAgain" = "手势密码不对，请重新输入！";
 "gestureCodeVerifyCaption" = "验证";
+"OK" = "确认";
+"tips" = "提示";
+"buyICloudSynchronizationSucceeded" = "iCloud同步功能购买成功！";
+"buyICloudSynchronizationFailed" = "iCloud同步功能购买失败！";

@@ -157,6 +157,26 @@
     return headView;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if( indexPath.section == 0 && indexPath.row == 0 ){
+        if( ![iAPHelper helper].bPurchased )
+        {
+            [[iAPHelper helper] buyICloudSynchronizationProductWithBlock:^(int status){
+                if( status == 0 ){
+                    [table reloadData];
+                    UIAlertView *av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tips", nil) message:NSLocalizedString(@"buyICloudSynchronizationSucceeded", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
+                    [av show];
+                }
+                else{
+                    UIAlertView *av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tips", nil) message:NSLocalizedString(@"buyICloudSynchronizationFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
+                    [av show];
+                }
+            }];
+        }
+    }
+}
+
 
 #pragma mark- actions
 
@@ -177,7 +197,7 @@
     }
     else{
         NSString *code = [[NSUserDefaults standardUserDefaults] objectForKey:kGestureCode];
-        gestureCodeVerifyView *view = [[gestureCodeVerifyView alloc] initWithFrame:self.bounds code:code limit:3 delegate:self];
+        gestureCodeVerifyView *view = [[gestureCodeVerifyView alloc] initWithFrame:self.bounds code:code limit:3 delegate:self back:YES];
         [self addSubview:view];
         gestureCodeSwitch.on = YES;
     }
