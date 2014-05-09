@@ -222,7 +222,7 @@
             CGSize btnImgSize = btnImg.size;
             if( btnImgSize.width != width || btnImgSize.height != height ){
                 btnImg = nil;
-                [[thumbImageHelper helper].thumbImages setObject:btnImg forKey:path];
+                [[thumbImageHelper helper].thumbImages removeObjectForKey:path];
             }
         }
         if( !btnImg ){

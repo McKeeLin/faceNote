@@ -84,14 +84,15 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    CGRect finalFrame = self.frame;
-    self.frame = CGRectOffset(self.frame, self.frame.size.width, 0);
-    [UIView animateWithDuration:0.25 animations:^(){
-        self.frame = finalFrame;
-    }completion:^(BOOL bfinished){
-        ;
-    }];
-    
+    if( newSuperview ){
+        CGRect finalFrame = self.frame;
+        self.frame = CGRectOffset(self.frame, self.frame.size.width, 0);
+        [UIView animateWithDuration:0.25 animations:^(){
+            self.frame = finalFrame;
+        }completion:^(BOOL bfinished){
+            ;
+        }];
+    }
 }
 
 - (void)onTouchBackButton:(id)sender

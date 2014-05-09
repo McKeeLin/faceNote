@@ -23,7 +23,7 @@
 
 @implementation gestureCodeVerifyView
 
-- (id)initWithFrame:(CGRect)frame code:(NSString *)codeString limit:(int)limit delegate:(id)dele limit:(int)limit delegate:(id)dele back:(BOOL)backEnable
+- (id)initWithFrame:(CGRect)frame code:(NSString *)codeString limit:(int)limit delegate:(id)dele back:(BOOL)backEnable
 {
     self = [super initWithFrame:frame];
     if (self) {

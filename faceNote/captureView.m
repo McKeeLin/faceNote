@@ -515,7 +515,8 @@
 
 - (void)onSlideToLeft:(UISwipeGestureRecognizer*)sgr{
     settingView *view = [[settingView alloc] initWithFrame:self.bounds];
-    [self addSubview:view];
+//    [self addSubview:view];
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:view];
 }
 
 - (void)onSlideToRight:(UISwipeGestureRecognizer*)sgr

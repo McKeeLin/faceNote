@@ -47,6 +47,7 @@
             NSSet *set = [NSSet setWithObjects:ICLOUD_SYNCHRONIZATION_PRODUCT_ID, nil];
             SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
             request.delegate = self;
+            [request start];
         }
     }
     return self;

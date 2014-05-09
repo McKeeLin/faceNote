@@ -34,7 +34,7 @@
         [self.content addSubview:table];
         table.delegate = self;
         table.dataSource = self;
-        [self addSubview:table];
+        [self.content addSubview:table];
         
         CGFloat switchWidth = 60;
         CGFloat switchHeight = 30;
