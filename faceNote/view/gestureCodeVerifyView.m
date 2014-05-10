@@ -31,7 +31,7 @@
         limitTimes = limit;
         invalidTimes = 0;
         delegate = dele;
-        self.titleLabel.text = NSLocalizedString(@"gestureCodeVerifyCation", nil);
+        self.titleLabel.text = NSLocalizedString(@"verifyGestureCode", nil);
         CGRect infoFrame = CGRectMake(0, 20, frame.size.width, 44);
         infoLabel = [[UILabel alloc] initWithFrame:infoFrame];
         infoLabel.backgroundColor = [UIColor clearColor];
@@ -53,6 +53,9 @@
         
         if( !backEnable ){
             self.backButton.hidden = YES;
+        }
+        else{
+            [self.backButton setTitle:NSLocalizedString(@"back", nil) forState:UIControlStateNormal];
         }
     }
     return self;
@@ -81,7 +84,7 @@
             if( delegate && [delegate respondsToSelector:@selector(didInvalidGestureCodeReachLimitTimes:)] ){
                 [delegate didInvalidGestureCodeReachLimitTimes:limitTimes];
             }
-            [self.backButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+        //    [self.backButton sendActionsForControlEvents:UIControlEventTouchUpInside];
         }
         else{
             infoLabel.text = NSLocalizedString(@"gestureCodeNotRightInputAgain", nil);

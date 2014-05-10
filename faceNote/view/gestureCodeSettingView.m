@@ -28,6 +28,7 @@
     if (self) {
         // Initialization code
         self.titleLabel.text = NSLocalizedString(@"SetGestureCode", nil);
+        [self.backButton setTitle:NSLocalizedString(@"back", nil) forState:UIControlStateNormal];
         delegate = dele;
         orginalCode = 0;
         code = 0;
@@ -55,6 +56,15 @@
         [self.content addSubview:lockScreen];
     }
     return self;
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    if( !newSuperview ){
+        if( delegate && [delegate respondsToSelector:@selector(didGestureCodeCancel)] ){
+            [delegate didGestureCodeCancel];
+        }
+    }
 }
 
 /*

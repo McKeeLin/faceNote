@@ -20,6 +20,7 @@
 #import "icloudHelper.h"
 #import "MBProgressHUD.h"
 #import "iAPHelper.h"
+#import "indicationView.h"
 
 #define HEADERVIEW_HEIGHT   50
 
@@ -85,8 +86,9 @@
     if( !shown )
     {
         [defaults setBool:YES forKey:key];
-        NSString *tips = @"1.向左滑动可切换一照相视图\n\n2.点击缩略图可浏览照片";//@"1.swipe to left to switch the camera view \n\n2.tap the picture nail to browse the album.";
-        [dismissableTips showTips:tips blues:[NSArray arrayWithObject:tips] atView:self seconds:10 block:nil];
+        indicationView *view = [[indicationView alloc] initWithFrame:self.bounds];
+        view.imageView.image = [UIImage imageNamed:@"listViewIndicaiton"];
+        [self addSubview:view];
     }
     
     NSLog(@"%s", __func__);

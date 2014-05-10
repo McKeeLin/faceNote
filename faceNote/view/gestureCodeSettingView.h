@@ -20,6 +20,8 @@
  */
 - (void)didGestureCodePass:(NSString*)gestureCode;
 
+- (void)didGestureCodeCancel;
+
 @end
 
 

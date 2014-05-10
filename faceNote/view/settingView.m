@@ -11,6 +11,7 @@
 #import "UICKeyChainStore.h"
 #import "gestureCodeSettingView.h"
 #import "gestureCodeVerifyView.h"
+#import "MBProgressHUD.h"
 
 @interface settingView()<UITableViewDataSource,UITableViewDelegate,gestureCodeViewDelegate,gestureCodeVerifyViewDelegate>
 {
@@ -112,6 +113,7 @@
             }
             if( [iAPHelper helper].bPurchased ){
                 cell.textLabel.text = NSLocalizedString(@"enableICloud", nil);
+                cell.accessoryType = UITableViewCellAccessoryNone;
                 [cell addSubview:iCloudSwitch];
                 [self updateICloudSwitchState];
             }
@@ -194,6 +196,9 @@
             gestureCodeSettingView *view = [[gestureCodeSettingView alloc] initWithFrame:self.bounds delegate:self];
             [self addSubview:view];
         }
+        else{
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kGestureCodeEnable];
+        }
     }
     else{
         NSString *code = [[NSUserDefaults standardUserDefaults] objectForKey:kGestureCode];
@@ -209,7 +214,13 @@
 - (void)didGestureCodePass:(NSString*)gestureCode
 {
     [[NSUserDefaults standardUserDefaults] setObject:gestureCode forKey:kGestureCode];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kGestureCodeEnable];
     gestureCodeSwitch.on = YES;
+}
+
+- (void)didGestureCodeCancel
+{
+    [table reloadData];
 }
 
 #pragma mark- gestureCodeVerifyViewDelegate

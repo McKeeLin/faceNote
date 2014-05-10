@@ -1,19 +1,22 @@
 /* 
-  localizable.strings
+  Localizable.strings
   faceNote
 
-  Created by 林景隆 on 5/7/14.
+  Created by 林景隆 on 5/10/14.
   Copyright (c) 2014 cndatacom. All rights reserved.
 */
+
 
 "setting" = "setting";
 "back" = "back";
 "iCloudFunc" = "iCloud function";
 "gestureCode" = "gesture code";
+"setGestureCode" = "set gesture code";
+"verifyGeustCode" = "code verify";
 "enableICloud" = "enable iCloud synchronization";
 "buyICloud" = "buy iCloud synchronization";
 "OpenGestureCode" = "open getsture code";
-"SetGestureCode" = "SetGetstureCode";
+"SetGestureCode" = "enable gesture code";
 "RememberGestureCode" = "Please remember your gesture code, it's valid now!";
 "GestureCodeRecomend" = "A gesture code setting is recommend!";
 "OriginalGestureCode" = "please input the original gesture code";

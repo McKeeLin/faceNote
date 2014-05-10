@@ -50,7 +50,7 @@
         CGFloat backButtonWidth = 45;
         CGFloat backButtonHeight = 44;
         backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        backButton.frame = CGRectMake(0, 0, backButtonWidth, backButtonHeight);
+        backButton.frame = CGRectMake(8, 0, backButtonWidth, backButtonHeight);
         [backButton setImage:[UIImage imageNamed:@"backBarItem"] forState:UIControlStateNormal];
         [backButton addTarget:self action:@selector(onTouchBackButton:) forControlEvents:UIControlEventTouchUpInside];
         [topbarContent addSubview:backButton];

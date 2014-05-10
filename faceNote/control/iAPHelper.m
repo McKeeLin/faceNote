@@ -44,10 +44,6 @@
         }
         else{
             bPurchased = NO;
-            NSSet *set = [NSSet setWithObjects:ICLOUD_SYNCHRONIZATION_PRODUCT_ID, nil];
-            SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
-            request.delegate = self;
-            [request start];
         }
     }
     return self;
@@ -83,13 +79,17 @@
             state = @"SKPaymentTransactionStatePurchased";
             self.bPurchased = YES;
             [[UICKeyChainStore keyChainStore] setString:@"YES" forKey:kICloudPurchased];
-            NSLog(@"..........%@", transaction.transactionIdentifier);
+            NSLog(@"%s transaction id:%@", __func__, transaction.transactionIdentifier);
             if( buyICloudSynchronizationBlock ){
                 buyICloudSynchronizationBlock( 0 );
             }
+            [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
             break;
         case SKPaymentTransactionStateFailed:
             state = @"SKPaymentTransactionStateFailed";
+            if( ![transaction.error.localizedDescription isEqualToString:@"Cannot connect to iTunes Store"] ){
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+            }
             if( buyICloudSynchronizationBlock ){
                 buyICloudSynchronizationBlock( 99 );
             }
@@ -100,7 +100,8 @@
             [[UICKeyChainStore keyChainStore] setString:@"NO" forKey:kICloudPurchased];
             break;
     }
-    NSLog(@"%s, state:%@", __func__, state);
+    NSLog(@"%s, state:%@, error:%@,error code:%d", __func__, state, transaction.error.localizedDescription, transaction.error.code);
+    
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions
@@ -110,7 +111,7 @@
 
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
 {
-    NSLog(@"%s", __func__);
+    NSLog(@"%s,error code:%d, %@", __func__, error.code, error.localizedDescription);
 }
 
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
@@ -138,6 +139,16 @@
             break;
         }
     }
+    
+    if( iCloudSynchronizationProduct ){
+        NSLog(@"product id:%@, title:%@, description:%@", iCloudSynchronizationProduct.productIdentifier, iCloudSynchronizationProduct.localizedTitle, iCloudSynchronizationProduct.localizedDescription);
+        [self buyProduct:iCloudSynchronizationProduct];
+    }
+    else{
+        if( buyICloudSynchronizationBlock ){
+            buyICloudSynchronizationBlock( 99 );
+        }
+    }
 }
 
 #pragma mark - SKRequestDelegate
@@ -151,6 +162,9 @@
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
     NSLog(@"%s,error:%@", __func__, error.localizedDescription);
+    if( buyICloudSynchronizationBlock ){
+        buyICloudSynchronizationBlock( 99 );
+    }
 }
 
 - (void)buyProduct:(id)product
@@ -161,10 +175,11 @@
 
 - (void)buyICloudSynchronizationProductWithBlock:(BUYICLOUDSYNCHRONIZATIONBLOCK)block
 {
-    if( iCloudSynchronizationProduct ){
-        buyICloudSynchronizationBlock = block;
-        [self buyProduct:iCloudSynchronizationProduct];
-    }
+    self.buyICloudSynchronizationBlock = block;
+    NSSet *set = [NSSet setWithObjects:ICLOUD_SYNCHRONIZATION_PRODUCT_ID, nil];
+    SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
+    request.delegate = self;
+    [request start];
 }
 
 @end

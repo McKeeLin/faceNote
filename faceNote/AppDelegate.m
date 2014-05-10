@@ -14,9 +14,10 @@
 #import "iAPHelper.h"
 #import "gestureCodeVerifyView.h"
 
-@interface AppDelegate()
+@interface AppDelegate()<gestureCodeVerifyViewDelegate>
 {
     icloudHelper *ihelper;
+    gestureCodeVerifyView *verifyView;
 }
 @end
 
@@ -45,6 +46,7 @@
     [self.window makeKeyAndVisible];
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound];
     [self performSelectorInBackground:@selector(initiCloud) withObject:nil];
+    [self checkVerifyCodeProtection];
     return YES;
 }
 
@@ -64,11 +66,17 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[icloudHelper helper] isEnable];
+    [self checkVerifyCodeProtection];
+}
+
+- (void)checkVerifyCodeProtection
+{
     NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:kGestureCodeEnable];
-    if( number && number.boolValue ){
+    if( number && number.boolValue &&!verifyView ){
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        gestureCodeVerifyView *view = [[gestureCodeVerifyView alloc] initWithFrame:window.bounds];
-        [window addSubview:view];
+        NSString *code = [[NSUserDefaults standardUserDefaults] objectForKey:kGestureCode];
+        verifyView = [[gestureCodeVerifyView alloc] initWithFrame:window.bounds code:code limit:3 delegate:self back:NO];
+        [window addSubview:verifyView];
     }
 }
 
@@ -111,6 +119,17 @@
 - (void)initiCloud
 {
     [[appInfoObj shareInstance] iCloudContainerUrl];
+}
+
+- (void)didGestureCodeIsValid:(NSString*)code
+{
+    [verifyView removeFromSuperview];
+    verifyView = nil;
+}
+
+- (void)didInvalidGestureCodeReachLimitTimes:(int)times
+{
+    ;
 }
 
 @end

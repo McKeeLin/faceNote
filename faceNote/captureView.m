@@ -28,6 +28,7 @@
 #import "iapVC.h"
 #import "iAPHelper.h"
 #import "settingView.h"
+#import "indicationView.h"
 
 @interface captureView()<AVCaptureAudioDataOutputSampleBufferDelegate>
 {
@@ -85,11 +86,6 @@
         [self addGestureRecognizer:swipeToLeft];
         [swipeToLeft release];
         
-        UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
-        tgr.numberOfTouchesRequired = 1;
-        tgr.numberOfTapsRequired = 1;
-        [self addGestureRecognizer:tgr];
-        [tgr release];
         
         self.documentPath = [icloudHelper helper].appDocumentPath;        
         frontView = [[UIView alloc] initWithFrame:frame];
@@ -168,8 +164,19 @@
     [super dealloc];
 }
 
+
 - (void)didMoveToSuperview
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL shown = [defaults boolForKey:@"captureViewShown"];
+    if( !shown )
+    {
+        [defaults setBool:YES forKey:@"captureViewShown"];
+        indicationView *view = [[indicationView alloc] initWithFrame:self.bounds];
+        UIImage *img = [UIImage imageNamed:@"captureViewIndication"];
+        view.imageView.image = img;
+        [self addSubview:view];
+    }
 }
 
 /*
@@ -306,14 +313,6 @@
 
 - (void)onTouchCapture:(id)sender
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL shown = [defaults boolForKey:@"captureViewShown"];
-    if( !shown )
-    {
-        [defaults setBool:YES forKey:@"captureViewShown"];
-        NSString *tips = @"1.向右滑动可切换到照片列表视图\n\n2.上下滑动可切换前后摄像头";//@"1.swipe from left to right to switch to photo list viwe  \n\n2.swipe to up or down to switch between front and back camera.";
-        [dismissableTips showTips:tips blues:[NSArray arrayWithObject:tips] atView:self seconds:10 block:nil];
-    }
     NSLog(@"%s",__func__);
     AVCaptureConnection *conn = [self.imageOut connectionWithMediaType:AVMediaTypeVideo];
     if( conn )
