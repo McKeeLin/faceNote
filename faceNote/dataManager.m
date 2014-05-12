@@ -8,6 +8,7 @@
 
 #import "dataManager.h"
 #import <CoreData/CoreData.h>
+#import <ImageIO/ImageIO.h>
 
 dataManager *g_dataMgr;
 
@@ -117,5 +118,6 @@ dataManager *g_dataMgr;
     NSError *err;
     [context save:&err];
 }
+
 
 @end

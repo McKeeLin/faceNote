@@ -21,5 +21,7 @@
 @property (nonatomic, retain) NSNumber * weatherDegree;
 @property (nonatomic, retain) NSString * weatherType;
 @property (nonatomic, retain) NSNumber * altitude;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
 
 @end

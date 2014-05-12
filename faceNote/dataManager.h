@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class PhotoInfo;
+#import "PhotoInfo.h"
 
 @interface dataManager : NSObject
 
@@ -26,5 +26,6 @@
 - (void)addPhotoInfo:(PhotoInfo*)info;
 
 - (void)insertPhotoInfoInBlock:(void(^)(PhotoInfo* info))block;
+
 
 @end

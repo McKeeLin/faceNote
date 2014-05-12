@@ -13,12 +13,16 @@
  picture save at user document path and optionally at iCloud container √
  picture delete from user document path and optionaly from iCloud container √
  update the list view after photo deleted √
- setingView
- iCloudFunction buy view
- gesture code setting view
- gesture code verify view
+ setingView √
+ iCloudFunction buy view √
+ gesture code setting view √
+ gesture code verify view √
  picture compression
- picture encryption
+ picture encryption √
+ location info from photo info
+ photo list logic
+ album view
+ photo list view
  */
 
 #endif

@@ -23,6 +23,8 @@
 
 - (void)movePhotoToICloud:(NSString*)photoPath;
 
+- (void)encodeFile:(NSString*)file to:(NSString*)destFile;
 
+- (void)decodeFile:(NSString*)file to:(NSString*)destFile;
 
 @end

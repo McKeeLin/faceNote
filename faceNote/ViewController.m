@@ -19,6 +19,7 @@
 #import "album.h"
 #import <QuartzCore/QuartzCore.h>
 #import "dataManager.h"
+#import "albumListView.h"
 
 CGFloat appWidth;
 
@@ -285,11 +286,15 @@ ViewController *g_vc;
     {
         if( !ltv )
         {
+            /*
             listView *lv = [[listView alloc] initWithFrame:bounds];
             lv.vc = self;
-            self.ltv = lv;
-            [lv release];
-            [self.view addSubview:ltv];
+             self.ltv = lv;
+             [lv release];
+             [self.view addSubview:ltv];
+            */
+            albumListView *lv = [[albumListView alloc] initWithFrame:bounds];
+            [self.view addSubview:lv];
         }
         else
         {

@@ -192,4 +192,54 @@
     NSLog(@"%s,%@", __func__, info);
 }
 
+
+#pragma mark- file encode and decode
+
+- (void)encodeFile:(NSString *)file to:(NSString *)destFile
+{
+    NSData *srcData = [NSData dataWithContentsOfFile:file];
+    Byte key = 1;
+    time_t t = time(NULL);
+    int mod = t % 255;
+    NSLog(@"HEADER %d",mod);
+    Byte headerByte = mod;
+    NSMutableData *destData = [[NSMutableData alloc] initWithCapacity:srcData.length+2];
+    [destData appendBytes:&headerByte length:1];
+    for( NSInteger i = 0; i < srcData.length; i++ ){
+        Byte subByte = 0;
+        NSRange r = NSMakeRange(i, 1);
+        [srcData getBytes:&subByte range:r];
+        if( i % 2 == 1 ){
+            Byte newByte = subByte ^ key;
+            [destData appendBytes:&newByte length:1];
+        }
+        else{
+            [destData appendBytes:&subByte length:1];
+        }
+    }
+    Byte tailerByte = time(NULL) % 10;
+    [destData appendBytes:&tailerByte length:1];
+    [destData writeToFile:destFile atomically:YES];
+}
+
+- (void)decodeFile:(NSString *)file to:(NSString *)destFile
+{
+    NSData *srcData = [NSData dataWithContentsOfFile:file];
+    Byte key = 1;
+    NSMutableData *destData = [[NSMutableData alloc] initWithCapacity:srcData.length-1];
+    for( NSInteger i = 1; i < srcData.length - 1; i++ ){
+        Byte subByte = 0;
+        NSRange r = NSMakeRange(i, 1);
+        [srcData getBytes:&subByte range:r];
+        if( (i-1) % 2 == 1 ){
+            Byte newByte = subByte ^ key;
+            [destData appendBytes:&newByte length:1];
+        }
+        else{
+            [destData appendBytes:&subByte length:1];
+        }
+    }
+    [destData writeToFile:destFile atomically:YES];
+}
+
 @end
