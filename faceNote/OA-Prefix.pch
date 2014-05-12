@@ -22,3 +22,8 @@
 #define kICloudEnable           @"kICloudEnable"
 
 #define ICLOUD_SYNCHRONIZATION_PRODUCT_ID   @"com.mckeelin.facenote.icloudsynchronization"
+
+
+#define PHOTO_DIR_NAME  @"photos"
+#define PHOTO_FILE_TYPE @"png"
+#define PORTRAIT_FILE_NAME @"portrait.png"

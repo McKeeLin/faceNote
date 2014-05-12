@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B9EDBCCB-8BD2-4522-9865-886C7EC3C87C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>OA</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CD03AB9C-F60F-489F-9866-EF06768DB11F</key>
+		<string>https://github.com/McKeeLin/faceNote.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>OA.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CD03AB9C-F60F-489F-9866-EF06768DB11F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/McKeeLin/faceNote.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CD03AB9C-F60F-489F-9866-EF06768DB11F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CD03AB9C-F60F-489F-9866-EF06768DB11F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>faceNote</string>
+		</dict>
+	</array>
+</dict>
+</plist>

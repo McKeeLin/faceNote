@@ -11,4 +11,12 @@
 @implementation photoMetaDataObj
 @synthesize path,location,creteTime,width,height,latitude,longitude,altitude;
 
+- (void)dealloc
+{
+    [path release];
+    [location release];
+    [creteTime release];
+    [super dealloc];
+}
+
 @end

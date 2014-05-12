@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface albumnInfoObj : NSObject
+@interface albumInfoObj : NSObject
+
+@property (retain) NSString *key;
+
+@property (retain) NSMutableArray *photoPaths;
 
 @end

@@ -34,6 +34,8 @@
     self = [super init];
     if( self )
     {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        self.appDocumentPath = [paths objectAtIndex:0];
         query = [[NSMetadataQuery alloc] init];
         [query setSearchScopes:[NSArray arrayWithObject:NSMetadataQueryUbiquitousDocumentsScope]];
         query.delegate = self;
@@ -69,8 +71,6 @@
 {
     NSString *Id = [NSString stringWithFormat:@"D9KLEDDTR3.%@", [NSBundle mainBundle].bundleIdentifier];
     self.containerUrl = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:Id];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    self.appDocumentPath = [paths objectAtIndex:0];
     self.iCloudDocumentPath = [[self.containerUrl path] stringByAppendingPathComponent:@"Documents"];
     NSLog(@"%s, url:%@", __func__, containerUrl);
     return  containerUrl != nil;
