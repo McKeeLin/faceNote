@@ -13,6 +13,7 @@
 #import "icloudHelper.h"
 #import "iAPHelper.h"
 #import "gestureCodeVerifyView.h"
+#import "photoDataMgr.h"
 
 @interface AppDelegate()<gestureCodeVerifyViewDelegate>
 {

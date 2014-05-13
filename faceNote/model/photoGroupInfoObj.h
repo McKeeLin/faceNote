@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface albumInfoObj : NSObject
+@interface photoGroupInfoObj : NSObject
 
 @property (retain) NSString *key;
 

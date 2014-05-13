@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 cndatacom. All rights reserved.
 //
 
-#import "albumInfoObj.h"
+#import "photoGroupInfoObj.h"
 
-@implementation albumInfoObj
+@implementation photoGroupInfoObj
 @synthesize key, photoPaths;
 
 - (id)init

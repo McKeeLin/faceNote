@@ -20,6 +20,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "dataManager.h"
 #import "albumListView.h"
+#import "photoDataMgr.h"
+#import <QuartzCore/QuartzCore.h>
 
 CGFloat appWidth;
 

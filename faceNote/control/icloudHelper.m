@@ -242,4 +242,20 @@
     [destData writeToFile:destFile atomically:YES];
 }
 
+- (BOOL)synchronizationEnabled
+{
+    NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:kICloudEnable];
+    if( number ){
+        return number.boolValue;
+    }
+    else{
+        return NO;
+    }
+}
+
+- (void)setSynchronizationEnabled:(BOOL)synchronizationEnabled
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:synchronizationEnabled] forKey:kICloudEnable];
+}
+
 @end

@@ -26,4 +26,5 @@
 
 #define PHOTO_DIR_NAME  @"photos"
 #define PHOTO_FILE_TYPE @"png"
+#define ENCODED_FILE_TYPE    @"ata"
 #define PORTRAIT_FILE_NAME @"portrait.png"

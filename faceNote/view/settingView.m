@@ -8,6 +8,7 @@
 
 #import "settingView.h"
 #import "iAPHelper.h"
+#import "icloudHelper.h"
 #import "UICKeyChainStore.h"
 #import "gestureCodeSettingView.h"
 #import "gestureCodeVerifyView.h"
@@ -57,10 +58,7 @@
 
 - (void)updateICloudSwitchState
 {
-    NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:kICloudEnable];
-    if( number ){
-        iCloudSwitch.on = number.boolValue;
-    }
+    iCloudSwitch.on = [icloudHelper helper].synchronizationEnabled;
 }
 
 - (void)updateGestureCodeSwitch
@@ -184,8 +182,7 @@
 
 - (void)onICloudSwitchValueChanged:(id)sender
 {
-    NSNumber *number = [NSNumber numberWithBool:iCloudSwitch.on];
-    [[NSUserDefaults standardUserDefaults] setObject:number forKey:kICloudEnable];
+    [icloudHelper helper].synchronizationEnabled = iCloudSwitch.on;
 }
 
 - (void)onGestureCodeSwitchValueChanged:(id)sender

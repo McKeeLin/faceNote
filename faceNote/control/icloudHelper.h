@@ -12,6 +12,7 @@
 @property (retain) NSURL *containerUrl;
 @property (retain) NSString *appDocumentPath;
 @property (retain) NSString *iCloudDocumentPath;
+@property BOOL synchronizationEnabled;
 
 + (icloudHelper*)helper;
 
@@ -22,9 +23,5 @@
 - (NSURL*)newImageUrl;
 
 - (void)movePhotoToICloud:(NSString*)photoPath;
-
-- (void)encodeFile:(NSString*)file to:(NSString*)destFile;
-
-- (void)decodeFile:(NSString*)file to:(NSString*)destFile;
 
 @end

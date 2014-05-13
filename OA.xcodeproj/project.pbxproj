@@ -19,7 +19,7 @@
 		081E0162191F5F950055DBC4 /* listHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E0161191F5F950055DBC4 /* listHeaderView.m */; };
 		081E0164191F62DF0055DBC4 /* listHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 081E0163191F62DF0055DBC4 /* listHeader.png */; };
 		081E0166191F6C2F0055DBC4 /* effier.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 081E0165191F6C2F0055DBC4 /* effier.jpg */; };
-		081E016A191F74CB0055DBC4 /* albumInfoObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E0169191F74CB0055DBC4 /* albumInfoObj.m */; };
+		081E016A191F74CB0055DBC4 /* photoGroupInfoObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E0169191F74CB0055DBC4 /* photoGroupInfoObj.m */; };
 		0821B90C191B1ED8006AB758 /* NormalCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B905191B1ED8006AB758 /* NormalCircle.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		0821B90D191B1ED8006AB758 /* SPLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B907191B1ED8006AB758 /* SPLine.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		0821B90E191B1ED8006AB758 /* SPLockOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B909191B1ED8006AB758 /* SPLockOverlay.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -29,8 +29,15 @@
 		0821B918191B23B6006AB758 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0821B917191B23B6006AB758 /* UICKeyChainStore.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		0821B91A191B247E006AB758 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0821B919191B247E006AB758 /* Security.framework */; };
 		08231BCF192060B9007F2B7F /* photoMetaDataObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 08231BCE192060B9007F2B7F /* photoMetaDataObj.m */; };
-		08231BD219206175007F2B7F /* photoMetaDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 08231BD119206174007F2B7F /* photoMetaDataMgr.m */; };
+		08231BD219206175007F2B7F /* photoDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 08231BD119206174007F2B7F /* photoDataMgr.m */; };
 		08231BD61920FAC5007F2B7F /* portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08231BD51920FAC5007F2B7F /* portrait@2x.png */; };
+		0831CF4F1921B07B00EA87B1 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0831CF481921B07B00EA87B1 /* add@2x.png */; };
+		0831CF501921B07B00EA87B1 /* balls@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0831CF491921B07B00EA87B1 /* balls@2x.png */; };
+		0831CF511921B07B00EA87B1 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0831CF4A1921B07B00EA87B1 /* bg@2x.png */; };
+		0831CF521921B07B00EA87B1 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0831CF4B1921B07B00EA87B1 /* camera@2x.png */; };
+		0831CF531921B07B00EA87B1 /* dateTitleBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0831CF4C1921B07B00EA87B1 /* dateTitleBg@2x.png */; };
+		0831CF541921B07B00EA87B1 /* paris70@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0831CF4D1921B07B00EA87B1 /* paris70@2x.png */; };
+		0831CF551921B07B00EA87B1 /* thumbnilBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0831CF4E1921B07B00EA87B1 /* thumbnilBg@2x.png */; };
 		08320E701914C6B500066C83 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08320E6F1914C6B500066C83 /* ImageIO.framework */; };
 		08320E981914DF1A00066C83 /* thumbImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08320E971914DF1A00066C83 /* thumbImageHelper.m */; };
 		0842994E191A358A00E1EDDF /* settingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0842994D191A358A00E1EDDF /* settingView.m */; };
@@ -123,8 +130,8 @@
 		081E0161191F5F950055DBC4 /* listHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = listHeaderView.m; sourceTree = "<group>"; };
 		081E0163191F62DF0055DBC4 /* listHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listHeader.png; sourceTree = "<group>"; };
 		081E0165191F6C2F0055DBC4 /* effier.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = effier.jpg; sourceTree = "<group>"; };
-		081E0168191F74CB0055DBC4 /* albumInfoObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = albumInfoObj.h; sourceTree = "<group>"; };
-		081E0169191F74CB0055DBC4 /* albumInfoObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = albumInfoObj.m; sourceTree = "<group>"; };
+		081E0168191F74CB0055DBC4 /* photoGroupInfoObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoGroupInfoObj.h; sourceTree = "<group>"; };
+		081E0169191F74CB0055DBC4 /* photoGroupInfoObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoGroupInfoObj.m; sourceTree = "<group>"; };
 		0821B904191B1ED8006AB758 /* NormalCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalCircle.h; sourceTree = "<group>"; };
 		0821B905191B1ED8006AB758 /* NormalCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalCircle.m; sourceTree = "<group>"; };
 		0821B906191B1ED8006AB758 /* SPLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLine.h; sourceTree = "<group>"; };
@@ -142,9 +149,16 @@
 		0821B919191B247E006AB758 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		08231BCD192060B9007F2B7F /* photoMetaDataObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoMetaDataObj.h; sourceTree = "<group>"; };
 		08231BCE192060B9007F2B7F /* photoMetaDataObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoMetaDataObj.m; sourceTree = "<group>"; };
-		08231BD019206174007F2B7F /* photoMetaDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoMetaDataMgr.h; sourceTree = "<group>"; };
-		08231BD119206174007F2B7F /* photoMetaDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoMetaDataMgr.m; sourceTree = "<group>"; };
+		08231BD019206174007F2B7F /* photoDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoDataMgr.h; sourceTree = "<group>"; };
+		08231BD119206174007F2B7F /* photoDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoDataMgr.m; sourceTree = "<group>"; };
 		08231BD51920FAC5007F2B7F /* portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "portrait@2x.png"; sourceTree = "<group>"; };
+		0831CF481921B07B00EA87B1 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
+		0831CF491921B07B00EA87B1 /* balls@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "balls@2x.png"; sourceTree = "<group>"; };
+		0831CF4A1921B07B00EA87B1 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
+		0831CF4B1921B07B00EA87B1 /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
+		0831CF4C1921B07B00EA87B1 /* dateTitleBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dateTitleBg@2x.png"; sourceTree = "<group>"; };
+		0831CF4D1921B07B00EA87B1 /* paris70@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paris70@2x.png"; sourceTree = "<group>"; };
+		0831CF4E1921B07B00EA87B1 /* thumbnilBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnilBg@2x.png"; sourceTree = "<group>"; };
 		08320E6F1914C6B500066C83 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		08320E961914DF1A00066C83 /* thumbImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thumbImageHelper.h; sourceTree = "<group>"; };
 		08320E971914DF1A00066C83 /* thumbImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thumbImageHelper.m; sourceTree = "<group>"; };
@@ -312,8 +326,8 @@
 		081E0167191F71A90055DBC4 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				081E0168191F74CB0055DBC4 /* albumInfoObj.h */,
-				081E0169191F74CB0055DBC4 /* albumInfoObj.m */,
+				081E0168191F74CB0055DBC4 /* photoGroupInfoObj.h */,
+				081E0169191F74CB0055DBC4 /* photoGroupInfoObj.m */,
 				08231BCD192060B9007F2B7F /* photoMetaDataObj.h */,
 				08231BCE192060B9007F2B7F /* photoMetaDataObj.m */,
 			);
@@ -336,6 +350,21 @@
 			path = faceNote/patternLock;
 			sourceTree = SOURCE_ROOT;
 		};
+		0831CF471921B07B00EA87B1 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				0831CF481921B07B00EA87B1 /* add@2x.png */,
+				0831CF491921B07B00EA87B1 /* balls@2x.png */,
+				0831CF4A1921B07B00EA87B1 /* bg@2x.png */,
+				0831CF4B1921B07B00EA87B1 /* camera@2x.png */,
+				0831CF4C1921B07B00EA87B1 /* dateTitleBg@2x.png */,
+				0831CF4D1921B07B00EA87B1 /* paris70@2x.png */,
+				0831CF4E1921B07B00EA87B1 /* thumbnilBg@2x.png */,
+			);
+			name = image;
+			path = faceNote/image;
+			sourceTree = "<group>";
+		};
 		0898ABAF190112C900268357 /* control */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,8 +380,8 @@
 				08645EDC190A6D5D005F3025 /* myDocument.m */,
 				08320E961914DF1A00066C83 /* thumbImageHelper.h */,
 				08320E971914DF1A00066C83 /* thumbImageHelper.m */,
-				08231BD019206174007F2B7F /* photoMetaDataMgr.h */,
-				08231BD119206174007F2B7F /* photoMetaDataMgr.m */,
+				08231BD019206174007F2B7F /* photoDataMgr.h */,
+				08231BD119206174007F2B7F /* photoDataMgr.m */,
 			);
 			path = control;
 			sourceTree = "<group>";
@@ -414,6 +443,7 @@
 		5D3DA5DD18265C4A008FCB17 = {
 			isa = PBXGroup;
 			children = (
+				0831CF471921B07B00EA87B1 /* image */,
 				0856C53A191E35A600BA6A24 /* displayViewIndication@2x.png */,
 				0856C53B191E35A600BA6A24 /* listViewIndication@2x.png */,
 				08A8D123191E1E730098C4EA /* captureViewIndication@2x.png */,
@@ -617,12 +647,19 @@
 				0811955B1900A9F700C27778 /* icon80.png in Resources */,
 				0856C53D191E35A600BA6A24 /* listViewIndication@2x.png in Resources */,
 				5D3DA5F418265C4B008FCB17 /* InfoPlist.strings in Resources */,
+				0831CF551921B07B00EA87B1 /* thumbnilBg@2x.png in Resources */,
 				5D3DA5FC18265C4B008FCB17 /* Default.png in Resources */,
+				0831CF541921B07B00EA87B1 /* paris70@2x.png in Resources */,
 				08A8D121191E1E730098C4EA /* captureViewIndication@2x.png in Resources */,
+				0831CF4F1921B07B00EA87B1 /* add@2x.png in Resources */,
 				08ECC454191E2DEF00E7615A /* Localizable.strings in Resources */,
 				0811955A1900A9F700C27778 /* icon58.png in Resources */,
+				0831CF531921B07B00EA87B1 /* dateTitleBg@2x.png in Resources */,
+				0831CF511921B07B00EA87B1 /* bg@2x.png in Resources */,
 				081195591900A9F700C27778 /* icon57.png in Resources */,
+				0831CF521921B07B00EA87B1 /* camera@2x.png in Resources */,
 				08231BD61920FAC5007F2B7F /* portrait@2x.png in Resources */,
+				0831CF501921B07B00EA87B1 /* balls@2x.png in Resources */,
 				5D3DA5FE18265C4B008FCB17 /* Default@2x.png in Resources */,
 				5D3DA60018265C4B008FCB17 /* Default-568h@2x.png in Resources */,
 				081195561900A9F700C27778 /* icon114.png in Resources */,
@@ -691,13 +728,13 @@
 				5DD10F3B184B6EBF0009A7E3 /* UIImage+BoxBlur.m in Sources */,
 				0898ABBB1901476000268357 /* iapVC.m in Sources */,
 				081195611900B94A00C27778 /* tipsLabel.m in Sources */,
-				081E016A191F74CB0055DBC4 /* albumInfoObj.m in Sources */,
+				081E016A191F74CB0055DBC4 /* photoGroupInfoObj.m in Sources */,
 				5D4770EB18540CAA00A06C23 /* photoInfoView.m in Sources */,
 				0811955E1900B41500C27778 /* dismissableTips.m in Sources */,
 				5DD10F42184B822E0009A7E3 /* maskGlassView.m in Sources */,
 				5DD10F45184DBACE0009A7E3 /* listToolBar.m in Sources */,
 				5D54DEFF184F777D0061AA46 /* UIImage+blur.m in Sources */,
-				08231BD219206175007F2B7F /* photoMetaDataMgr.m in Sources */,
+				08231BD219206175007F2B7F /* photoDataMgr.m in Sources */,
 				08429954191A368600E1EDDF /* baseView.m in Sources */,
 				5DF934F51851C65B00560259 /* Model.xcdatamodeld in Sources */,
 				0821B90D191B1ED8006AB758 /* SPLine.m in Sources */,
