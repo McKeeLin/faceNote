@@ -29,6 +29,7 @@
 #import "iAPHelper.h"
 #import "settingView.h"
 #import "indicationView.h"
+#import "photoDataMgr.h"
 
 @interface captureView()<AVCaptureAudioDataOutputSampleBufferDelegate>
 {
@@ -323,6 +324,8 @@
                 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 if( imageData )
                 {
+                    [[photoDataMgr manager] addPhoto:imageData];
+                    /*
                     NSError *error = nil;
                     NSFileManager *fm = [NSFileManager defaultManager];
                     NSDate *date = [NSDate date];
@@ -347,16 +350,6 @@
                     NSString *name = [fmt stringFromDate:date];
                     NSString *filePath = [NSString stringWithFormat:@"%@/%@.%@", dir, name, FILE_TYPE];
                     NSLog(@"%s,path:%@", __func__, filePath);
-                    /*
-                    if( ![fm fileExistsAtPath:self.documentPath] )
-                    {
-                        [fm createDirectoryAtPath:self.documentPath withIntermediateDirectories:NO attributes:nil error:&error];
-                        if( error )
-                        {
-                            NSLog(@"%s, create path failed:%@", __func__, error);
-                        }
-                    }
-                    */
                     BOOL bResult = [imageData writeToFile:filePath atomically:YES];
                     if( !bResult )
                     {
@@ -382,27 +375,29 @@
                             NSLog(@"move to icloud container failed, error:%@", error.localizedDescription);
                         }
                     }
+                     [fmt release];
+                     
+                     [[dataManager defaultMgr] insertPhotoInfoInBlock:^(PhotoInfo *info){
+                     CLLocation *location = [locationMgr defaultMgr].location;
+                     CLPlacemark *place = [locationMgr defaultMgr].place;
+                     info.path = filePath;
+                     info.longitude = [NSNumber numberWithDouble:location.coordinate.longitude];
+                     info.latitude = [NSNumber numberWithDouble:location.coordinate.latitude];
+                     info.altitude = [NSNumber numberWithDouble:location.altitude];
+                     info.createTime = [NSDate date];
+                     NSString *addr = [NSString stringWithFormat:@"%@ %@",place.thoroughfare, place.subThoroughfare];
+                     if( addr.length == 0 )
+                     {
+                     addr = [NSString stringWithFormat:@"%@ %@", place.locality, place.subLocality];
+                     }
+                     if( addr.length == 0 )
+                     {
+                     addr = place.administrativeArea;
+                     }
+                     info.place = addr;
+                     }];
+                    */
                     
-                    [[dataManager defaultMgr] insertPhotoInfoInBlock:^(PhotoInfo *info){
-                        CLLocation *location = [locationMgr defaultMgr].location;
-                        CLPlacemark *place = [locationMgr defaultMgr].place;
-                        info.path = filePath;
-                        info.longitude = [NSNumber numberWithDouble:location.coordinate.longitude];
-                        info.latitude = [NSNumber numberWithDouble:location.coordinate.latitude];
-                        info.altitude = [NSNumber numberWithDouble:location.altitude];
-                        info.createTime = [NSDate date];
-                        NSString *addr = [NSString stringWithFormat:@"%@ %@",place.thoroughfare, place.subThoroughfare];
-                        if( addr.length == 0 )
-                        {
-                            addr = [NSString stringWithFormat:@"%@ %@", place.locality, place.subLocality];
-                        }
-                        if( addr.length == 0 )
-                        {
-                            addr = place.administrativeArea;
-                        }
-                        info.place = addr;
-                    }];
-                    [fmt release];
                 }
             }
         }];

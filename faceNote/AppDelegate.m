@@ -14,6 +14,7 @@
 #import "iAPHelper.h"
 #import "gestureCodeVerifyView.h"
 #import "photoDataMgr.h"
+#import "photoScaleView.h"
 
 @interface AppDelegate()<gestureCodeVerifyViewDelegate>
 {

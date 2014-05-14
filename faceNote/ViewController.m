@@ -21,6 +21,7 @@
 #import "dataManager.h"
 #import "albumListView.h"
 #import "photoDataMgr.h"
+#import "photoScaleView.h"
 #import <QuartzCore/QuartzCore.h>
 
 CGFloat appWidth;
@@ -37,7 +38,7 @@ ViewController *g_vc;
 
 @property (retain) pageMgrView *pageMgr;
 
-@property (retain) listView *ltv;
+@property (retain) albumListView *ltv;
 
 @property (retain) captureView *cameraView;
 
@@ -162,7 +163,7 @@ ViewController *g_vc;
 {
     if( index == 0 )
     {
-        [ltv loadImages];
+//        [ltv loadImages];
     }
 }
 
@@ -171,15 +172,21 @@ ViewController *g_vc;
     if( !ltv )
     {
         CGRect frame = CGRectMake(0, 0, appWidth, appHeight);
+        /*
         listView *lv = [[listView alloc] initWithFrame:frame];
         lv.vc = self;
         self.ltv = lv;
         [lv release];
         [self.view addSubview:ltv];
+        */
+        albumListView *v = [[albumListView alloc] initWithFrame:frame];
+        self.ltv = v;
+        [v release];
+        [self.view addSubview:v];
     }
     else
     {
-        [ltv loadImages];
+//        [ltv loadImages];
     }
     
     {
@@ -304,10 +311,12 @@ ViewController *g_vc;
         }
     }
     
+    /*
     if( [obj isKindOfClass:[listView class]] )
     {
         [obj loadImages];
     }
+    */
     
     CATransition *animation = [[CATransition alloc] init];
     animation.duration = 0.5f;

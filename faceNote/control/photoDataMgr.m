@@ -46,6 +46,7 @@
 
 - (void)loadData
 {
+    [self synchronizePhotoFromICloudContainer];
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *photoDir = [[icloudHelper helper].appDocumentPath stringByAppendingPathComponent:PHOTO_DIR_NAME];
     NSArray *subPaths = [fm subpathsAtPath:photoDir];
@@ -59,6 +60,7 @@
             BOOL keyFound = NO;
             for( photoGroupInfoObj *info in photoGroups ){
                 if( [info.key isEqualToString:key] ){
+                    /*
                     for( NSString *photoPath in info.photoPaths )
                     {
                         NSRange r2 = [photoPath rangeOfString:subPath];
@@ -66,6 +68,8 @@
                             [info.photoPaths addObject:filePath];
                         }
                     }
+                    */
+                    [info.photoPaths addObject:filePath];
                     keyFound = YES;
                     break;
                 }
@@ -75,6 +79,7 @@
                 photoGroupInfoObj *groupInfo = [[photoGroupInfoObj alloc] init];
                 groupInfo.key = key;
                 [groupInfo.photoPaths addObject:filePath];
+                [photoGroups addObject:groupInfo];
             }
         }
     }
@@ -122,7 +127,6 @@
 
 - (void)deletePhoto:(NSString *)path
 {
-    NSURL *url = [NSURL fileURLWithPath:path];
     NSError *err = nil;
     [[NSFileManager defaultManager] removeItemAtPath:path error:&err];
     if( err )
@@ -173,6 +177,15 @@
     }
     
     if( [icloudHelper helper].synchronizationEnabled ){
+        NSString *iCloudContainerPhotoPath = [[icloudHelper helper].iCloudDocumentPath stringByAppendingPathComponent:PHOTO_DIR_NAME];
+        if( [fm fileExistsAtPath:iCloudContainerPhotoPath] )
+        {
+            if( ![fm createDirectoryAtPath:iCloudContainerPhotoPath withIntermediateDirectories:YES attributes:nil error:&err] )
+            {
+                NSLog(@"create %@ failed, %@", iCloudContainerPhotoPath, err.localizedDescription);
+                return;
+            }
+        }
         NSString *tempPath = [filePath stringByReplacingOccurrencesOfString:[icloudHelper helper].appDocumentPath withString:[icloudHelper helper].iCloudDocumentPath];
         NSString *iCloudPhotoPath = [tempPath stringByReplacingOccurrencesOfString:PHOTO_FILE_TYPE withString:ENCODED_FILE_TYPE];
         [self encodeFile:filePath to:iCloudPhotoPath];
@@ -225,6 +238,26 @@
         }
     }
     [destData writeToFile:destFile atomically:YES];
+}
+
+
+- (void)synchronizePhotoFromICloudContainer
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *localPhotoDir = [[icloudHelper helper].appDocumentPath stringByAppendingString:PHOTO_DIR_NAME];
+    NSString *iCloudContainerPhotoDir = [[icloudHelper helper].iCloudDocumentPath stringByAppendingString:PHOTO_DIR_NAME];
+    NSArray *localPhotos = [fm subpathsAtPath:localPhotoDir];
+    NSArray *iCloudContainerPhotos = [fm subpathsAtPath:iCloudContainerPhotoDir];
+    for( NSString *iCloudContainerPhoto in iCloudContainerPhotos ){
+        NSString *localPhoto = [iCloudContainerPhoto stringByReplacingOccurrencesOfString:ENCODED_FILE_TYPE withString:PHOTO_FILE_TYPE];
+        if( ![localPhotos containsObject:localPhoto] )
+        {
+            if( [fm isReadableFileAtPath:localPhoto] )
+            {
+                [self decodeFile:iCloudContainerPhoto to:localPhoto];
+            }
+        }
+    }
 }
 
 

@@ -20,7 +20,7 @@
  picture compression
  picture encryption √
  location info from photo info
- photo list logic
+ photo list logic √
  album view
  photo list view
  */

@@ -28,5 +28,6 @@
 
 - (void)decodeFile:(NSString*)file to:(NSString*)destFile;
 
+- (void)synchronizePhotoFromICloudContainer;
 
 @end
