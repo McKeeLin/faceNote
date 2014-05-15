@@ -14,6 +14,7 @@
 #import "photoDataMgr.h"
 #import "photoListCell.h"
 #import "photoListheaderLayout.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define CELL_ID     @"photoListCell"
 #define HEAD_ID     @"headerId"
@@ -39,19 +40,20 @@
         listHeaderView *headerView = [[listHeaderView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, headerHeight)];
         [self addSubview:headerView];
         
-        photoListheaderLayout *layout = [[photoListheaderLayout alloc] init];
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.headerReferenceSize = CGSizeMake(frame.size.width, 30);
         layout.footerReferenceSize = CGSizeZero;
         layout.itemSize = CGSizeMake(88, 84);
         layout.minimumLineSpacing = 10;
-        layout.minimumInteritemSpacing = 10;
+        layout.minimumInteritemSpacing = 0;
+        layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
         
         collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, headerHeight, frame.size.width, frame.size.height-headerHeight) collectionViewLayout:layout];
         collection.delegate = self;
         collection.dataSource = self;
         collection.backgroundColor = [UIColor clearColor];
         [collection registerNib:[UINib nibWithNibName:@"photoListCell" bundle:nil] forCellWithReuseIdentifier:CELL_ID];
-        [collection registerNib:[UINib nibWithNibName:@"photoListSectionHeader" bundle:nil] forSupplementaryViewOfKind:@"header" withReuseIdentifier:HEAD_ID];
+        [collection registerNib:[UINib nibWithNibName:@"photoListSectionHeader" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HEAD_ID];
         [self addSubview:collection];
     }
     return self;
@@ -82,18 +84,25 @@
     NSString *photoPath = [group.photoPaths objectAtIndex:indexPath.item];
     photoListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
     cell.thumbailView.image = [[photoDataMgr manager] thumbnailImageOfFile:photoPath maxPixel:88];
+    cell.thumbailView.layer.contentsGravity = kCAGravityResizeAspectFill;
+    cell.thumbailView.layer.masksToBounds = YES;
     return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    photoGroupInfoObj *group = [[photoDataMgr manager].photoGroups objectAtIndex:indexPath.section];
-    NSString *key = group.key;
-    NSString *title = [NSString stringWithFormat:@"%@.%@.%@", [key substringToIndex:4], [key substringWithRange:NSMakeRange(4, 2)], [key substringFromIndex:6]];
-    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:@"header" withReuseIdentifier:HEAD_ID forIndexPath:indexPath];
-    UIButton *button = (UIButton*)[headerView viewWithTag:100];
-    [button setTitle:title forState:UIControlStateNormal];
-    return headerView;
+    if( [kind isEqualToString:UICollectionElementKindSectionHeader] ){
+        photoGroupInfoObj *group = [[photoDataMgr manager].photoGroups objectAtIndex:indexPath.section];
+        NSString *key = group.key;
+        NSString *title = [NSString stringWithFormat:@"%@.%@.%@", [key substringToIndex:4], [key substringWithRange:NSMakeRange(4, 2)], [key substringFromIndex:6]];
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HEAD_ID forIndexPath:indexPath];
+        UIButton *button = (UIButton*)[headerView viewWithTag:100];
+        [button setTitle:title forState:UIControlStateNormal];
+        return headerView;
+    }
+    else{
+        return nil;
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

@@ -36,7 +36,10 @@
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    return attributes;
+    UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:@"header" withIndexPath:indexPath];
+    attr.size = CGSizeMake(320, 30);
+    attr.frame = CGRectMake(0, 0, 320, 30);
+    return attr;
 }
 
 @end
