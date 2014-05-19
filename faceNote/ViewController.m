@@ -180,9 +180,10 @@ ViewController *g_vc;
         [self.view addSubview:ltv];
         */
         albumListView *v = [[albumListView alloc] initWithFrame:frame];
+        v.vc = self;
         self.ltv = v;
-        [v release];
         [self.view addSubview:v];
+        [v release];
     }
     else
     {
@@ -303,7 +304,10 @@ ViewController *g_vc;
              [self.view addSubview:ltv];
             */
             albumListView *lv = [[albumListView alloc] initWithFrame:bounds];
+            lv.vc = self;
+            self.ltv = lv;
             [self.view addSubview:lv];
+            [lv release];
         }
         else
         {

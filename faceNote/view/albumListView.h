@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ViewController;
+
 
 @interface albumListView : UIView
 
+@property (retain)ViewController *vc;
 @end

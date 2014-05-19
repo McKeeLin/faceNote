@@ -30,6 +30,7 @@
 #import "settingView.h"
 #import "indicationView.h"
 #import "photoDataMgr.h"
+#import "captureZoomView.h"
 
 @interface captureView()<AVCaptureAudioDataOutputSampleBufferDelegate>
 {
@@ -127,8 +128,11 @@
             session = [[AVCaptureSession alloc] init];
             [self initCamera];
             [self startCapture];
-            
         }
+        
+        captureZoomView *zoomView = [[captureZoomView alloc] initWithFrame:self.bounds camera:self.camera];
+        zoomView.camera = self.camera;
+        [self insertSubview:zoomView belowSubview:captureButton];
         
         [[locationMgr defaultMgr] addDelegate:self];
     }
@@ -239,7 +243,7 @@
     NSMutableDictionary *imageOutputSetting = [NSMutableDictionary dictionaryWithCapacity:0];
     [imageOutputSetting setObject:[NSNumber numberWithFloat:appWidth] forKey:(id)kCVPixelBufferWidthKey];
     [imageOutputSetting setObject:[NSNumber numberWithFloat:appHeight] forKey:(id)kCVPixelBufferHeightKey];
-    [imageOutputSetting setObject:AVVideoCodecJPEG forKey:(id)kCVPixelBufferWidthKey];
+    [imageOutputSetting setObject:AVVideoCodecJPEG forKey:(id)AVVideoCodecKey];
     imageOut.outputSettings = imageOutputSetting;
     if( [self.session canAddOutput:imageOut] )
     {
@@ -573,6 +577,7 @@
 
 - (void)onUpdateLocation:(CLLocation*)location placemark:(CLPlacemark*)mark
 {
+    return;
     CGRect labelFrame = CGRectMake(5, 30, 310, 18);
     
     if( latitude )
@@ -656,5 +661,6 @@
     [self addSubview:subThoroughfare];
     labelFrame.origin.y += subThoroughfare.height;
 }
+
 
 @end

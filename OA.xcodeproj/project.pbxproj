@@ -55,6 +55,7 @@
 		0856C53D191E35A600BA6A24 /* listViewIndication@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0856C53B191E35A600BA6A24 /* listViewIndication@2x.png */; };
 		08645EDD190A6D5D005F3025 /* myDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 08645EDC190A6D5D005F3025 /* myDocument.m */; };
 		0866B57B19079EF40056ABB1 /* appInfoObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0866B57A19079EF40056ABB1 /* appInfoObj.m */; };
+		087E5711192999C200008484 /* mySliderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E5710192999C200008484 /* mySliderBar.m */; };
 		088DDB6D1923225B001ADCDF /* photoScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 088DDB6C1923225B001ADCDF /* photoScaleView.m */; };
 		0898ABAE1901121B00268357 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0898ABAD1901121B00268357 /* StoreKit.framework */; };
 		0898ABB21901130000268357 /* iAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0898ABB11901130000268357 /* iAPHelper.m */; };
@@ -66,6 +67,8 @@
 		08A8D11E191E1AE80098C4EA /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A8D11D191E1AE80098C4EA /* close@2x.png */; };
 		08A8D121191E1E730098C4EA /* captureViewIndication@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A8D123191E1E730098C4EA /* captureViewIndication@2x.png */; };
 		08C69C391907E9DF0043D95B /* icloudHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C69C381907E9DF0043D95B /* icloudHelper.m */; };
+		08E0415C1927158800EF27B5 /* captureZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E0415B1927158800EF27B5 /* captureZoomView.m */; };
+		08E520B4192A2F6C00BFB14C /* thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E520B3192A2F6C00BFB14C /* thumb@2x.png */; };
 		08ECC454191E2DEF00E7615A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08ECC456191E2DEF00E7615A /* Localizable.strings */; };
 		5D01EDD518294D52000C3094 /* pageMgrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D01EDD418294D52000C3094 /* pageMgrView.m */; };
 		5D01EDD81829D7D4000C3094 /* listView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D01EDD71829D7D4000C3094 /* listView.m */; };
@@ -196,6 +199,8 @@
 		08645EDC190A6D5D005F3025 /* myDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myDocument.m; sourceTree = "<group>"; };
 		0866B57919079EF40056ABB1 /* appInfoObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = appInfoObj.h; sourceTree = "<group>"; };
 		0866B57A19079EF40056ABB1 /* appInfoObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = appInfoObj.m; sourceTree = "<group>"; };
+		087E570F192999C200008484 /* mySliderBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mySliderBar.h; sourceTree = "<group>"; };
+		087E5710192999C200008484 /* mySliderBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mySliderBar.m; sourceTree = "<group>"; };
 		088DDB6B1923225B001ADCDF /* photoScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoScaleView.h; sourceTree = "<group>"; };
 		088DDB6C1923225B001ADCDF /* photoScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoScaleView.m; sourceTree = "<group>"; };
 		0898ABAD1901121B00268357 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -215,6 +220,9 @@
 		08A8D124191E1E8F0098C4EA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/captureViewIndication@2x.png"; sourceTree = "<group>"; };
 		08C69C371907E9DF0043D95B /* icloudHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icloudHelper.h; sourceTree = "<group>"; };
 		08C69C381907E9DF0043D95B /* icloudHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = icloudHelper.m; sourceTree = "<group>"; };
+		08E0415A1927158800EF27B5 /* captureZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = captureZoomView.h; sourceTree = "<group>"; };
+		08E0415B1927158800EF27B5 /* captureZoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = captureZoomView.m; sourceTree = "<group>"; };
+		08E520B3192A2F6C00BFB14C /* thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb@2x.png"; sourceTree = "<group>"; };
 		08E78808190395FC00D8DF60 /* faceNote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = faceNote.entitlements; sourceTree = "<group>"; };
 		08ECC455191E2DEF00E7615A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		08ECC457191E2DF100E7615A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -371,6 +379,7 @@
 		0831CF471921B07B00EA87B1 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				08E520B3192A2F6C00BFB14C /* thumb@2x.png */,
 				084D336219235217005E80D0 /* 1.png */,
 				0831CF481921B07B00EA87B1 /* add@2x.png */,
 				0831CF491921B07B00EA87B1 /* balls@2x.png */,
@@ -445,6 +454,10 @@
 				084D336D1923977F005E80D0 /* photoListSectionHeader.xib */,
 				084D336F19239BDC005E80D0 /* photoListheaderLayout.h */,
 				084D337019239BDC005E80D0 /* photoListheaderLayout.m */,
+				08E0415A1927158800EF27B5 /* captureZoomView.h */,
+				08E0415B1927158800EF27B5 /* captureZoomView.m */,
+				087E570F192999C200008484 /* mySliderBar.h */,
+				087E5710192999C200008484 /* mySliderBar.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -680,6 +693,7 @@
 				5D3DA5FC18265C4B008FCB17 /* Default.png in Resources */,
 				0831CF541921B07B00EA87B1 /* paris70@2x.png in Resources */,
 				08A8D121191E1E730098C4EA /* captureViewIndication@2x.png in Resources */,
+				08E520B4192A2F6C00BFB14C /* thumb@2x.png in Resources */,
 				0831CF4F1921B07B00EA87B1 /* add@2x.png in Resources */,
 				084D336319235217005E80D0 /* 1.png in Resources */,
 				08ECC454191E2DEF00E7615A /* Localizable.strings in Resources */,
@@ -720,6 +734,7 @@
 				5D3DA5F618265C4B008FCB17 /* main.m in Sources */,
 				5D3DA5FA18265C4B008FCB17 /* AppDelegate.m in Sources */,
 				5D3DA60318265C4B008FCB17 /* ViewController.m in Sources */,
+				087E5711192999C200008484 /* mySliderBar.m in Sources */,
 				5D71914A18420E9D008725F1 /* listCell.m in Sources */,
 				0821B918191B23B6006AB758 /* UICKeyChainStore.m in Sources */,
 				081E015F191F5F6C0055DBC4 /* albumListView.m in Sources */,
@@ -744,6 +759,7 @@
 				0821B90C191B1ED8006AB758 /* NormalCircle.m in Sources */,
 				5DCDC902183CA9490004D18D /* transparentBtn.m in Sources */,
 				5DCDC905183CAD650004D18D /* UIApplication+appSize.m in Sources */,
+				08E0415C1927158800EF27B5 /* captureZoomView.m in Sources */,
 				5D4770E818537DF000A06C23 /* autoSizeLabel.m in Sources */,
 				08645EDD190A6D5D005F3025 /* myDocument.m in Sources */,
 				5D1907AD184381B000CA19EB /* albumGroup.m in Sources */,

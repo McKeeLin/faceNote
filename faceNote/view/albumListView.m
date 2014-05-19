@@ -14,6 +14,7 @@
 #import "photoDataMgr.h"
 #import "photoListCell.h"
 #import "photoListheaderLayout.h"
+#import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define CELL_ID     @"photoListCell"
@@ -26,6 +27,7 @@
 @end
 
 @implementation albumListView
+@synthesize vc;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -55,8 +57,21 @@
         [collection registerNib:[UINib nibWithNibName:@"photoListCell" bundle:nil] forCellWithReuseIdentifier:CELL_ID];
         [collection registerNib:[UINib nibWithNibName:@"photoListSectionHeader" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HEAD_ID];
         [self addSubview:collection];
+        
+        UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeoLeft:)];
+        sgr.numberOfTouchesRequired = 1;
+        sgr.direction = UISwipeGestureRecognizerDirectionLeft;
+        [self addGestureRecognizer:sgr];
+        [sgr release];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [vc release];
+    [collection release];
+    [super dealloc];
 }
 
 /*
@@ -108,6 +123,22 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ;
+}
+
+- (void)onTouchCamera:(id)sender
+{
+    ;
+}
+
+- (void)onTouchSetting:(id)sender
+{
+    ;
+}
+
+- (void)onSwipeoLeft:(UISwipeGestureRecognizer*)sgr
+{
+    [vc showCameraFromListView];
+    [self removeFromSuperview];
 }
 
 @end
