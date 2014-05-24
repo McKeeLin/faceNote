@@ -11,6 +11,7 @@
 @interface mySliderBar()
 {
     CATransition *transition;
+    CGFloat rate;
 }
 @end
 
@@ -38,6 +39,7 @@
             [self addSubview:thumbImageView];
             
             [thumbImageView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+            rate = backgroundFrame.size.width / 5;
         }
     }
     return self;
@@ -78,19 +80,36 @@
     }
 //    thumbImageView.frame = finalFrame;
     
-    CABasicAnimation *an = [[CABasicAnimation alloc] init];
-    an.keyPath = @"frame";
-    an.fromValue = [NSValue valueWithCGRect:thumbFrame];
-    an.toValue = [NSValue valueWithCGRect:finalFrame];
-    an.duration = seconds;
-    an.timingFunction = [CAMediaTimingFunction functionWithName:@"easeInEaseOut"];
-    [thumbImageView.layer addAnimation:an forKey:@""];
+    CABasicAnimation *an = (CABasicAnimation*)[thumbImageView.layer animationForKey:@"move"];
+    if( !an ){
+        an = [[CABasicAnimation alloc] init];
+        an.keyPath = @"frame.origin.x";
+        an.fromValue = [NSNumber numberWithFloat:thumbImageView.frame.origin.x];
+        CGFloat x = backgroundFrame.size.width;
+        if( !increase ){
+            x = 0;
+        }
+        an.toValue = [NSNumber numberWithFloat:x];
+        an.duration = (x - thumbImageView.frame.origin.x) / rate;
+        if( an.duration < 0 ){
+            an.duration -= an.duration;
+        }
+        [thumbImageView.layer addAnimation:an forKey:@"move"];
+        [an release];
+    }
+    else{
+        NSLog(@"........................................");
+    }
 }
 
 - (void)stopMove
 {
     NSLog(@"%s", __func__);
-    [self.layer removeAllAnimations];
+//    thumbImageView.layer.timeOffset = [thumbImageView.layer convertTime:CACurrentMediaTime() fromLayer:nil];
+//    thumbImageView.layer.speed = 0;
+    CALayer *presentationLayer = thumbImageView.layer.presentationLayer;
+    thumbImageView.layer.frame = presentationLayer.frame;
+    [thumbImageView.layer removeAllAnimations];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
