@@ -29,9 +29,13 @@
 
 @property id<mySliderBarDelegate>delegate;
 
+@property NSInteger calibration;
+
 - (id)initWithFrame:(CGRect)frame background:(NSString*)background thumb:(NSString*)thumb;
 
-- (void)startMovingForIncrease:(BOOL)increase inTime:(NSInteger)seconds;
+- (void)startMovingForIncrease:(BOOL)increase;
+
+- (void)stepForword:(BOOL)bForward;
 
 - (void)stopMove;
 

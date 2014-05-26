@@ -12,6 +12,7 @@
 {
     CATransition *transition;
     CGFloat rate;
+    NSInteger calibration;
 }
 @end
 
@@ -39,7 +40,8 @@
             [self addSubview:thumbImageView];
             
             [thumbImageView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-            rate = backgroundFrame.size.width / 5;
+            rate = backgroundFrame.size.width / 3;
+            calibration = 10;
         }
     }
     return self;
@@ -61,13 +63,9 @@
 }
 */
 
-- (void)startMovingForIncrease:(BOOL)increase inTime:(NSInteger)seconds
+- (void)startMovingForIncrease:(BOOL)increase
 {
     NSLog(@"%s", __func__);
-    /*
-    [UIView animateWithDuration:seconds animations:^(){
-    }];
-    */
     CGRect finalFrame;
     CGRect thumbFrame = thumbImageView.frame;
     CGRect backgroundFrame = backgroundImageView.frame;
@@ -78,35 +76,43 @@
     else{
         finalFrame.origin.x = 0;
     }
-//    thumbImageView.frame = finalFrame;
     
-    CABasicAnimation *an = (CABasicAnimation*)[thumbImageView.layer animationForKey:@"move"];
-    if( !an ){
-        an = [[CABasicAnimation alloc] init];
-        an.keyPath = @"frame.origin.x";
-        an.fromValue = [NSNumber numberWithFloat:thumbImageView.frame.origin.x];
-        CGFloat x = backgroundFrame.size.width;
-        if( !increase ){
-            x = 0;
+    CGFloat duration = (finalFrame.origin.x - thumbImageView.frame.origin.x)/rate;
+    if( duration < 0 ){
+        duration = -1 *duration;
+    }
+    NSLog(@"%s, duration:%f",__func__, duration);
+    [UIView animateWithDuration:duration animations:^(){
+        thumbImageView.frame = finalFrame;
+    }];
+}
+
+- (void)stepForword:(BOOL)bForward
+{
+    CGFloat stepWidth = backgroundImageView.frame.size.width/calibration;
+    CGRect finalFrame = thumbImageView.frame;
+    if( bForward ){
+        finalFrame.origin.x += stepWidth;
+        if( finalFrame.origin.x > backgroundImageView.frame.size.width - 1 ){
+            finalFrame.origin.x = backgroundImageView.frame.size.width - 1;
         }
-        an.toValue = [NSNumber numberWithFloat:x];
-        an.duration = (x - thumbImageView.frame.origin.x) / rate;
-        if( an.duration < 0 ){
-            an.duration -= an.duration;
-        }
-        [thumbImageView.layer addAnimation:an forKey:@"move"];
-        [an release];
     }
     else{
-        NSLog(@"........................................");
+        finalFrame.origin.x -= stepWidth;
+        if( finalFrame.origin.x < 0 ){
+            finalFrame.origin.x = 0;
+        }
     }
+    
+    CGFloat duration = stepWidth / rate;
+    [UIView animateWithDuration:duration animations:^(){
+        thumbImageView.frame = finalFrame;
+    }];
 }
 
 - (void)stopMove
 {
     NSLog(@"%s", __func__);
-//    thumbImageView.layer.timeOffset = [thumbImageView.layer convertTime:CACurrentMediaTime() fromLayer:nil];
-//    thumbImageView.layer.speed = 0;
     CALayer *presentationLayer = thumbImageView.layer.presentationLayer;
     thumbImageView.layer.frame = presentationLayer.frame;
     [thumbImageView.layer removeAllAnimations];

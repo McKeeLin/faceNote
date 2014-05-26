@@ -7,6 +7,7 @@
 //
 
 #import "captureZoomView.h"
+#import "longPressButton.h"
 
 #define ZOOMBUTTON_WIDTH 16
 #define ZOOMBUTTON_HEIGHT 16
@@ -17,8 +18,8 @@
     CGFloat pinScale;
     CGFloat maxZoom;
     CGFloat minZoom;
-    UIButton *zoomInButton; //放大按钮
-    UIButton *zoomOutButton;
+    longPressButton *zoomInButton; //放大按钮
+    longPressButton *zoomOutButton;
     mySliderBar *slider;
 }
 
@@ -48,11 +49,11 @@
         
         CGFloat buttonMargin = 7;
         CGRect buttonFrame = CGRectMake(buttonMargin, frame.size.height-buttonMargin-ZOOMBUTTON_HEIGHT, ZOOMBUTTON_WIDTH, ZOOMBUTTON_HEIGHT);
-        zoomInButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        zoomInButton = [longPressButton buttonWithType:UIButtonTypeCustom];
         zoomInButton.frame = buttonFrame;
         [zoomInButton setTitle:@"+" forState:UIControlStateNormal];
-        [zoomInButton addTarget:self action:@selector(onZoomInButtonTouchDown:) forControlEvents:UIControlEventTouchDown];
         [zoomInButton addTarget:self action:@selector(onZoomInButtonTouchUp:) forControlEvents:UIControlEventTouchUpInside];
+        [zoomInButton addLongPressTarget:self selector:@selector(onZoomInLongPress:)];
         [self addSubview:zoomInButton];
         
         CGRect sliderFrame = CGRectMake(20, buttonFrame.origin.y+5, 100, 5);
@@ -63,11 +64,11 @@
         [self addSubview:slider];
         
         buttonFrame.origin.x = frame.size.width - ZOOMBUTTON_WIDTH - buttonMargin;
-        zoomOutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        zoomOutButton = [longPressButton buttonWithType:UIButtonTypeCustom];
         zoomOutButton.frame = buttonFrame;
         [zoomOutButton setTitle:@"-" forState:UIControlStateNormal];
-        [zoomOutButton addTarget:self action:@selector(onZoomOutButtonTouchDown:) forControlEvents:UIControlEventTouchDown];
-        [zoomOutButton addTarget:self action:@selector(onZoomInButtonTouchUp:) forControlEvents:UIControlEventTouchUpInside];
+        [zoomOutButton addTarget:self action:@selector(onZoomOutButtonTouchUp:) forControlEvents:UIControlEventTouchUpInside];
+        [zoomOutButton addLongPressTarget:self selector:@selector(onZoomOutLongPress:)];
         [self addSubview:zoomOutButton];
     }
     return self;
@@ -151,34 +152,49 @@
     }
 }
 
-- (void)onZoomInButtonTouchDown:(id)sender
-{
-    NSLog(@"%s", __func__);
-    [slider startMovingForIncrease:YES inTime:5];
-}
-
 - (void)onZoomInButtonTouchUp:(id)sender
 {
     NSLog(@"%s", __func__);
-    [slider stopMove];
-}
-
-- (void)onZoomOutButtonTouchDown:(id)sender
-{
-    NSLog(@"%s", __func__);
-    [slider startMovingForIncrease:NO inTime:5];
+    [slider stepForword:YES];
 }
 
 - (void)onZoomOutButtonTouchUp:(id)sender
 {
     NSLog(@"%s", __func__);
-    [slider stopMove];
+    [slider stepForword:NO];
 }
 
 - (void)onValueChanged:(CGFloat)newValue
 {
     NSLog(@"%s", __func__);
     ;
+}
+
+
+- (void)onZoomInLongPress:(id)sender
+{
+    NSLog(@"%s", __func__);
+    UILongPressGestureRecognizer *lpgr = (UILongPressGestureRecognizer*)sender;
+    if( lpgr.state == UIGestureRecognizerStateBegan )
+    {
+        [slider startMovingForIncrease:YES];
+    }
+    else if( lpgr.state == UIGestureRecognizerStateEnded ){
+        [slider stopMove];
+    }
+}
+
+- (void)onZoomOutLongPress:(id)sender
+{
+    NSLog(@"%s", __func__);
+    UILongPressGestureRecognizer *lpgr = (UILongPressGestureRecognizer*)sender;
+    if( lpgr.state == UIGestureRecognizerStateBegan )
+    {
+        [slider startMovingForIncrease:NO];
+    }
+    else if( lpgr.state == UIGestureRecognizerStateEnded ){
+        [slider stopMove];
+    }
 }
 
 @end

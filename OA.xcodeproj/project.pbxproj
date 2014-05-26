@@ -66,6 +66,7 @@
 		08A8D11B191E14560098C4EA /* indicationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A8D11A191E14560098C4EA /* indicationView.m */; };
 		08A8D11E191E1AE80098C4EA /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A8D11D191E1AE80098C4EA /* close@2x.png */; };
 		08A8D121191E1E730098C4EA /* captureViewIndication@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A8D123191E1E730098C4EA /* captureViewIndication@2x.png */; };
+		08A8D6641932D03400037669 /* longPressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A8D6631932D03400037669 /* longPressButton.m */; };
 		08C69C391907E9DF0043D95B /* icloudHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C69C381907E9DF0043D95B /* icloudHelper.m */; };
 		08E0415C1927158800EF27B5 /* captureZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E0415B1927158800EF27B5 /* captureZoomView.m */; };
 		08E520B4192A2F6C00BFB14C /* thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E520B3192A2F6C00BFB14C /* thumb@2x.png */; };
@@ -218,6 +219,8 @@
 		08A8D11D191E1AE80098C4EA /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x.png"; sourceTree = "<group>"; };
 		08A8D122191E1E730098C4EA /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/captureViewIndication@2x.png"; sourceTree = "<group>"; };
 		08A8D124191E1E8F0098C4EA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/captureViewIndication@2x.png"; sourceTree = "<group>"; };
+		08A8D6621932D03400037669 /* longPressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = longPressButton.h; sourceTree = "<group>"; };
+		08A8D6631932D03400037669 /* longPressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = longPressButton.m; sourceTree = "<group>"; };
 		08C69C371907E9DF0043D95B /* icloudHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icloudHelper.h; sourceTree = "<group>"; };
 		08C69C381907E9DF0043D95B /* icloudHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = icloudHelper.m; sourceTree = "<group>"; };
 		08E0415A1927158800EF27B5 /* captureZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = captureZoomView.h; sourceTree = "<group>"; };
@@ -458,6 +461,8 @@
 				08E0415B1927158800EF27B5 /* captureZoomView.m */,
 				087E570F192999C200008484 /* mySliderBar.h */,
 				087E5710192999C200008484 /* mySliderBar.m */,
+				08A8D6621932D03400037669 /* longPressButton.h */,
+				08A8D6631932D03400037669 /* longPressButton.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -737,6 +742,7 @@
 				087E5711192999C200008484 /* mySliderBar.m in Sources */,
 				5D71914A18420E9D008725F1 /* listCell.m in Sources */,
 				0821B918191B23B6006AB758 /* UICKeyChainStore.m in Sources */,
+				08A8D6641932D03400037669 /* longPressButton.m in Sources */,
 				081E015F191F5F6C0055DBC4 /* albumListView.m in Sources */,
 				081E0162191F5F950055DBC4 /* listHeaderView.m in Sources */,
 				5D3DA60E18265E3F008FCB17 /* captureView.m in Sources */,
