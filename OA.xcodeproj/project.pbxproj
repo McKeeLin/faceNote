@@ -67,6 +67,8 @@
 		08A8D11E191E1AE80098C4EA /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A8D11D191E1AE80098C4EA /* close@2x.png */; };
 		08A8D121191E1E730098C4EA /* captureViewIndication@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A8D123191E1E730098C4EA /* captureViewIndication@2x.png */; };
 		08A8D6641932D03400037669 /* longPressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A8D6631932D03400037669 /* longPressButton.m */; };
+		08AE72791935CE2B005544AC /* min@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08AE72771935CE2B005544AC /* min@2x.png */; };
+		08AE727A1935CE2B005544AC /* max@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08AE72781935CE2B005544AC /* max@2x.png */; };
 		08C69C391907E9DF0043D95B /* icloudHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C69C381907E9DF0043D95B /* icloudHelper.m */; };
 		08E0415C1927158800EF27B5 /* captureZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E0415B1927158800EF27B5 /* captureZoomView.m */; };
 		08E520B4192A2F6C00BFB14C /* thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E520B3192A2F6C00BFB14C /* thumb@2x.png */; };
@@ -221,6 +223,8 @@
 		08A8D124191E1E8F0098C4EA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/captureViewIndication@2x.png"; sourceTree = "<group>"; };
 		08A8D6621932D03400037669 /* longPressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = longPressButton.h; sourceTree = "<group>"; };
 		08A8D6631932D03400037669 /* longPressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = longPressButton.m; sourceTree = "<group>"; };
+		08AE72771935CE2B005544AC /* min@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "min@2x.png"; sourceTree = "<group>"; };
+		08AE72781935CE2B005544AC /* max@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "max@2x.png"; sourceTree = "<group>"; };
 		08C69C371907E9DF0043D95B /* icloudHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icloudHelper.h; sourceTree = "<group>"; };
 		08C69C381907E9DF0043D95B /* icloudHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = icloudHelper.m; sourceTree = "<group>"; };
 		08E0415A1927158800EF27B5 /* captureZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = captureZoomView.h; sourceTree = "<group>"; };
@@ -382,6 +386,8 @@
 		0831CF471921B07B00EA87B1 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				08AE72771935CE2B005544AC /* min@2x.png */,
+				08AE72781935CE2B005544AC /* max@2x.png */,
 				08E520B3192A2F6C00BFB14C /* thumb@2x.png */,
 				084D336219235217005E80D0 /* 1.png */,
 				0831CF481921B07B00EA87B1 /* add@2x.png */,
@@ -697,6 +703,7 @@
 				0831CF551921B07B00EA87B1 /* thumbnailBg@2x.png in Resources */,
 				5D3DA5FC18265C4B008FCB17 /* Default.png in Resources */,
 				0831CF541921B07B00EA87B1 /* paris70@2x.png in Resources */,
+				08AE727A1935CE2B005544AC /* max@2x.png in Resources */,
 				08A8D121191E1E730098C4EA /* captureViewIndication@2x.png in Resources */,
 				08E520B4192A2F6C00BFB14C /* thumb@2x.png in Resources */,
 				0831CF4F1921B07B00EA87B1 /* add@2x.png in Resources */,
@@ -705,6 +712,7 @@
 				0811955A1900A9F700C27778 /* icon58.png in Resources */,
 				0831CF531921B07B00EA87B1 /* dateTitleBg@2x.png in Resources */,
 				084D336E1923977F005E80D0 /* photoListSectionHeader.xib in Resources */,
+				08AE72791935CE2B005544AC /* min@2x.png in Resources */,
 				0831CF511921B07B00EA87B1 /* bg@2x.png in Resources */,
 				081195591900A9F700C27778 /* icon57.png in Resources */,
 				0831CF521921B07B00EA87B1 /* camera@2x.png in Resources */,

@@ -64,6 +64,7 @@ locationMgr *g_locationMgr;
 
 - (void)doLocation
 {
+    return;
     NSLog(@"%s", __func__);
    if( ![CLLocationManager locationServicesEnabled] )
    {

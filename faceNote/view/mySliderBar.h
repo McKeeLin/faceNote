@@ -15,13 +15,13 @@
 
 
 
-@interface mySliderBar : UIView
+@interface mySliderBar : UIControl
 
 @property (retain) UIImageView *backgroundImageView;
 
 @property (retain) UIImageView *thumbImageView;
 
-@property CGFloat currentValue;
+@property CGFloat value;
 
 @property CGFloat maximumValue;
 
@@ -31,7 +31,9 @@
 
 @property NSInteger calibration;
 
-- (id)initWithFrame:(CGRect)frame background:(NSString*)background thumb:(NSString*)thumb;
+@property CGFloat rate;
+
+- (id)initWithFrame:(CGRect)frame background:(NSString*)background thumb:(NSString*)thumb vertical:(BOOL)vertical;
 
 - (void)startMovingForIncrease:(BOOL)increase;
 
