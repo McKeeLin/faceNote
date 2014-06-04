@@ -60,7 +60,7 @@
 @end
 
 @implementation captureView
-@synthesize camera,cameraLayer,session,captureButton,toggleCloseButton,toggleCameraButton,frontView,backView,imageOut,documentPath,vc;
+@synthesize camera,cameraLayer,session,captureButton,toggleCloseButton,toggleCameraButton,frontView,backView,imageOut,documentPath,vc,photoType;
 
 
 
@@ -69,6 +69,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        photoType = PHOTO_NORMAL;
         self.backgroundColor = [UIColor clearColor];
         UISwipeGestureRecognizer *gr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSlideToRight:)];
         gr.direction = UISwipeGestureRecognizerDirectionRight;
@@ -141,6 +142,7 @@
 
 - (void)dealloc
 {
+    NSLog(@"%s", __func__);
     [contry release];
     [administrativeArea release];
     [locality release];
@@ -328,80 +330,15 @@
                 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 if( imageData )
                 {
-                    [[photoDataMgr manager] addPhoto:imageData];
-                    /*
-                    NSError *error = nil;
-                    NSFileManager *fm = [NSFileManager defaultManager];
-                    NSDate *date = [NSDate date];
-                    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-                    fmt.dateFormat = @"yyyy.MM";
-                    NSString *yearMonth = [fmt stringFromDate:date];
-                    fmt.dateFormat = @"d";
-                    NSString *day = [fmt stringFromDate:date];
-                    NSString *dir = [NSString stringWithFormat:@"%@/photos/%@/%@", self.documentPath, yearMonth, day];
-                    if( ![fm fileExistsAtPath:dir] )
-                    {
-                        if( ![fm createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:&error] )
-                        {
-                            if( error )
-                            {
-                                NSLog(@"%s, create path failed:%@", __func__, error);
-                                error = nil;
-                            }
-                        }
+                    [[photoDataMgr manager] addPhoto:imageData photoType:photoType];
+                    if( photoType == PHOTO_BANNER ){
+                        [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_BANNER_NOTIFICATION_NAME object:nil userInfo:nil];
+                        [self.vc dismissCameraView];
                     }
-                    fmt.dateFormat = @"yyyyMMddHHmmSS";
-                    NSString *name = [fmt stringFromDate:date];
-                    NSString *filePath = [NSString stringWithFormat:@"%@/%@.%@", dir, name, FILE_TYPE];
-                    NSLog(@"%s,path:%@", __func__, filePath);
-                    BOOL bResult = [imageData writeToFile:filePath atomically:YES];
-                    if( !bResult )
-                    {
-                        NSLog(@"%s, save picture:%@ failed", __func__, filePath);
+                    else if( photoType == PHOTO_PORTRAIT ){
+                        [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_PORTRAIT_NOTIFICATION_NAME object:nil userInfo:nil];
+                        [self.vc dismissCameraView];
                     }
-                    
-                    if( [iAPHelper helper].bPurchased ){
-                        NSString *iCloudDir = [NSString stringWithFormat:@"%@/Documents/photos/%@/%@", [[icloudHelper helper].containerUrl path], yearMonth, day];
-                        if( ![fm fileExistsAtPath:iCloudDir] )
-                        {
-                            if( ![fm createDirectoryAtPath:iCloudDir withIntermediateDirectories:YES attributes:nil error:&error] )
-                            {
-                                if( error )
-                                {
-                                    NSLog(@"%s, create path failed:%@", __func__, error);
-                                    error = nil;
-                                }
-                            }
-                        }
-                        NSString *iCloudFile = [iCloudDir stringByAppendingFormat:@"/%@.%@", name, FILE_TYPE];
-                        if( ![fm copyItemAtPath:filePath toPath:iCloudFile error:&error] )
-                        {
-                            NSLog(@"move to icloud container failed, error:%@", error.localizedDescription);
-                        }
-                    }
-                     [fmt release];
-                     
-                     [[dataManager defaultMgr] insertPhotoInfoInBlock:^(PhotoInfo *info){
-                     CLLocation *location = [locationMgr defaultMgr].location;
-                     CLPlacemark *place = [locationMgr defaultMgr].place;
-                     info.path = filePath;
-                     info.longitude = [NSNumber numberWithDouble:location.coordinate.longitude];
-                     info.latitude = [NSNumber numberWithDouble:location.coordinate.latitude];
-                     info.altitude = [NSNumber numberWithDouble:location.altitude];
-                     info.createTime = [NSDate date];
-                     NSString *addr = [NSString stringWithFormat:@"%@ %@",place.thoroughfare, place.subThoroughfare];
-                     if( addr.length == 0 )
-                     {
-                     addr = [NSString stringWithFormat:@"%@ %@", place.locality, place.subLocality];
-                     }
-                     if( addr.length == 0 )
-                     {
-                     addr = place.administrativeArea;
-                     }
-                     info.place = addr;
-                     }];
-                    */
-                    
                 }
             }
         }];

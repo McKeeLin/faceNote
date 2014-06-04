@@ -8,10 +8,19 @@
 
 #import "listHeaderView.h"
 #import "icloudHelper.h"
+#import "photoDataMgr.h"
+#import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface listHeaderView()
+{
+    UIImageView *portraitView;
+    UIImageView *bannerView;
+}
+@end
+
 @implementation listHeaderView
-@synthesize imageView,portraitButton;
+@synthesize bannerButton,portraitButton;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -19,34 +28,63 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        [self addSubview:imageView];
+        NSString *photoDir = [photoDataMgr manager].photoDir;
+        NSFileManager *fm = [NSFileManager defaultManager];
+        bannerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        bannerView.layer.contentsGravity = kCAGravityResizeAspectFill;
+        NSString *bannerFile = [NSString stringWithFormat:@"%@/%@", photoDir, BANNER_FILE_NAME];
+        if( [fm isReadableFileAtPath:bannerFile] )
+        {
+            UIImage *img = [[photoDataMgr manager] thumbnailImageOfFile:bannerFile maxPixel:MAX(frame.size.width, frame.size.height)];
+            bannerView.image = img;
+        }
+        [self addSubview:bannerView];
+        
+        bannerButton = [[UIButton alloc] initWithFrame:bannerView.frame];
+        [bannerButton addTarget:self action:@selector(onTouchBannerButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:bannerButton];
         
         CGFloat top = 20;
         CGFloat buttonWidth = 100;
         CGFloat buttonHeight = 100;
         CGFloat left = (frame.size.width-buttonWidth)/2;
-        portraitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        portraitButton.frame = CGRectMake(left, top, buttonWidth, buttonHeight);
-        portraitButton.layer.borderWidth = 1.5;
-        portraitButton.layer.borderColor = [UIColor whiteColor].CGColor;
-        portraitButton.layer.cornerRadius = buttonWidth/2;
-        [portraitButton addTarget:self action:@selector(onTouchPortrait:) forControlEvents:UIControlEventTouchUpInside];
-        NSString *photoDir = [[icloudHelper helper].appDocumentPath stringByAppendingPathComponent:PHOTO_DIR_NAME];
-        NSString *portraitPath = [photoDir stringByAppendingPathComponent:PORTRAIT_FILE_NAME];
-        UIImage *image = [UIImage imageWithContentsOfFile:portraitPath];
-        if( !image ){
+        portraitView = [[UIImageView alloc] initWithFrame:CGRectMake(left, top, buttonWidth, buttonHeight)];
+        portraitView.layer.contentsGravity = kCAGravityResizeAspectFill;
+        portraitView.layer.borderWidth = 1;
+        portraitView.layer.borderColor = [UIColor whiteColor].CGColor;
+        portraitView.layer.cornerRadius = buttonHeight/2;
+        portraitView.layer.masksToBounds = YES;
+        NSString *portraitPath = [NSString stringWithFormat:@"%@/%@", photoDir, PORTRAIT_FILE_NAME];
+        UIImage *image = nil;
+        if( ![fm isReadableFileAtPath:portraitPath] ){
             image = [UIImage imageNamed:@"portrait"];
         }
-        [portraitButton setImage:image forState:UIControlStateNormal];
+        else{
+            image = [[photoDataMgr manager] thumbnailImageOfFile:portraitPath maxPixel:MAX(buttonWidth, buttonHeight)];
+        }
+        portraitView.image = image;
+        [self addSubview:portraitView];
+        
+        portraitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        portraitButton.frame = portraitView.frame;
+        [portraitButton addTarget:self action:@selector(onTouchPortrait:) forControlEvents:UIControlEventTouchUpInside];
+        portraitButton.layer.cornerRadius = buttonHeight / 2;
+        portraitButton.layer.masksToBounds = YES;
         [self addSubview:portraitButton];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUpdatePortraitNotification:) name:UPDATE_PORTRAIT_NOTIFICATION_NAME object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUpdateBannerNotification:) name:UPDATE_BANNER_NOTIFICATION_NAME object:nil];
+        
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [imageView release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [bannerView release];
+    [portraitView release];
+    [bannerButton release];
     [portraitButton release];
     [super dealloc];
 }
@@ -60,14 +98,40 @@
 }
 */
 
-- (void)setImage:(UIImage *)image
-{
-    imageView.image = image;
-}
 
 - (void)onTouchPortrait:(id)sender
 {
-    ;
+    [[ViewController defaultVC] showCameraFromListView];
+    [[ViewController defaultVC].cameraView setCameraType:YES];
+    [ViewController defaultVC].cameraView.photoType = PHOTO_PORTRAIT;
+}
+
+- (void)onTouchBannerButton:(id)sender
+{
+    [[ViewController defaultVC] showCameraFromListView];
+    [[ViewController defaultVC].cameraView setCameraType:NO];
+    [ViewController defaultVC].cameraView.photoType = PHOTO_BANNER;
+}
+
+
+- (void)onUpdatePortraitNotification:(NSNotification*)notification
+{
+    CGFloat max = MAX(portraitButton.frame.size.width, portraitButton.frame.size.height);
+    NSString *portraintFile = [NSString stringWithFormat:@"%@/%@", [photoDataMgr manager].photoDir, PORTRAIT_FILE_NAME];
+    if( [[NSFileManager defaultManager] isReadableFileAtPath:portraintFile] ){
+        UIImage *image = [[photoDataMgr manager] thumbnailImageOfFile:portraintFile maxPixel:max];
+        portraitView.image = image;
+    }
+}
+
+- (void)onUpdateBannerNotification:(NSNotification*)notification
+{
+    CGFloat max = MAX(bannerButton.frame.size.width, bannerButton.frame.size.height);
+    NSString *bannerFile = [NSString stringWithFormat:@"%@/%@", [photoDataMgr manager].photoDir, BANNER_FILE_NAME];
+    if( [[NSFileManager defaultManager] isReadableFileAtPath:bannerFile] ){
+        UIImage *image = [[photoDataMgr manager] thumbnailImageOfFile:bannerFile maxPixel:max];
+        bannerView.image = image;
+    }
 }
 
 @end

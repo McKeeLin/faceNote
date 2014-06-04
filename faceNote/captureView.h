@@ -8,14 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+
 @class ViewController;
 
 @interface captureView : UIView
 
 @property (retain) ViewController *vc;
 
+@property (assign) PHOTO_TYPE photoType;
+
 - (void)startCapture;
 
 - (void)stopCapture;
+
+- (void)setCameraType:(BOOL)isFront;
 
 @end

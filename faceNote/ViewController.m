@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "captureView.h"
 #import "pageMgrView.h"
 #import "listView.h"
 #import "captureView.h"
@@ -39,8 +38,6 @@ ViewController *g_vc;
 @property (retain) pageMgrView *pageMgr;
 
 @property (retain) albumListView *ltv;
-
-@property (retain) captureView *cameraView;
 
 @property (retain) photoDisplayView *pdv;
 
@@ -87,14 +84,6 @@ ViewController *g_vc;
     cpv.vc = self;
     self.cameraView = cpv;
     [cpv release];
-//    settingView *stv = [[settingView alloc] initWithFrame:bounds];
-    /*
-    ltv = [[listView alloc] initWithFrame:bounds];
-    pageMgr = [[pageMgrView alloc] initWithFrame:bounds subViews:[NSArray arrayWithObjects:ltv,cpv,stv, nil] defaultIndex:0 delegate:self];
-    [self.view addSubview:pageMgr];
-    [cpv release];
-    [stv release];
-    */
     [self.view addSubview:cameraView];
 }
 
@@ -163,7 +152,6 @@ ViewController *g_vc;
 {
     if( index == 0 )
     {
-//        [ltv loadImages];
     }
 }
 
@@ -172,13 +160,6 @@ ViewController *g_vc;
     if( !ltv )
     {
         CGRect frame = CGRectMake(0, 0, appWidth, appHeight);
-        /*
-        listView *lv = [[listView alloc] initWithFrame:frame];
-        lv.vc = self;
-        self.ltv = lv;
-        [lv release];
-        [self.view addSubview:ltv];
-        */
         albumListView *v = [[albumListView alloc] initWithFrame:frame];
         v.vc = self;
         self.ltv = v;
@@ -213,7 +194,7 @@ ViewController *g_vc;
         [cpv release];
     }
     [self.view addSubview:cameraView];
-    self.ltv = nil;
+    [self.ltv removeFromSuperview];
 }
 
 - (void)showPhotoFromListViewWithPaths:(NSArray *)photoPaths defaultIndex:(NSInteger)index albumView:(albumView*)av
@@ -243,18 +224,9 @@ ViewController *g_vc;
         animation.duration = 0.1;
         animation.delegate = self;
         animation.timingFunction = UIViewAnimationCurveEaseInOut;
-//        [self.view insertSubview:pdv belowSubview:ltv];
         [self.view addSubview:pdv];
         [self.view.layer addAnimation:animation forKey:@"animation"];
         [animation release];
-        /*
-        [UIView beginAnimations:@"" context:nil];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [self.view addSubview:pdv];
-        [UIView commitAnimations];
-        */
-        
-        
     }
     else
     {
@@ -296,13 +268,6 @@ ViewController *g_vc;
     {
         if( !ltv )
         {
-            /*
-            listView *lv = [[listView alloc] initWithFrame:bounds];
-            lv.vc = self;
-             self.ltv = lv;
-             [lv release];
-             [self.view addSubview:ltv];
-            */
             albumListView *lv = [[albumListView alloc] initWithFrame:bounds];
             lv.vc = self;
             self.ltv = lv;
@@ -312,16 +277,9 @@ ViewController *g_vc;
         else
         {
             [ltv loadImages];
-            [self.view bringSubviewToFront:ltv];
+            [self.view addSubview:ltv];
         }
     }
-    
-    /*
-    if( [obj isKindOfClass:[listView class]] )
-    {
-        [obj loadImages];
-    }
-    */
     
     CATransition *animation = [[CATransition alloc] init];
     animation.duration = 0.5f;

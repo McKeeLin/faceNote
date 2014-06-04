@@ -23,6 +23,7 @@
 @interface albumListView()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
     UICollectionView *collection;
+    listHeaderView *headerView;
 }
 @end
 
@@ -39,7 +40,7 @@
         [self addSubview:imageView];
         
         CGFloat headerHeight = 140;
-        listHeaderView *headerView = [[listHeaderView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, headerHeight)];
+        headerView = [[listHeaderView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, headerHeight)];
         [self addSubview:headerView];
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -69,6 +70,8 @@
 
 - (void)dealloc
 {
+    NSLog(@"%s", __func__);
+    [headerView release];
     [vc release];
     [collection release];
     [super dealloc];
@@ -127,7 +130,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ;
+    photoGroupInfoObj *group = [[photoDataMgr manager].photoGroups objectAtIndex:indexPath.section];
+    NSString *photoPath = [group.photoPaths objectAtIndex:indexPath.item];
 }
 
 - (void)onTouchCamera:(id)sender
@@ -143,7 +147,7 @@
 - (void)onSwipeoLeft:(UISwipeGestureRecognizer*)sgr
 {
     [vc showCameraFromListView];
-    [self removeFromSuperview];
+    vc.cameraView.photoType = PHOTO_NORMAL;
 }
 
 @end

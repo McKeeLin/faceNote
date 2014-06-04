@@ -14,6 +14,8 @@
 
 @property (retain) NSMutableArray *photoGroups;
 
+@property (retain) NSString *photoDir;
+
 + (photoDataMgr*)manager;
 
 - (photoMetaDataObj*)metaDataOfPhoto:(NSString *)path;
@@ -22,7 +24,7 @@
 
 - (void)deletePhoto:(NSString*)path;
 
-- (void)addPhoto:(NSData*)data;
+- (void)addPhoto:(NSData*)data photoType:(PHOTO_TYPE)type;
 
 - (void)encodeFile:(NSString*)file to:(NSString*)destFile;
 

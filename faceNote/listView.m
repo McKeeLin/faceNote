@@ -345,12 +345,14 @@
 - (void)onTouchCamera:(id)sender
 {
     [vc showCameraFromListView];
+    vc.cameraView.photoType = PHOTO_NORMAL;
     [self removeFromSuperview];
 }
 
 - (void)onSwipeToLeft:(UISwipeGestureRecognizer*)sgr
 {
     [vc showCameraFromListView];
+    vc.cameraView.photoType = PHOTO_NORMAL;
     [self removeFromSuperview];
 }
 

@@ -10,10 +10,9 @@
 
 @interface listHeaderView : UIView
 
-@property (retain)UIImageView *imageView;
+@property (retain)UIButton *bannerButton;
 
 @property (retain)UIButton *portraitButton;
 
-- (void)setImage:(UIImage*)image;
 
 @end

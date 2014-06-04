@@ -14,7 +14,7 @@
 
 @implementation photoDataMgr
 
-@synthesize photoGroups;
+@synthesize photoGroups,photoDir;
 
 + (photoDataMgr*)manager
 {
@@ -31,6 +31,7 @@
     self = [super init];
     if( self ){
         photoGroups = [[NSMutableArray alloc] initWithCapacity:0];
+        self.photoDir = [[icloudHelper helper].appDocumentPath stringByAppendingPathComponent:PHOTO_DIR_NAME];
         [self loadData];
     }
     return self;
@@ -38,6 +39,7 @@
 
 - (void)dealloc
 {
+    [photoDir release];
     [photoGroups release];
     [super dealloc];
 }
@@ -48,15 +50,13 @@
 {
     [self synchronizePhotoFromICloudContainer];
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *photoDir = [[icloudHelper helper].appDocumentPath stringByAppendingPathComponent:PHOTO_DIR_NAME];
     NSArray *subPaths = [fm subpathsAtPath:photoDir];
     for( NSString *subPath in subPaths ){
         NSRange r = [subPath rangeOfString:PHOTO_FILE_TYPE];
-        if( r.location != NSNotFound )
+        if( r.location != NSNotFound && ![subPath isEqualToString:BANNER_FILE_NAME] && ![subPath isEqualToString:PORTRAIT_FILE_NAME] )
         {
             NSString *filePath = [photoDir stringByAppendingPathComponent:subPath];
             NSString *key = [subPath substringToIndex:r.location - 7];
-            NSLog(@".....................%@",key);
             BOOL keyFound = NO;
             for( photoGroupInfoObj *info in photoGroups ){
                 if( [info.key isEqualToString:key] ){
@@ -140,7 +140,7 @@
     }
 }
 
-- (void)addPhoto:(NSData *)data
+- (void)addPhoto:(NSData *)data photoType:(PHOTO_TYPE)type
 {
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *dir = [NSString stringWithFormat:@"%@/photos", [icloudHelper helper].appDocumentPath];
@@ -156,32 +156,46 @@
             }
         }
     }
-    NSDate *date = [NSDate date];
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    fmt.dateFormat = @"yyyyMMddHHmmSS";
-    NSString *name = [fmt stringFromDate:date];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@.%@", dir, name, PHOTO_FILE_TYPE];
+    
+    NSString *filePath = nil;
+    NSString *name = nil;
+    if( type == PHOTO_NORMAL ){
+        NSDate *date = [NSDate date];
+        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+        fmt.dateFormat = @"yyyyMMddHHmmSS";
+        name = [fmt stringFromDate:date];
+        filePath = [NSString stringWithFormat:@"%@/%@.%@", dir, name, PHOTO_FILE_TYPE];
+    }
+    else if( type == PHOTO_PORTRAIT ){
+        filePath = [NSString stringWithFormat:@"%@/%@", dir, PORTRAIT_FILE_NAME];
+    }
+    else if( type == PHOTO_BANNER ){
+        filePath = [NSString stringWithFormat:@"%@/%@", dir, BANNER_FILE_NAME];
+    }
+    
     if( ![data writeToFile:filePath options:NSDataWritingAtomic error:&err] )
     {
         NSLog(@"save photo data to %@ faile, %@", filePath, err.localizedDescription );
         return;
     }
     
-    NSString *key = [name substringToIndex:8];
-    BOOL keyFound = NO;
-    for( photoGroupInfoObj *info in photoGroups ){
-        if( [info.key isEqualToString:key] ){
-            [info.photoPaths addObject:filePath];
-            keyFound = YES;
-            break;
+    if( name ){
+        NSString *key = [name substringToIndex:8];
+        BOOL keyFound = NO;
+        for( photoGroupInfoObj *info in photoGroups ){
+            if( [info.key isEqualToString:key] ){
+                [info.photoPaths addObject:filePath];
+                keyFound = YES;
+                break;
+            }
         }
-    }
-    
-    if( !keyFound ){
-        photoGroupInfoObj *groupInfo = [[photoGroupInfoObj alloc] init];
-        groupInfo.key = key;
-        [groupInfo.photoPaths addObject:filePath];
-        [photoGroups addObject:groupInfo];
+        
+        if( !keyFound ){
+            photoGroupInfoObj *groupInfo = [[photoGroupInfoObj alloc] init];
+            groupInfo.key = key;
+            [groupInfo.photoPaths addObject:filePath];
+            [photoGroups addObject:groupInfo];
+        }
     }
 
     if( [icloudHelper helper].synchronizationEnabled ){

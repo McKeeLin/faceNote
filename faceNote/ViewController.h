@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "captureView.h"
 @class album;
 @class albumView;
 
 @interface ViewController : UIViewController
+
+@property (retain) captureView *cameraView;
 
 + (ViewController*)defaultVC;
 

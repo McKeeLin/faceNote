@@ -15,6 +15,7 @@
 
 @property (retain) AVCaptureDevice *camera;
 
+
 - (id)initWithFrame:(CGRect)frame camera:(AVCaptureDevice*)device;
 
 @end
