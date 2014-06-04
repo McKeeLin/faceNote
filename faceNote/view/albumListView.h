@@ -13,4 +13,7 @@
 @interface albumListView : UIView
 
 @property (retain)ViewController *vc;
+
+- (void)loadImages;
+
 @end

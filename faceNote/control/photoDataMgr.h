@@ -30,4 +30,6 @@
 
 - (void)synchronizePhotoFromICloudContainer;
 
+- (void)loadData;
+
 @end

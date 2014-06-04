@@ -32,6 +32,9 @@
 @property NSInteger calibration;
 
 @property CGFloat rate;
+@property UILabel *maximumLabel;
+@property UILabel *minimumLabel;
+@property UIView *line;
 
 - (id)initWithFrame:(CGRect)frame background:(NSString*)background thumb:(NSString*)thumb vertical:(BOOL)vertical;
 

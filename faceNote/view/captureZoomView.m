@@ -16,8 +16,8 @@
 @interface captureZoomView()<mySliderBarDelegate>
 {
     CGFloat pinScale;
-    CGFloat maxZoom;
-    CGFloat minZoom;
+    NSInteger maxZoom;
+    NSInteger minZoom;
     CGFloat lastZoom;
     longPressButton *zoomInButton; //放大按钮
     longPressButton *zoomOutButton;
@@ -36,14 +36,14 @@
     if (self) {
         // Initialization code
         self.camera = device;
-        maxZoom = 10.0;
-        minZoom = 1.0;
+        maxZoom = 10;
+        minZoom = 1;
         lastZoom = 1;
         if( [UIDevice currentDevice].systemVersion.floatValue >= 7.0 ){
             if( [camera respondsToSelector:@selector(videoMaxZoomFactor)] )
             {
                 maxZoom = [camera videoMaxZoomFactor];
-                NSLog(@"max zoom:%f",maxZoom);
+                NSLog(@"max zoom:%d",maxZoom);
             }
         }
         /*
@@ -64,23 +64,28 @@
         CGFloat sliderWidth = 13;
         CGFloat sliderHeight = 250;
         CGFloat sliderTop = (frame.size.height-sliderHeight)/2;
-        CGFloat sliderLeft = frame.size.width - 13 - 5;
+        CGFloat sliderLeft = frame.size.width - 13 - 10;
         CGRect sliderFrame = CGRectMake(sliderLeft, sliderTop, sliderWidth, sliderHeight);
         slider = [[mySliderBar alloc] initWithFrame:sliderFrame background:@"" thumb:@"thumb" vertical:YES];
         slider.delegate = self;
         slider.maximumValue = maxZoom;
         slider.minimumValue = minZoom;
+        slider.maximumLabel.text = [NSString stringWithFormat:@"%d", maxZoom];
+        slider.minimumLabel.text = [NSString stringWithFormat:@"%d", minZoom];
         slider.rate = slider.maximumValue / 3;
-        slider.calibration = maxZoom;
+        slider.calibration = maxZoom-minZoom;
         [slider addTarget:self action:@selector(onSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:slider];
         
         /*
-        sliderFrame = CGRectOffset(sliderFrame, 0, -50);
+        sliderFrame = CGRectMake(10, 100, 100, 100);
         sl = [[UISlider alloc] initWithFrame:sliderFrame];
         sl.thumbTintColor = [UIColor yellowColor];
         sl.maximumTrackTintColor = [UIColor orangeColor];
         sl.minimumTrackTintColor = [UIColor orangeColor];
+        sl.userInteractionEnabled = NO;
+        sl.maximumValue = maxZoom;
+        sl.minimumValue = minZoom;
         [sl setThumbImage:[UIImage imageNamed:@"thumb"] forState:UIControlStateNormal];
         [self addSubview:sl];
         */
@@ -178,12 +183,14 @@
 {
     NSLog(@"%s", __func__);
     [slider stepForword:YES];
+    [self setNewZoom:slider.value rate:2.0];
 }
 
 - (void)onZoomOutButtonTouchUp:(id)sender
 {
     NSLog(@"%s", __func__);
     [slider stepForword:NO];
+    [self setNewZoom:slider.value rate:2.0];
 }
 
 - (void)onValueChanged:(CGFloat)newValue
@@ -221,10 +228,10 @@
 
 - (void)setNewZoom:(CGFloat)zoom rate:(CGFloat)rate
 {
+    NSLog(@"%s, zoom:%f, rate:%f", __func__, zoom, rate);
     NSError *err = nil;
     if( [camera lockForConfiguration:&err] ){
-//        [camera rampToVideoZoomFactor:zoom withRate:rate];
-        camera.videoZoomFactor = zoom;
+        [camera rampToVideoZoomFactor:zoom withRate:rate];
         [camera unlockForConfiguration];
     }
 }

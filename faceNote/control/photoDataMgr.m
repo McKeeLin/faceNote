@@ -60,15 +60,6 @@
             BOOL keyFound = NO;
             for( photoGroupInfoObj *info in photoGroups ){
                 if( [info.key isEqualToString:key] ){
-                    /*
-                    for( NSString *photoPath in info.photoPaths )
-                    {
-                        NSRange r2 = [photoPath rangeOfString:subPath];
-                        if( r2.location == NSNotFound ){
-                            [info.photoPaths addObject:filePath];
-                        }
-                    }
-                    */
                     [info.photoPaths addObject:filePath];
                     keyFound = YES;
                     break;
@@ -119,7 +110,7 @@
     CFDictionarySetValue(options, kCGImageSourceCreateThumbnailFromImageAlways, boolValue);
     CFDictionarySetValue(options, kCGImageSourceThumbnailMaxPixelSize, maxPixel);
     CGImageRef thumbnail = CGImageSourceCreateThumbnailAtIndex(sourceRef, 0, options);
-    UIImage *image = [UIImage imageWithCGImage:thumbnail];
+    UIImage *image = [UIImage imageWithCGImage:thumbnail scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
     CGImageRelease(thumbnail);
     CFRelease(sourceRef);
     return image;
@@ -176,6 +167,23 @@
         return;
     }
     
+    NSString *key = [name substringToIndex:8];
+    BOOL keyFound = NO;
+    for( photoGroupInfoObj *info in photoGroups ){
+        if( [info.key isEqualToString:key] ){
+            [info.photoPaths addObject:filePath];
+            keyFound = YES;
+            break;
+        }
+    }
+    
+    if( !keyFound ){
+        photoGroupInfoObj *groupInfo = [[photoGroupInfoObj alloc] init];
+        groupInfo.key = key;
+        [groupInfo.photoPaths addObject:filePath];
+        [photoGroups addObject:groupInfo];
+    }
+
     if( [icloudHelper helper].synchronizationEnabled ){
         NSString *iCloudContainerPhotoPath = [[icloudHelper helper].iCloudDocumentPath stringByAppendingPathComponent:PHOTO_DIR_NAME];
         if( [fm fileExistsAtPath:iCloudContainerPhotoPath] )

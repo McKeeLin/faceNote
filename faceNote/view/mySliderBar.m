@@ -20,35 +20,70 @@
 @end
 
 @implementation mySliderBar
-@synthesize backgroundImageView,thumbImageView,maximumValue,minimumValue,delegate,rate;
+@synthesize backgroundImageView,thumbImageView,maximumValue,minimumValue,delegate,rate,maximumLabel,minimumLabel,line;
 
 - (id)initWithFrame:(CGRect)frame background:(NSString *)background thumb:(NSString *)thumb vertical:(BOOL)vertical
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        _value = 0.0;
+        _value = 1.0;
         bVertical = vertical;
+        CGFloat labelWidth = 15;
+        CGFloat labelHeight = 12;
+        CGFloat labelMargin = 5;
+        CGFloat frameWidth = frame.size.width;
+        CGFloat frameHeight = frame.size.height;
+        CGRect backgroundFrame = self.bounds;
+        CGRect maximumLabelFrame = CGRectZero;
+        CGRect minimumLabelFrame = CGRectZero;
+        CGRect thumbFrame = CGRectZero;
+        CGRect lineFrame = CGRectZero;
         
         UIImage *thumbImage = [UIImage imageNamed:thumb];
         if( thumb ){
             thumbSize = thumbImage.size;
-            CGRect backgroundFrame = self.bounds;
-            backgroundFrame.size.width -= thumbSize.width;
-            backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-            [self addSubview:backgroundImageView];
-            
-            CGRect thumbFrame = CGRectZero;
-            if( !vertical ){
-                thumbFrame = CGRectMake(0, (frame.size.height-thumbSize.height)/2, thumbSize.width, thumbSize.height);
+            if( vertical ){
+                minimumLabelFrame = CGRectMake((frameWidth-labelWidth)/2, 0, labelWidth, labelHeight);
+                maximumLabelFrame = CGRectMake((frameWidth-labelWidth)/2, frameHeight-labelHeight, labelWidth, labelHeight);
+                backgroundFrame = CGRectMake(0, labelHeight+labelMargin, frameWidth, frameHeight-2*labelMargin-2*labelHeight);
+                thumbFrame = CGRectMake((frameWidth-thumbSize.width)/2, backgroundFrame.origin.y, thumbSize.width, thumbSize.height);
+                lineFrame = CGRectMake((frameWidth-1)/2, labelHeight+labelMargin, 1, frameHeight-2*labelMargin-2*labelHeight);
             }
             else{
-                thumbFrame = CGRectMake((frame.size.width-thumbSize.width)/2, 0, thumbSize.width, thumbSize.height);
+                minimumLabelFrame = CGRectMake(0, (frameHeight-labelHeight)/2, labelWidth, labelHeight);
+                maximumLabelFrame = CGRectMake(frameWidth-labelWidth, (frameHeight-labelHeight)/2, labelWidth, labelHeight);
+                backgroundFrame = CGRectMake(labelWidth+labelMargin, 0, frameWidth-2*labelMargin-2*labelWidth, frameHeight);
+                thumbFrame = CGRectMake(backgroundFrame.origin.x, (frameHeight-thumbSize.height)/2, thumbSize.width, thumbSize.height);
+                lineFrame = CGRectMake(labelMargin+labelWidth, (frameHeight-1)/2, frameWidth-2*labelWidth-2*labelMargin, 1);
             }
+            
+            maximumLabel = [[UILabel alloc] initWithFrame:maximumLabelFrame];
+            maximumLabel.text = [NSString stringWithFormat:@"%f", maximumValue];
+            maximumLabel.textColor = [UIColor whiteColor];
+            maximumLabel.font = [UIFont systemFontOfSize:12];
+            minimumLabel.textAlignment = NSTextAlignmentCenter;
+            maximumLabel.backgroundColor = [UIColor clearColor];
+            [self addSubview:maximumLabel];
+            
+            minimumLabel = [[UILabel alloc] initWithFrame:minimumLabelFrame];
+            minimumLabel.text = [NSString stringWithFormat:@"%f", minimumValue];
+            minimumLabel.textColor = [UIColor whiteColor];
+            minimumLabel.font = [UIFont systemFontOfSize:12];
+            minimumLabel.textAlignment = NSTextAlignmentCenter;
+            minimumLabel.backgroundColor = [UIColor clearColor];
+            [self addSubview:minimumLabel];
+            
+            backgroundImageView = [[UIImageView alloc] initWithFrame:backgroundFrame];
+            [self addSubview:backgroundImageView];
+            
+            line = [[UIView alloc] initWithFrame:lineFrame];
+            line.backgroundColor = [UIColor whiteColor];
+            [self addSubview:line];
+            
             thumbImageView = [[UIImageView alloc] initWithFrame:thumbFrame];
             thumbImageView.image = thumbImage;
             [self addSubview:thumbImageView];
-//            [thumbImageView.layer addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
             [self addObserver:self forKeyPath:@"thumbImageView.layer.frame" options:NSKeyValueObservingOptionNew context:nil];
             
             calibration = 10;
@@ -146,39 +181,53 @@
 
 - (void)stepForword:(BOOL)bForward
 {
-    CGFloat duration = 3;
+    CGFloat duration = 0.3;
+    CGFloat step = maximumValue / calibration;
     CGRect finalFrame = thumbImageView.frame;
     if( !bVertical ){
-        CGFloat stepWidth = backgroundImageView.frame.size.width/calibration;
+        CGFloat stepWidth = line.frame.size.width/calibration;
        if( bForward ){
             finalFrame.origin.x += stepWidth;
-            if( finalFrame.origin.x > backgroundImageView.frame.size.width - thumbSize.width ){
-                finalFrame.origin.x = backgroundImageView.frame.size.width - thumbSize.width;
+            if( finalFrame.origin.x > line.frame.origin.x + line.frame.size.width - thumbSize.width ){
+                finalFrame.origin.x = line.frame.origin.x + line.frame.size.width - thumbSize.width;
             }
         }
         else{
             finalFrame.origin.x -= stepWidth;
-            if( finalFrame.origin.x < 0 ){
-                finalFrame.origin.x = 0;
+            if( finalFrame.origin.x < line.frame.origin.x ){
+                finalFrame.origin.x = line.frame.origin.x;
             }
         }
-        duration = stepWidth / rate;
     }
     else{
-        CGFloat stepHeight = backgroundImageView.frame.size.height/calibration;
+        CGFloat stepHeight = line.frame.size.height/calibration;
         if( bForward ){
             finalFrame.origin.y += stepHeight;
-            if( finalFrame.origin.y > backgroundImageView.frame.size.height - thumbSize.height )
+            if( finalFrame.origin.y > line.frame.origin.y + line.frame.size.height - thumbSize.height )
             {
-                finalFrame.origin.y = backgroundImageView.frame.size.height - thumbSize.height;
+                finalFrame.origin.y = line.frame.origin.y + line.frame.size.height - thumbSize.height;
             }
         }
         else{
             finalFrame.origin.y -= stepHeight;
-            if( finalFrame.origin.y < 0 ){
-                finalFrame.origin.y = 0;
+            if( finalFrame.origin.y < line.frame.origin.y ){
+                finalFrame.origin.y = line.frame.origin.y;
             }
         }
+    }
+    
+    if( bForward ){
+        _value += step;
+    }
+    else{
+        _value -= step;
+    }
+    
+    if( _value > maximumValue ){
+        _value = maximumValue;
+    }
+    if( _value < minimumValue ){
+        _value = minimumValue;
     }
     
     [UIView animateWithDuration:duration animations:^(){

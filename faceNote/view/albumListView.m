@@ -74,6 +74,11 @@
     [super dealloc];
 }
 
+- (void)loadImages
+{
+    [collection reloadData];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -98,7 +103,7 @@
     photoGroupInfoObj *group = [[photoDataMgr manager].photoGroups objectAtIndex:indexPath.section];
     NSString *photoPath = [group.photoPaths objectAtIndex:indexPath.item];
     photoListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
-    cell.thumbailView.image = [[photoDataMgr manager] thumbnailImageOfFile:photoPath maxPixel:88];
+    cell.thumbailView.image =[[photoDataMgr manager] thumbnailImageOfFile:photoPath maxPixel:88];// [UIImage imageWithContentsOfFile:photoPath];//
     cell.thumbailView.layer.contentsGravity = kCAGravityResizeAspectFill;
     cell.thumbailView.layer.masksToBounds = YES;
     return cell;

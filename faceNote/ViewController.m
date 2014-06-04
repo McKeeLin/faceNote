@@ -187,7 +187,7 @@ ViewController *g_vc;
     }
     else
     {
-//        [ltv loadImages];
+        [ltv loadImages];
     }
     
     {
@@ -311,6 +311,7 @@ ViewController *g_vc;
         }
         else
         {
+            [ltv loadImages];
             [self.view bringSubviewToFront:ltv];
         }
     }
