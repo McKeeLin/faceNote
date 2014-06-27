@@ -21,6 +21,7 @@
 #import "albumListView.h"
 #import "photoDataMgr.h"
 #import "photoScaleView.h"
+#import "photoBrowserView.h"
 #import <QuartzCore/QuartzCore.h>
 
 CGFloat appWidth;
@@ -289,4 +290,32 @@ ViewController *g_vc;
     [animation release];
     self.cameraView = nil;
 }
+
+- (void)showBrowerView
+{
+    ;
+}
+
+- (void)pushView:(UIView*)view
+{
+    CGRect finalFrame = view.frame;
+    view.frame = CGRectOffset(finalFrame, finalFrame.size.width, 0);
+    [self.view addSubview:view];
+    [UIView animateWithDuration:0.25 animations:^(){
+        view.frame = finalFrame;
+    }completion:^(BOOL bfinished){
+        ;
+    }];
+}
+
+- (void)popView:(UIView*)view
+{
+    [UIView animateWithDuration:0.25 animations:^(){
+        CGRect newFrame = view.frame;
+        view.frame = CGRectOffset(newFrame, newFrame.size.width, 0);
+    }completion:^(BOOL bfinished){
+        [view removeFromSuperview];
+    }];
+}
+
 @end

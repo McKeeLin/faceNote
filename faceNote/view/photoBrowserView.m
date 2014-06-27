@@ -10,12 +10,14 @@
 #import "photoScaleView.h"
 #import "iAPHelper.h"
 #import "icloudHelper.h"
+#import "ViewController.h"
 
 @interface photoBrowserView() <UIGestureRecognizerDelegate>
 {
     CGFloat yStart;
     CGFloat viewYStart;
     CGRect originalFrame;
+    UIView *topBar;
 }
 @end
 
@@ -47,6 +49,16 @@
         tgr.numberOfTouchesRequired = 1;
         [self addGestureRecognizer:tgr];
         [tgr release];
+        
+        topBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 64)];
+        topBar.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.1];
+        [self addSubview:topBar];
+        
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        backButton.frame = CGRectMake(0, 20, 45, 44);
+        [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [backButton addTarget:self action:@selector(onBackTouchUp:) forControlEvents:UIControlEventTouchUpInside];
+        [topBar addSubview:backButton];
     }
     return self;
 }
@@ -148,9 +160,23 @@
     }
 }
 
+- (void)showTopbar
+{
+    CGFloat y = topBar.frame.origin.y;
+    if( y == 0 ){
+        [UIView animateWithDuration:0.3 animations:^(){
+            topBar.frame = CGRectOffset(topBar.frame, 0, -topBar.frame.size.height);
+        }];
+    }
+    else if( y == -44 ){
+        [UIView animateWithDuration:0.3 animations:^(){
+            topBar.frame = CGRectOffset(topBar.frame, 0, topBar.frame.size.height);
+        }];
+    }
+}
+
 - (void)onTap:(UITapGestureRecognizer*)tgr
 {
-    ;
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -158,6 +184,11 @@
     if( [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] ){
     }
     return YES;
+}
+
+- (void)onBackTouchUp:(id)sender
+{
+    [[ViewController defaultVC] popView:self];
 }
 
 @end

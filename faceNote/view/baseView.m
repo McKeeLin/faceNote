@@ -37,4 +37,30 @@
 }
 */
 
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    if( newSuperview ){
+        CGRect finalFrame = self.frame;
+        self.frame = CGRectOffset(self.frame, self.frame.size.width, 0);
+        [UIView animateWithDuration:0.25 animations:^(){
+            self.frame = finalFrame;
+        }completion:^(BOOL bfinished){
+            ;
+        }];
+    }
+}
+
+- (void)dismiss
+{
+    [UIView animateWithDuration:0.25 animations:^(){
+        CGRect newFrame = self.bounds;
+        self.frame = CGRectOffset(newFrame, self.bounds.size.width, 0);
+    }completion:^(BOOL bfinished){
+        [self removeFromSuperview];
+    }];
+}
+
+
+
 @end

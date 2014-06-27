@@ -48,6 +48,7 @@
 
 - (void)loadData
 {
+    [photoGroups removeAllObjects];
     [self synchronizePhotoFromICloudContainer];
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *subPaths = [fm subpathsAtPath:photoDir];

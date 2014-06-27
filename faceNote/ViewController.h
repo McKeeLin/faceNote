@@ -37,4 +37,8 @@
 
 - (void)dismissCameraView;
 
+- (void)pushView:(UIView*)view;
+
+- (void)popView:(UIView*)view;
+
 @end

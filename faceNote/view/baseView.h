@@ -23,4 +23,6 @@
  */
 @property UIImageView *bgView;
 
+- (void)dismiss;
+
 @end

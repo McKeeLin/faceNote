@@ -31,6 +31,7 @@
 		08231BCF192060B9007F2B7F /* photoMetaDataObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 08231BCE192060B9007F2B7F /* photoMetaDataObj.m */; };
 		08231BD219206175007F2B7F /* photoDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 08231BD119206174007F2B7F /* photoDataMgr.m */; };
 		08231BD61920FAC5007F2B7F /* portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08231BD51920FAC5007F2B7F /* portrait@2x.png */; };
+		0827A59D195D6E8000D9BB15 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0827A59C195D6E8000D9BB15 /* back@2x.png */; };
 		0831CF4F1921B07B00EA87B1 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0831CF481921B07B00EA87B1 /* add@2x.png */; };
 		0831CF501921B07B00EA87B1 /* balls@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0831CF491921B07B00EA87B1 /* balls@2x.png */; };
 		0831CF511921B07B00EA87B1 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0831CF4A1921B07B00EA87B1 /* bg@2x.png */; };
@@ -166,6 +167,7 @@
 		08231BD019206174007F2B7F /* photoDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoDataMgr.h; sourceTree = "<group>"; };
 		08231BD119206174007F2B7F /* photoDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoDataMgr.m; sourceTree = "<group>"; };
 		08231BD51920FAC5007F2B7F /* portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "portrait@2x.png"; sourceTree = "<group>"; };
+		0827A59C195D6E8000D9BB15 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		0831CF481921B07B00EA87B1 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
 		0831CF491921B07B00EA87B1 /* balls@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "balls@2x.png"; sourceTree = "<group>"; };
 		0831CF4A1921B07B00EA87B1 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
@@ -258,7 +260,7 @@
 		5D19080918465F0400CA19EB /* photoDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoDisplayView.h; sourceTree = "<group>"; };
 		5D19080A18465F0500CA19EB /* photoDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoDisplayView.m; sourceTree = "<group>"; };
 		5D203B36182E0AC400F33158 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		5D3DA5E618265C4B008FCB17 /* OA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D3DA5E618265C4B008FCB17 /* faceNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = faceNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D3DA5E918265C4B008FCB17 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5D3DA5EB18265C4B008FCB17 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5D3DA5ED18265C4B008FCB17 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -389,6 +391,7 @@
 		0831CF471921B07B00EA87B1 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				0827A59C195D6E8000D9BB15 /* back@2x.png */,
 				08AE72771935CE2B005544AC /* min@2x.png */,
 				08AE72781935CE2B005544AC /* max@2x.png */,
 				08E520B3192A2F6C00BFB14C /* thumb@2x.png */,
@@ -529,7 +532,7 @@
 		5D3DA5E718265C4B008FCB17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5D3DA5E618265C4B008FCB17 /* OA.app */,
+				5D3DA5E618265C4B008FCB17 /* faceNote.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -653,7 +656,7 @@
 			);
 			name = OA;
 			productName = faceNote;
-			productReference = 5D3DA5E618265C4B008FCB17 /* OA.app */;
+			productReference = 5D3DA5E618265C4B008FCB17 /* faceNote.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -720,6 +723,7 @@
 				08AE72791935CE2B005544AC /* min@2x.png in Resources */,
 				0831CF511921B07B00EA87B1 /* bg@2x.png in Resources */,
 				081195591900A9F700C27778 /* icon57.png in Resources */,
+				0827A59D195D6E8000D9BB15 /* back@2x.png in Resources */,
 				0831CF521921B07B00EA87B1 /* camera@2x.png in Resources */,
 				08231BD61920FAC5007F2B7F /* portrait@2x.png in Resources */,
 				0831CF501921B07B00EA87B1 /* balls@2x.png in Resources */,
@@ -921,7 +925,7 @@
 				GCC_PREFIX_HEADER = "faceNote/OA-Prefix.pch";
 				INFOPLIST_FILE = "faceNote/OA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = OA;
+				PRODUCT_NAME = faceNote;
 				PROVISIONING_PROFILE = "20D36E48-ED60-44F0-9709-1BAD10C2ED08";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20D36E48-ED60-44F0-9709-1BAD10C2ED08";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -939,7 +943,7 @@
 				GCC_PREFIX_HEADER = "faceNote/OA-Prefix.pch";
 				INFOPLIST_FILE = "faceNote/OA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = OA;
+				PRODUCT_NAME = faceNote;
 				PROVISIONING_PROFILE = "A6D70FB4-D325-42B8-9AFC-65876CA7AD12";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6D70FB4-D325-42B8-9AFC-65876CA7AD12";
 				TARGETED_DEVICE_FAMILY = 1;

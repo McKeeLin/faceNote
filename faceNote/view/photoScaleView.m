@@ -30,14 +30,20 @@
         self.delegate = self;
         self.minimumZoomScale = 1.0;
         self.maximumZoomScale = 50.0;
+    }
+    return self;
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    if( newSuperview ){
+        imageView.userInteractionEnabled = YES;
         imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:imageView];
         tiledLayer = [[CATiledLayer alloc] init];
-        tiledLayer.delegate = nil;
         tiledLayer.contentsGravity = kCAGravityResizeAspect;
         tiledLayer.geometryFlipped = YES;
         image = [[UIImage alloc] initWithContentsOfFile:photoPath];
-        [imageView.layer addSublayer:tiledLayer];
         NSInteger width = image.size.width;
         NSInteger height = image.size.height;
         tiledLayer.levelsOfDetailBias = 5;
@@ -56,8 +62,10 @@
         delegate.image = image;
         delegate.bounds = self.bounds;
         tiledLayer.delegate = delegate;
+        imageView.image = image;
+        [imageView.layer addSublayer:tiledLayer];
+        [tiledLayer setNeedsDisplay];
     }
-    return self;
 }
 
 - (void)dealloc

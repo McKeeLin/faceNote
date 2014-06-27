@@ -16,6 +16,7 @@
 #import "photoListheaderLayout.h"
 #import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "photoBrowserView.h"
 
 #define CELL_ID     @"photoListCell"
 #define HEAD_ID     @"headerId"
@@ -79,7 +80,9 @@
 
 - (void)loadImages
 {
+    [[photoDataMgr manager] loadData];
     [collection reloadData];
+    [[icloudHelper helper] queryGroups];
 }
 
 /*
@@ -131,7 +134,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     photoGroupInfoObj *group = [[photoDataMgr manager].photoGroups objectAtIndex:indexPath.section];
-    NSString *photoPath = [group.photoPaths objectAtIndex:indexPath.item];
+    photoBrowserView *browserView = [[photoBrowserView alloc] initWithFrame:self.bounds photoGroup:group defaultIndex:indexPath.item delegate:self];
+    [[ViewController defaultVC] pushView:browserView];
 }
 
 - (void)onTouchCamera:(id)sender
