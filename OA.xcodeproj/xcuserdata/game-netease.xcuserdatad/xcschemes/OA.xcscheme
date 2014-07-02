@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5D3DA5E518265C4B008FCB17"
-               BuildableName = "OA.app"
+               BuildableName = "faceNote.app"
                BlueprintName = "OA"
                ReferencedContainer = "container:OA.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5D3DA5E518265C4B008FCB17"
-            BuildableName = "OA.app"
+            BuildableName = "faceNote.app"
             BlueprintName = "OA"
             ReferencedContainer = "container:OA.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5D3DA5E518265C4B008FCB17"
-            BuildableName = "OA.app"
+            BuildableName = "faceNote.app"
             BlueprintName = "OA"
             ReferencedContainer = "container:OA.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5D3DA5E518265C4B008FCB17"
-            BuildableName = "OA.app"
+            BuildableName = "faceNote.app"
             BlueprintName = "OA"
             ReferencedContainer = "container:OA.xcodeproj">
          </BuildableReference>

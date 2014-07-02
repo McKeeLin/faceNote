@@ -50,8 +50,6 @@
         currentIndex = index;
         CGFloat horMargin = width / 20;
         CGFloat verMargin = height / 20;
-        horMargin = 0;
-        verMargin = 0;
         CGRect pageFrame = CGRectMake(horMargin, verMargin, width - 2 * horMargin, height - 2 * verMargin);
         photoView *currentPage = [self.pageViews objectAtIndex:index];
         currentPage.frame = pageFrame;

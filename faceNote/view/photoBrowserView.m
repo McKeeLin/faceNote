@@ -11,6 +11,8 @@
 #import "iAPHelper.h"
 #import "icloudHelper.h"
 #import "ViewController.h"
+#import "photoMetaDataObj.h"
+#import "photoDataMgr.h"
 
 @interface photoBrowserView() <UIGestureRecognizerDelegate>
 {
@@ -30,6 +32,9 @@
         photoScaleView *subView = [[photoScaleView alloc] initWithFrame:CGRectZero photoPath:photoPath];
         [subViews addObject:subView];
         [subView release];
+        
+        photoMetaDataObj *meta = [[photoDataMgr manager] metaDataOfPhoto:photoPath];
+        NSLog(@"photo:%@\nlatitude:%f\nlongtitude:%f\naltitude:%f\norientation:%d\nwidth:%f\nheight:%f,hasAlpha:%d",meta.path,meta.latitude,meta.longitude,meta.altitude,meta.orientation.intValue,meta.width,meta.height,meta.hasAlpha);
     }
     
     self = [super initWithFrame:frame subViews:subViews defaultIndex:index delegate:dele];

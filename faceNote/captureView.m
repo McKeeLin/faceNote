@@ -190,7 +190,7 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
-{
+{ 
     // Drawing code
 }
 */
@@ -322,6 +322,9 @@
 {
     NSLog(@"%s",__func__);
     AVCaptureConnection *conn = [self.imageOut connectionWithMediaType:AVMediaTypeVideo];
+    if( conn.supportsVideoOrientation ){
+        conn.videoOrientation = (NSInteger)[UIApplication sharedApplication].statusBarOrientation;
+    }
     if( conn )
     {
         [self.imageOut captureStillImageAsynchronouslyFromConnection:conn completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error){            

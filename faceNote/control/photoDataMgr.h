@@ -22,6 +22,8 @@
 
 - (UIImage*)thumbnailImageOfFile:(NSString*)file maxPixel:(float)max;
 
+- (UIImage*)imageFromFile:(NSString*)file;
+
 - (void)deletePhoto:(NSString*)path;
 
 - (void)addPhoto:(NSData*)data photoType:(PHOTO_TYPE)type;

@@ -79,15 +79,18 @@
 
 - (photoMetaDataObj*)metaDataOfPhoto:(NSString *)path
 {
-    photoMetaDataObj *metaData = nil;
-    NSURL *fileUrl = [NSURL fileURLWithPath:metaData.path];
+    photoMetaDataObj *metaData = [[photoMetaDataObj alloc] init];
+    metaData.path = path;
+    NSURL *fileUrl = [NSURL fileURLWithPath:path];
     CFURLRef urlRef = (CFURLRef)fileUrl;
     CGImageSourceRef sourceRef = CGImageSourceCreateWithURL(urlRef, nil);
-    NSDictionary *properties = (NSDictionary*)CGImageSourceCopyProperties(sourceRef, nil);
+    NSDictionary *properties = (NSDictionary*)CGImageSourceCopyPropertiesAtIndex(sourceRef, 0, nil);
     NSString *strWidth = [properties objectForKey:(NSString*)kCGImagePropertyPixelWidth];
     metaData.width = strWidth.floatValue;
     NSString *strHeight = [properties objectForKey:(NSString*)kCGImagePropertyPixelHeight];
     metaData.height = strHeight.floatValue;
+    metaData.orientation = (NSNumber*)[properties objectForKey:(NSString*)kCGImagePropertyOrientation];
+    metaData.hasAlpha = (BOOL)[properties objectForKey:(NSString*)kCGImagePropertyHasAlpha];
     NSDictionary *exifProperty = [properties objectForKey:(NSString*)kCGImagePropertyExifDictionary];
     metaData.creteTime = [exifProperty objectForKey:(NSString*)kCGImagePropertyExifDateTimeOriginal];
     NSDictionary *gpsProperty = [properties objectForKey:(NSString*)kCGImagePropertyGPSDictionary];
@@ -111,9 +114,38 @@
     CFDictionarySetValue(options, kCGImageSourceCreateThumbnailFromImageAlways, boolValue);
     CFDictionarySetValue(options, kCGImageSourceThumbnailMaxPixelSize, maxPixel);
     CGImageRef thumbnail = CGImageSourceCreateThumbnailAtIndex(sourceRef, 0, options);
-    UIImage *image = [UIImage imageWithCGImage:thumbnail scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+    photoMetaDataObj *meta = [self metaDataOfPhoto:file];
+    UIImageOrientation orientation = UIImageOrientationUp;
+    if( meta.orientation.intValue == UIImageOrientationLeftMirrored ){
+        orientation = UIImageOrientationRight;
+    }
+    UIImage *image = [UIImage imageWithCGImage:thumbnail scale:[UIScreen mainScreen].scale orientation:orientation];
     CGImageRelease(thumbnail);
     CFRelease(sourceRef);
+    return image;
+}
+
+
+- (UIImage*)imageFromFile:(NSString *)file
+{
+    UIImage *image;
+    CGDataProviderRef provider = CGDataProviderCreateWithFilename([file cStringUsingEncoding:NSUTF8StringEncoding]);
+    CGImageRef imgRef;
+    photoMetaDataObj *meta = [self metaDataOfPhoto:file];
+    if( meta.hasAlpha ){
+        imgRef = CGImageCreateWithPNGDataProvider(provider, nil, NO, kCGRenderingIntentDefault);
+    }
+    else{
+        imgRef = CGImageCreateWithJPEGDataProvider(provider, nil, NO, kCGRenderingIntentDefault);
+    }
+    UIImageOrientation orientation = UIImageOrientationUp;
+    if( meta.orientation.intValue == UIImageOrientationLeftMirrored ){
+        orientation = UIImageOrientationRight;
+    }
+    image = [UIImage imageWithCGImage:imgRef scale:[UIScreen mainScreen].scale orientation:orientation];
+    UIImageOrientation o = image.imageOrientation;
+    CFRelease(imgRef);
+    CFRelease(provider);
     return image;
 }
 

@@ -27,4 +27,8 @@
 
 @property CLLocationDegrees altitude;
 
+@property NSNumber *orientation;
+
+@property BOOL hasAlpha;
+
 @end

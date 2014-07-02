@@ -244,6 +244,7 @@
 
 - (BOOL)synchronizationEnabled
 {
+    return YES;
     NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:kICloudEnable];
     if( number ){
         return number.boolValue;

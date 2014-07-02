@@ -14,13 +14,20 @@
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
 {
-    NSLog(@"%s", __func__);
     CGFloat boundsWidth = bounds.size.width;
     CGFloat boundsHeight = bounds.size.height;
     CGFloat imageWidth = image.size.width;
     CGFloat imageHeight = image.size.height;
+    NSLog(@"%s[%@], %f:%f", __func__, self,imageWidth,imageHeight);
     CGFloat rate = imageHeight / imageWidth;
-    CGContextDrawImage(ctx, CGRectMake(0, (boundsHeight-boundsWidth*rate)/2,boundsWidth, boundsWidth*rate), image.CGImage);
+    CGFloat width = boundsWidth;
+    CGFloat height = boundsWidth*rate;
+    CGContextRotateCTM(ctx, -M_PI/2);
+    CGContextScaleCTM(ctx, boundsHeight/boundsWidth, boundsWidth/boundsHeight);
+    CGContextTranslateCTM(ctx, -boundsWidth, 0);
+    if( image ){
+         CGContextDrawImage(ctx, CGRectMake((boundsWidth-width)/2, (boundsHeight-height)/2,width, height), image.CGImage);
+    }
 }
 
 

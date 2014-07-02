@@ -9,7 +9,7 @@
 #import "photoMetaDataObj.h"
 
 @implementation photoMetaDataObj
-@synthesize path,location,creteTime,width,height,latitude,longitude,altitude;
+@synthesize path,location,creteTime,width,height,latitude,longitude,altitude,orientation,hasAlpha;
 
 - (void)dealloc
 {
